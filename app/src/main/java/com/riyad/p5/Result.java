@@ -1,11 +1,14 @@
 
 package com.riyad.p5;
 
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result {
+public class Result implements android.os.Parcelable {
 
     @SerializedName("section")
     @Expose
@@ -206,4 +209,67 @@ public class Result {
         this.shortUrl = shortUrl;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.section);
+        dest.writeString(this.subsection);
+        dest.writeString(this.title);
+        dest.writeString(this._abstract);
+        dest.writeString(this.url);
+        dest.writeString(this.byline);
+        dest.writeString(this.itemType);
+        dest.writeString(this.updatedDate);
+        dest.writeString(this.createdDate);
+        dest.writeString(this.publishedDate);
+        dest.writeString(this.materialTypeFacet);
+        dest.writeString(this.kicker);
+        dest.writeStringList(this.desFacet);
+        dest.writeStringList(this.orgFacet);
+        dest.writeStringList(this.perFacet);
+        dest.writeStringList(this.geoFacet);
+        dest.writeList(this.multimedia);
+        dest.writeString(this.shortUrl);
+    }
+
+    public Result() {
+    }
+
+    protected Result(Parcel in) {
+        this.section = in.readString();
+        this.subsection = in.readString();
+        this.title = in.readString();
+        this._abstract = in.readString();
+        this.url = in.readString();
+        this.byline = in.readString();
+        this.itemType = in.readString();
+        this.updatedDate = in.readString();
+        this.createdDate = in.readString();
+        this.publishedDate = in.readString();
+        this.materialTypeFacet = in.readString();
+        this.kicker = in.readString();
+        this.desFacet = in.createStringArrayList();
+        this.orgFacet = in.createStringArrayList();
+        this.perFacet = in.createStringArrayList();
+        this.geoFacet = in.createStringArrayList();
+        this.multimedia = new ArrayList<Multimedium>();
+        in.readList(this.multimedia, Multimedium.class.getClassLoader());
+        this.shortUrl = in.readString();
+    }
+
+    public static final Creator<Result> CREATOR = new Creator<Result>() {
+        @Override
+        public Result createFromParcel(Parcel source) {
+            return new Result(source);
+        }
+
+        @Override
+        public Result[] newArray(int size) {
+            return new Result[size];
+        }
+    };
 }

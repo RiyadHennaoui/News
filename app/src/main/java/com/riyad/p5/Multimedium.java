@@ -1,10 +1,12 @@
 
 package com.riyad.p5;
 
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Multimedium {
+public class Multimedium implements android.os.Parcelable {
 
     @SerializedName("url")
     @Expose
@@ -95,4 +97,46 @@ public class Multimedium {
         this.copyright = copyright;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.url);
+        dest.writeString(this.format);
+        dest.writeValue(this.height);
+        dest.writeValue(this.width);
+        dest.writeString(this.type);
+        dest.writeString(this.subtype);
+        dest.writeString(this.caption);
+        dest.writeString(this.copyright);
+    }
+
+    public Multimedium() {
+    }
+
+    protected Multimedium(Parcel in) {
+        this.url = in.readString();
+        this.format = in.readString();
+        this.height = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.width = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.type = in.readString();
+        this.subtype = in.readString();
+        this.caption = in.readString();
+        this.copyright = in.readString();
+    }
+
+    public static final Creator<Multimedium> CREATOR = new Creator<Multimedium>() {
+        @Override
+        public Multimedium createFromParcel(Parcel source) {
+            return new Multimedium(source);
+        }
+
+        @Override
+        public Multimedium[] newArray(int size) {
+            return new Multimedium[size];
+        }
+    };
 }
