@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        NewYorkTimesAPI service = retrofit.create(NewYorkTimesAPI.class);
+        NewYorkTimesAPI service =
+                retrofit.create(NewYorkTimesAPI.class);
 
         Call<TopStoriesResult> call = service.getTopStories("business", "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5");
 
