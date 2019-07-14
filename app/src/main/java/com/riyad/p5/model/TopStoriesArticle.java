@@ -1,14 +1,14 @@
 
-package com.riyad.p5;
+package com.riyad.p5.model;
 
 import android.os.Parcel;
-import android.os.Parcelable.Creator;
+
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result implements android.os.Parcelable {
+public class TopStoriesArticle implements android.os.Parcelable {
 
     @SerializedName("section")
     @Expose
@@ -236,10 +236,10 @@ public class Result implements android.os.Parcelable {
         dest.writeString(this.shortUrl);
     }
 
-    public Result() {
+    public TopStoriesArticle() {
     }
 
-    protected Result(Parcel in) {
+    protected TopStoriesArticle(Parcel in) {
         this.section = in.readString();
         this.subsection = in.readString();
         this.title = in.readString();
@@ -261,15 +261,15 @@ public class Result implements android.os.Parcelable {
         this.shortUrl = in.readString();
     }
 
-    public static final Creator<Result> CREATOR = new Creator<Result>() {
+    public static final Creator<TopStoriesArticle> CREATOR = new Creator<TopStoriesArticle>() {
         @Override
-        public Result createFromParcel(Parcel source) {
-            return new Result(source);
+        public TopStoriesArticle createFromParcel(Parcel source) {
+            return new TopStoriesArticle(source);
         }
 
         @Override
-        public Result[] newArray(int size) {
-            return new Result[size];
+        public TopStoriesArticle[] newArray(int size) {
+            return new TopStoriesArticle[size];
         }
     };
 }

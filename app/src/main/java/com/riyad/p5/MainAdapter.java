@@ -8,11 +8,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.riyad.p5.model.TopStoriesArticle;
+
 import java.util.List;
 
 class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
-    private List<Result> mData;
+    private List<TopStoriesArticle> mData;
 
     @NonNull
     @Override
@@ -36,8 +38,8 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         return mData != null ? mData.size() : 0;
     }
 
-    public void setData(@NonNull List<Result> results) {
-        mData = results;
+    public void setData(@NonNull List<TopStoriesArticle> topStoriesArticles) {
+        mData = topStoriesArticles;
 
         notifyDataSetChanged();
     }

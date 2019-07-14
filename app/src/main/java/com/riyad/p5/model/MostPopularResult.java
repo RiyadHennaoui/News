@@ -1,11 +1,11 @@
 
-package com.riyad.p5;
+package com.riyad.p5.model;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class TopStoriesResult {
+public class MostPopularResult {
 
     @SerializedName("status")
     @Expose
@@ -13,18 +13,12 @@ public class TopStoriesResult {
     @SerializedName("copyright")
     @Expose
     private String copyright;
-    @SerializedName("section")
-    @Expose
-    private String section;
-    @SerializedName("last_updated")
-    @Expose
-    private String lastUpdated;
     @SerializedName("num_results")
     @Expose
     private Integer numResults;
     @SerializedName("results")
     @Expose
-    private List<Result> results = null;
+    private List<MostPopularArticle> results = null;
 
     public String getStatus() {
         return status;
@@ -42,22 +36,6 @@ public class TopStoriesResult {
         this.copyright = copyright;
     }
 
-    public String getSection() {
-        return section;
-    }
-
-    public void setSection(String section) {
-        this.section = section;
-    }
-
-    public String getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(String lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
-
     public Integer getNumResults() {
         return numResults;
     }
@@ -66,11 +44,11 @@ public class TopStoriesResult {
         this.numResults = numResults;
     }
 
-    public List<Result> getResults() {
+    public List<MostPopularArticle> getResults() {
         return results;
     }
 
-    public void setResults(List<Result> results) {
+    public void setResults(List<MostPopularArticle> results) {
         this.results = results;
     }
 
