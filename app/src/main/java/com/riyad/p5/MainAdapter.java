@@ -29,8 +29,15 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.mTvTitle.setText(mData.get(position).getTitle());
 
-        String url = mData.get(position).getMultimedia().get(0).getUrl(); // TODO RIYAD FAIRE UN MEILLEUR ALGO
+        if (mData.get(position).getMultimedia() != null && !mData.get(position).getMultimedia().isEmpty()){
+
+            String url = mData.get(position).getMultimedia().get(0).getUrl();
+
         Glide.with(holder.mIvThumbnail).load(url).centerInside().into(holder.mIvThumbnail);
+        }else{
+
+            // TODO afficher une image par défaut
+        }
     }
 
     @Override

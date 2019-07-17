@@ -51,7 +51,7 @@ public class TopStoriesFragment extends Fragment {
         }
 
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return myView;
     }
 
 

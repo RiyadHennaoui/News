@@ -1,7 +1,10 @@
 package com.riyad.p5;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -23,7 +26,31 @@ public class MainActivity extends AppCompatActivity {
 
         myViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
 
+        // TODO
+
+
+
+
+
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.articles_menu,menu);
+
+        return  true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.menu_min){
+
+            // TODO afficher la page de notifications faire un switch
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }
