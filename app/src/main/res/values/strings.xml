@@ -3,4 +3,5 @@
     <string name="notification">notification</string>
     <string name="search">search</string>
     <string name="help">help</string>
+    <string name="about">About</string>
 </resources>

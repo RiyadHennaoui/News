@@ -2,16 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/menu_min"
+    <item
+        android:id="@+id/menu_min"
         android:title="@string/notification"
-        android:titleCondensed="@string/help"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_help"
+        android:title="@string/help"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_about"
+        android:title="@string/about"
+        app:showAsAction="never" />
 
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/search_btn"
-        android:title="@string/search"
+    <item
+        android:id="@+id/search_btn"
         android:icon="@drawable/baseline_search_white_48"
-        app:showAsAction="always"/>
+        android:title="@string/search"
+        app:showAsAction="always" />
 
 
 </menu>
