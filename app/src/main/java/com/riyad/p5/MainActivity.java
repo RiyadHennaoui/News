@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -21,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPager myViewPager = findViewById(R.id.main_vp_articles);
         TabLayout myTabLayout = findViewById(R.id.main_tl);
+        Toolbar myToolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(myToolbar);
 
         myTabLayout.setupWithViewPager(myViewPager);
 
