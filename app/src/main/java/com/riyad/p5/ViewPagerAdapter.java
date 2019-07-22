@@ -1,6 +1,7 @@
 package com.riyad.p5;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -26,5 +27,11 @@ private List<Fragment> myFragments = new ArrayList<>(4);
     @Override
     public int getCount() {
         return myFragments.size();
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return super.getPageTitle(position);
     }
 }

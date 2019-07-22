@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_topStories"
+            android:icon="@drawable/baseline_sort_white_48"
+            android:title="Top Stories" />
+
+        <item
+            android:id="@+id/nav_mostPopular"
+            android:icon="@drawable/baseline_bookmark_border_white_48"
+            android:title="Most Popular" />
+
+        <item
+            android:id="@+id/nav_business"
+            android:icon="@drawable/baseline_business_white_48"
+            android:title="Business" />
+
+        <item
+            android:id="@+id/nav_sport"
+            android:icon="@drawable/baseline_fitness_center_white_48"
+            android:title="Sport" />
+    </group>
+
+    <item android:title="Comunicate">
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_search"
+                android:icon="@drawable/baseline_search_white_48"
+                android:title="Search" />
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/baseline_share_white_48"
+                android:title="Share" />
+
+
+        </menu>
+
+
+    </item>
+
+
+</menu>
