@@ -15,7 +15,7 @@ private List<Fragment> myFragments = new ArrayList<>(4);
     public ViewPagerAdapter(@NonNull FragmentManager fm) {
         super(fm, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         myFragments.add(new TopStoriesFragment());
-        myFragments.add(new TopStoriesFragment());
+        myFragments.add(new MostPopularFragment());
     }
 
     @NonNull

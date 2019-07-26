@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.riyad.p5.model.MostPopularArticle;
 import com.riyad.p5.model.TopStoriesArticle;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     private List<TopStoriesArticle> mData;
+    private List<MostPopularArticle> mDataMostPopular;
 
     @NonNull
     @Override
@@ -37,6 +39,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         }else{
 
             // TODO afficher une image par défaut
+            Glide.with(holder.mIvThumbnail).asDrawable(R.drawable.ic_launcher_background).into(holder.mIvThumbnail)
         }
     }
 
@@ -45,10 +48,17 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         return mData != null ? mData.size() : 0;
     }
 
-    public void setData(@NonNull List<TopStoriesArticle> topStoriesArticles) {
+    public void setDataTopStories(@NonNull List<TopStoriesArticle> topStoriesArticles) {
         mData = topStoriesArticles;
 
         notifyDataSetChanged();
+    }
+
+    public void setDataMostPopular(@NonNull List<MostPopularArticle> mostPopularArticles) {
+        mDataMostPopular = mostPopularArticles;
+
+        notifyDataSetChanged();
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

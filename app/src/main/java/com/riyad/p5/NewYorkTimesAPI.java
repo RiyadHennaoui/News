@@ -1,5 +1,6 @@
 package com.riyad.p5;
 
+import com.riyad.p5.model.MostPopularResult;
 import com.riyad.p5.model.TopStoriesResult;
 
 import retrofit2.Call;
@@ -11,4 +12,6 @@ public interface NewYorkTimesAPI {
 
     @GET("svc/topstories/v2/{section}.json")
     Call<TopStoriesResult> getTopStories(@Path("section") String section, @Query("api-key") String apiKey);
+    @GET("svc/mostpopular/v2/viewed/7.json")
+    Call<MostPopularResult> getMostPopular(@Query("api-key") String  apiKey);
 }

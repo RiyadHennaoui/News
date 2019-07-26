@@ -12,8 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.riyad.p5.model.MostPopularArticle;
+import com.riyad.p5.model.MostPopularResult;
 import com.riyad.p5.model.TopStoriesArticle;
-import com.riyad.p5.model.TopStoriesResult;
+
 
 import java.util.ArrayList;
 
@@ -23,14 +25,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class TopStoriesFragment extends Fragment {
+public class MostPopularFragment extends Fragment {
 
     private MainAdapter mAdapter = new MainAdapter();
-    private ArrayList<TopStoriesArticle> mData;
+    private ArrayList<MostPopularArticle> mData;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View myView = inflater.inflate(R.layout.article_layout, container,false);
 
         RecyclerView myRecyclerView = myView.findViewById(R.id.rv_article);
@@ -55,14 +55,6 @@ public class TopStoriesFragment extends Fragment {
     }
 
 
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-
-        // TODO RIYAD SAVE COLLECTION OF ITEMS
-        savedInstanceState.putParcelableArrayList("toto", mData);
-    }
-
     private void reload() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.nytimes.com/")
@@ -72,18 +64,18 @@ public class TopStoriesFragment extends Fragment {
         NewYorkTimesAPI service =
                 retrofit.create(NewYorkTimesAPI.class);
 
-        Call<TopStoriesResult> call = service.getTopStories("business", "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5");
+        Call<MostPopularResult> call = service.getMostPopular("vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5");
 
-        call.enqueue(new Callback<TopStoriesResult>() {
+        call.enqueue(new Callback<MostPopularResult>() {
             @Override
-            public void onResponse(Call<TopStoriesResult> call, Response<TopStoriesResult> response) {
+            public void onResponse(Call<MostPopularResult> call, Response<MostPopularResult> response) {
 
                 onNewData(response.body());
 
             }
 
             @Override
-            public void onFailure(Call<TopStoriesResult> call, Throwable t) {
+            public void onFailure(Call<MostPopularResult> call, Throwable t) {
 
                 Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
 
@@ -91,11 +83,12 @@ public class TopStoriesFragment extends Fragment {
         });
     }
 
-    private void onNewData(@Nullable TopStoriesResult body) {
-        if (body != null && !CollectionUtils.isEmpty(body.getTopStoriesArticles()))  {
-            mData = new ArrayList<>(body.getTopStoriesArticles());
+    private void onNewData(@Nullable MostPopularResult body) {
+        if (body != null && !CollectionUtils.isEmpty(body.getResults()))  {
+            mData = new ArrayList<>(body.getNumResults());
 
-            mAdapter.setDataTopStories(body.getTopStoriesArticles());
+            mAdapter.setDataMostPopular(body.getResults());
         }
     }
+
 }
