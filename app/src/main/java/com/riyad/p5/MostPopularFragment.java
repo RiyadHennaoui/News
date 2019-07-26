@@ -45,7 +45,7 @@ public class MostPopularFragment extends Fragment {
             reload();
         } else {
             // TODO RIYAD RESTORE STATE
-            mAdapter.setDataTopStories(savedInstanceState.<TopStoriesArticle>getParcelableArrayList("toto"));
+            mAdapter.setDataMostPopular(savedInstanceState.<MostPopularArticle>getParcelableArrayList("toto"));
 
             Toast.makeText(getContext(), "This is not my first rodeo", Toast.LENGTH_SHORT).show();
         }

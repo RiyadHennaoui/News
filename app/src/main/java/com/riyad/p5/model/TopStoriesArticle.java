@@ -236,8 +236,6 @@ public class TopStoriesArticle implements android.os.Parcelable {
         dest.writeString(this.shortUrl);
     }
 
-    public TopStoriesArticle() {
-    }
 
     protected TopStoriesArticle(Parcel in) {
         this.section = in.readString();

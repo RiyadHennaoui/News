@@ -13,9 +13,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
 
     @Override
@@ -41,6 +43,56 @@ public class MainActivity extends AppCompatActivity {
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.nav_topStories:
+
+
+                break;
+
+            case R.id.nav_mostPopular:
+
+                break;
+
+            case R.id.nav_business:
+
+                break;
+
+            case R.id.nav_sport:
+
+                break;
+
+            case R.id.nav_search:
+
+                break;
+
+            case R.id.nav_share:
+
+
+                break;
+
+            case R.id.menu_about:
+
+                break;
+
+            case R.id.menu_help:
+
+                break;
+
+            case R.id.menu_min:
+
+                break;
+
+        }
+
+        return true;
     }
 
     @Override
@@ -62,12 +114,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
 
             drawer.closeDrawer(GravityCompat.START);
-        }else{
+        } else {
 
-        super.onBackPressed();
+            super.onBackPressed();
         }
     }
 }

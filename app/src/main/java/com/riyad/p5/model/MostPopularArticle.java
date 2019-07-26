@@ -1,11 +1,14 @@
 
 package com.riyad.p5.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MostPopularArticle {
+public class MostPopularArticle implements android.os.Parcelable {
 
     @SerializedName("url")
     @Expose
@@ -52,6 +55,47 @@ public class MostPopularArticle {
     @SerializedName("uri")
     @Expose
     private String uri;
+
+    protected MostPopularArticle(Parcel in) {
+        url = in.readString();
+        adxKeywords = in.readString();
+        column = in.readString();
+        section = in.readString();
+        byline = in.readString();
+        type = in.readString();
+        title = in.readString();
+        _abstract = in.readString();
+        publishedDate = in.readString();
+        source = in.readString();
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            assetId = null;
+        } else {
+            assetId = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            views = null;
+        } else {
+            views = in.readInt();
+        }
+        uri = in.readString();
+    }
+
+    public static final Creator<MostPopularArticle> CREATOR = new Creator<MostPopularArticle>() {
+        @Override
+        public MostPopularArticle createFromParcel(Parcel in) {
+            return new MostPopularArticle(in);
+        }
+
+        @Override
+        public MostPopularArticle[] newArray(int size) {
+            return new MostPopularArticle[size];
+        }
+    };
 
     public String getUrl() {
         return url;
@@ -173,4 +217,45 @@ public class MostPopularArticle {
         this.uri = uri;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
+        parcel.writeString(url);
+        parcel.writeString(adxKeywords);
+        parcel.writeString(column);
+        parcel.writeString(section);
+        parcel.writeString(byline);
+        parcel.writeString(type);
+        parcel.writeString(title);
+        parcel.writeString(_abstract);
+        parcel.writeString(publishedDate);
+        parcel.writeString(source);
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(id);
+        }
+        if (assetId == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(assetId);
+        }
+        if (views == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(views);
+        }
+        parcel.writeString(uri);
+    }
+
+
 }
+
