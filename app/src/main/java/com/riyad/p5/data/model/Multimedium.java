@@ -1,5 +1,5 @@
 
-package com.riyad.p5.model;
+package com.riyad.p5.data.model;
 
 import android.os.Parcel;
 

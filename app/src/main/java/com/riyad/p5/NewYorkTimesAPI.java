@@ -1,7 +1,7 @@
 package com.riyad.p5;
 
-import com.riyad.p5.model.MostPopularResult;
-import com.riyad.p5.model.TopStoriesResult;
+import com.riyad.p5.data.model.MostPopularResult;
+import com.riyad.p5.data.model.TopStoriesResult;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
