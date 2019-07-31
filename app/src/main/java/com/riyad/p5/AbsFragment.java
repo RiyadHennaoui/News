@@ -82,4 +82,5 @@ public abstract class AbsFragment extends Fragment {
     }
 
 
+    public abstract String getTitle();
 }

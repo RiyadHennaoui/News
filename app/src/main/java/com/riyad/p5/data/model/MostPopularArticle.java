@@ -41,10 +41,10 @@ public class MostPopularArticle implements android.os.Parcelable {
     private String source;
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private Long id;
     @SerializedName("asset_id")
     @Expose
-    private Integer assetId;
+    private Long assetId;
     @SerializedName("views")
     @Expose
     private Integer views;
@@ -69,12 +69,12 @@ public class MostPopularArticle implements android.os.Parcelable {
         if (in.readByte() == 0) {
             id = null;
         } else {
-            id = in.readInt();
+            id = in.readLong();
         }
         if (in.readByte() == 0) {
             assetId = null;
         } else {
-            assetId = in.readInt();
+            assetId = in.readLong();
         }
         if (in.readByte() == 0) {
             views = null;
@@ -176,19 +176,19 @@ public class MostPopularArticle implements android.os.Parcelable {
         this.source = source;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getAssetId() {
+    public Long getAssetId() {
         return assetId;
     }
 
-    public void setAssetId(Integer assetId) {
+    public void setAssetId(Long assetId) {
         this.assetId = assetId;
     }
 
@@ -238,13 +238,13 @@ public class MostPopularArticle implements android.os.Parcelable {
             parcel.writeByte((byte) 0);
         } else {
             parcel.writeByte((byte) 1);
-            parcel.writeInt(id);
+            parcel.writeLong(id);
         }
         if (assetId == null) {
             parcel.writeByte((byte) 0);
         } else {
             parcel.writeByte((byte) 1);
-            parcel.writeInt(assetId);
+            parcel.writeLong(assetId);
         }
         if (views == null) {
             parcel.writeByte((byte) 0);

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.riyad.p5.ui.Article;
 
 import java.util.List;
@@ -30,6 +31,9 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.mTvTitle.setText(mData.get(position).getTitle());
+        holder.mTvTitle.setText(mData.get(position).getShortDesc());
+
+        Glide.with(holder.mIvThumbnail).load(mData.get(position).getImageUrl()).centerInside().into(holder.mIvThumbnail);
 
 // todo afficher les autres données sauf title.
     }

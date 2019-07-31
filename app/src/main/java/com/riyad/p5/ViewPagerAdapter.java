@@ -10,12 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
-private List<Fragment> myFragments = new ArrayList<>(4);
+    private List<AbsFragment> myFragments = new ArrayList<>(4);
 
     public ViewPagerAdapter(@NonNull FragmentManager fm) {
         super(fm, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        myFragments.add(new TopStoriesFragment());
+        myFragments.add(TopStoriesFragment.newInstance("home"));
         myFragments.add(new MostPopularFragment());
+        myFragments.add(TopStoriesFragment.newInstance("business"));
+        myFragments.add(TopStoriesFragment.newInstance("sports"));
     }
 
     @NonNull
@@ -32,6 +34,7 @@ private List<Fragment> myFragments = new ArrayList<>(4);
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return super.getPageTitle(position);
+
+        return myFragments.get(position).getTitle();
     }
 }
