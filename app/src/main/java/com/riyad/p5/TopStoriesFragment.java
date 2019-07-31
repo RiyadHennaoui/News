@@ -47,7 +47,7 @@ public class TopStoriesFragment extends AbsFragment {
 
         if (!CollectionUtils.isEmpty(topStoriesResult.getTopStoriesArticles())) {
             for (TopStoriesArticle topStoriesArticle : topStoriesResult.getTopStoriesArticles()) {
-                String imageUrl = topStoriesArticle.getMultimedia().get(0).getUrl();
+                String imageUrl = topStoriesResult.getTopStoriesArticles().get(0).getMultimedia().get(0).getUrl();
                 articles.add(new Article(topStoriesArticle.getTitle(),
                         topStoriesArticle.getPublishedDate(),
                         topStoriesArticle.getSection(),
