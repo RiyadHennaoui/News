@@ -16,6 +16,7 @@ import retrofit2.Response;
 
 public class TopStoriesFragment extends AbsFragment {
     public static final String KEY_SECTION = "KEY_SECTION";
+    private Call<TopStoriesResult> myCurrentCall;
     public static TopStoriesFragment newInstance(String section) {
 
         Bundle args = new Bundle();
@@ -28,11 +29,15 @@ public class TopStoriesFragment extends AbsFragment {
 
     @Override
     protected void reload() {
+        if(myCurrentCall != null){
 
+            myCurrentCall.cancel();
 
-        Call<TopStoriesResult> call = service.getTopStories(getArguments().getString(KEY_SECTION), "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5");
+        }
 
-        call.enqueue(new Callback<TopStoriesResult>() {
+        myCurrentCall = service.getTopStories(getArguments().getString(KEY_SECTION), "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5");
+
+        myCurrentCall.enqueue(new Callback<TopStoriesResult>() {
             @Override
             public void onResponse(Call<TopStoriesResult> call, Response<TopStoriesResult> response) {
 
@@ -50,6 +55,12 @@ public class TopStoriesFragment extends AbsFragment {
 
             }
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        myCurrentCall.cancel();
     }
 
     @Override
