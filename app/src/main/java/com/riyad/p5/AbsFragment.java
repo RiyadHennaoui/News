@@ -30,7 +30,7 @@ public abstract class AbsFragment extends Fragment {
     }
 
     private MainAdapter mAdapter = new MainAdapter();
-    private List<Article> mData;
+    private List<Article> mData = new ArrayList<>();
     protected NewYorkTimesAPI service;
 
     @Nullable
@@ -82,4 +82,5 @@ public abstract class AbsFragment extends Fragment {
     }
 
 
+    public abstract String getTitle();
 }

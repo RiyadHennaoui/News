@@ -57,6 +57,11 @@ public class MostPopularFragment extends AbsFragment {
         });
     }
 
+    @Override
+    public String getTitle() {
+        return "Most Popular";
+    }
+
     private List<Article> mapResult(MostPopularResult mostPopularResult) {
 
         List<Article> articles = new ArrayList<>();
@@ -66,7 +71,7 @@ public class MostPopularFragment extends AbsFragment {
                 String imageUrl = mostPopularArticle.getMedia().get(0).getMediaMetadata().get(0).getUrl();
                 articles.add(new Article(mostPopularArticle.getTitle(),
                         mostPopularArticle.getPublishedDate(),
-                        mostPopularArticle.getColumn(),
+                        mostPopularArticle.getSection(),
                         imageUrl, mostPopularArticle.getAbstract()));
             }
         }

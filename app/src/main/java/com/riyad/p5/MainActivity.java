@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,23 +21,28 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity implements
-        NavigationView.OnNavigationItemSelectedListener {
+        NavigationView.OnNavigationItemSelectedListener,
+        ViewPager.OnPageChangeListener {
     private DrawerLayout drawer;
+    private ViewPager myViewPager;
+    private NavigationView myNavView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ViewPager myViewPager = findViewById(R.id.main_vp_articles);
+        myViewPager = findViewById(R.id.main_vp_articles);
         TabLayout myTabLayout = findViewById(R.id.main_tl);
         Toolbar myToolbar = findViewById(R.id.toolbar);
+        myNavView = findViewById(R.id.navigation_view);
 
         setSupportActionBar(myToolbar);
 
         myTabLayout.setupWithViewPager(myViewPager);
 
         myViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+        myViewPager.addOnPageChangeListener(this);
 
         // TODO
 
@@ -47,6 +53,10 @@ public class MainActivity extends AppCompatActivity implements
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        myNavView.setNavigationItemSelectedListener(this);
+        myNavView.setCheckedItem(R.id.nav_topStories);
+
+
 
     }
 
@@ -56,41 +66,24 @@ public class MainActivity extends AppCompatActivity implements
         switch (item.getItemId()) {
 
             case R.id.nav_topStories:
-
+                myViewPager.setCurrentItem(0);
+                drawer.closeDrawer(GravityCompat.START);
 
                 break;
 
             case R.id.nav_mostPopular:
-
+                myViewPager.setCurrentItem(1);
+                drawer.closeDrawer(GravityCompat.START);
                 break;
 
             case R.id.nav_business:
-
+                myViewPager.setCurrentItem(2);
+                drawer.closeDrawer(GravityCompat.START);
                 break;
 
             case R.id.nav_sport:
-
-                break;
-
-            case R.id.nav_search:
-
-                break;
-
-            case R.id.nav_share:
-
-
-                break;
-
-            case R.id.menu_about:
-
-                break;
-
-            case R.id.menu_help:
-
-                break;
-
-            case R.id.menu_min:
-
+                myViewPager.setCurrentItem(3);
+                drawer.closeDrawer(GravityCompat.START);
                 break;
 
         }
@@ -147,4 +140,51 @@ public class MainActivity extends AppCompatActivity implements
             super.onBackPressed();
         }
     }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+        Toast.makeText(this, ""+position, Toast.LENGTH_LONG).show();
+        switch (position){
+
+            case 0 :
+
+                myNavView.setCheckedItem(R.id.nav_topStories);
+
+                break;
+
+            case 1 :
+
+
+                myNavView.setCheckedItem(R.id.nav_mostPopular);
+                break;
+            case 2 :
+
+
+                myNavView.setCheckedItem(R.id.nav_business);
+
+                break;
+            case 3 :
+
+                myNavView.setCheckedItem(R.id.nav_sport);
+                break;
+
+        }
+
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+
+
+    }
+
+
 }

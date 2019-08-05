@@ -5,13 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
 
 
@@ -23,7 +16,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/checkbox_1"
@@ -76,6 +69,7 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="Begin"
         android:inputType="date"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
@@ -107,8 +101,6 @@
     app:layout_constraintStart_toEndOf="@id/checkbox_3"
     app:layout_constraintTop_toBottomOf="@id/checkbox_3"
     android:layout_marginLeft="10dp" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
