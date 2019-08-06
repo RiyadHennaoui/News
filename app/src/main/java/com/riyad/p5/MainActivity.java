@@ -1,10 +1,13 @@
 package com.riyad.p5;
 
+import android.app.DatePickerDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,12 +23,17 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener,
-        ViewPager.OnPageChangeListener {
+        ViewPager.OnPageChangeListener,
+        DatePickerDialog.OnDateSetListener {
     private DrawerLayout drawer;
     private ViewPager myViewPager;
     private NavigationView myNavView;
+    private Layout mySearchView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements
         TabLayout myTabLayout = findViewById(R.id.main_tl);
         Toolbar myToolbar = findViewById(R.id.toolbar);
         myNavView = findViewById(R.id.navigation_view);
+        mySearchView = findViewById(R.layout.search_layout);
 
         setSupportActionBar(myToolbar);
 
@@ -55,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements
 
         myNavView.setNavigationItemSelectedListener(this);
         myNavView.setCheckedItem(R.id.nav_topStories);
-
 
 
     }
@@ -95,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.articles_menu, menu);
 
-        SearchManager searchManager = (SearchManager)getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView = (SearchView) menu.findItem(R.id.search_btn).getActionView();
         MenuItem searchMenuItem = menu.findItem(R.id.search_btn);
 
@@ -105,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                if (query.length() > 2 ){
+                if (query.length() > 2) {
 
 
                 }
@@ -149,27 +157,27 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onPageSelected(int position) {
 
-        Toast.makeText(this, ""+position, Toast.LENGTH_LONG).show();
-        switch (position){
+        Toast.makeText(this, "" + position, Toast.LENGTH_LONG).show();
+        switch (position) {
 
-            case 0 :
+            case 0:
 
                 myNavView.setCheckedItem(R.id.nav_topStories);
 
                 break;
 
-            case 1 :
+            case 1:
 
 
                 myNavView.setCheckedItem(R.id.nav_mostPopular);
                 break;
-            case 2 :
+            case 2:
 
 
                 myNavView.setCheckedItem(R.id.nav_business);
 
                 break;
-            case 3 :
+            case 3:
 
                 myNavView.setCheckedItem(R.id.nav_sport);
                 break;
@@ -183,7 +191,17 @@ public class MainActivity extends AppCompatActivity implements
     public void onPageScrollStateChanged(int state) {
 
 
+    }
 
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, day);
+        String currentDayString = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
     }
 
 
