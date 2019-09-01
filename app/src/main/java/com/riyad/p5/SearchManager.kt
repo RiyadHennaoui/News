@@ -1,17 +1,47 @@
 package com.riyad.p5
 
+import org.threeten.bp.LocalDate
+
+
 class SearchManager {
 
-    fun checkUserInput(searchInput : String) : Boolean {
+    enum class UserInputState {
 
-        if (searchInput.isBlank()){
+        VALID,
+        NO_USER_INPUT,
+        NO_SECTION_SELECTED,
+        INCOHERENT_DATES
 
-            return false
-
-        }
-        return true
     }
 
+    fun checkUserInput(
+        searchInput: String,
+        sections: List<String>,
+        beginDate: LocalDate?,
+        endDate: LocalDate?
+    ): UserInputState {
+
+        if (searchInput.isBlank()) {
+
+            return UserInputState.NO_USER_INPUT
+
+        }
+
+        if (sections.isEmpty()) {
+
+            return UserInputState.NO_SECTION_SELECTED
+
+        }
+        if (beginDate != null && endDate?.isBefore(beginDate) == true) {
+
+            return UserInputState.INCOHERENT_DATES
+        }
+
+
+
+
+        return UserInputState.VALID
+    }
 
 
 }
