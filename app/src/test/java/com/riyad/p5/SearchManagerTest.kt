@@ -180,5 +180,35 @@ class SearchManagerTest {
         Assert.assertEquals(VALID, result)
     }
 
+    @Test
+    fun `should return null when user didn't select sections`() {
+
+        // given
+
+        val sections: List<String> = emptyList()
+
+        // when
+
+        val result = SearchManager().getLucenForSections(sections)
+
+        // then
+
+        Assert.assertNull(result)
+    }
+    @Test
+    fun `should return null when user didn't select sections`() {
+
+        // given
+
+        val sections: List<String> = listOf("Business")
+
+        // when
+
+        val result = SearchManager().getLucenForSections(sections)
+
+        // then
+
+        Assert.assertNull(result)
+    }
 
 }

@@ -29,13 +29,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MostPopularFragment extends AbsFragment {
-
+    private Call<MostPopularResult> call;
 
     @Override
     protected void reload() {
 
 
-        Call<MostPopularResult> call = service.getMostPopular( "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5");
+        call = service.getMostPopular( "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5");
 
         call.enqueue(new Callback<MostPopularResult>() {
             @Override
@@ -55,6 +55,12 @@ public class MostPopularFragment extends AbsFragment {
 
             }
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        call.cancel();
     }
 
     @Override

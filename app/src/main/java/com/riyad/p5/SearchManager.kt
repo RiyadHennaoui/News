@@ -43,5 +43,11 @@ class SearchManager {
         return UserInputState.VALID
     }
 
+    fun getLucenForSections(sections: List<String>): String?{
+
+
+        return null
+    }
+
 
 }
