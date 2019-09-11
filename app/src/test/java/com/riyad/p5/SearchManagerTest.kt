@@ -181,34 +181,58 @@ class SearchManagerTest {
     }
 
     @Test
-    fun `should return null when user didn't select sections`() {
+    fun `should return INCOHERENT_DATES when end date is before begin date`() {
 
         // given
-
-        val sections: List<String> = emptyList()
+        val userInput = "courgette"
+        val checkboxes = listOf("Business")
+        val endDate = LocalDate.of(2019,8,12)
+        val beginDate = LocalDate.of(2018,8, 12)
 
         // when
 
-        val result = SearchManager().getLucenForSections(sections)
+        val result = SearchManager().checkUserInput(userInput,checkboxes,endDate,beginDate)
 
         // then
 
-        Assert.assertNull(result)
+        Assert.assertEquals(INCOHERENT_DATES, result)
     }
     @Test
-    fun `should return null when user didn't select sections`() {
+    fun `should return VALID when beguin date and end date are good `() {
 
         // given
 
-        val sections: List<String> = listOf("Business")
-
+        val userInput = "courgette"
+        val checkboxes = listOf("Business")
+        val endDate = LocalDate.of(2019,8,12)
+        val beginDate = LocalDate.of(2019,7, 12)
         // when
 
-        val result = SearchManager().getLucenForSections(sections)
+        val result = SearchManager().checkUserInput(userInput, checkboxes, endDate, beginDate)
 
         // then
 
-        Assert.assertNull(result)
+        Assert.assertEquals(VALID, result)
     }
+
+    @Test
+    fun `should return VALID when end date is good `() {
+
+        // given
+
+        val userInput = "courgette"
+        val checkboxes = listOf("Business")
+        val beginDate = null
+        val endDate = LocalDate.of(2019,8,12)
+        // when
+
+        val result = SearchManager().checkUserInput(userInput, checkboxes, beginDate, endDate)
+
+        // then
+
+        Assert.assertEquals(VALID, result)
+    }
+
+
 
 }
