@@ -1,18 +1,14 @@
-package com.riyad.p5
+package com.riyad.p5.controller
 
 import android.app.DatePickerDialog
-import android.app.SearchManager
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.Layout
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -20,6 +16,7 @@ import androidx.viewpager.widget.ViewPager
 
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
+import com.riyad.p5.R
 
 import java.text.DateFormat
 import java.util.Calendar
@@ -52,7 +49,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer = findViewById(R.id.drawer_layout)
 
         val toggle = ActionBarDrawerToggle(this, drawer, myToolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
         drawer!!.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -129,8 +128,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (drawer!!.isDrawerOpen(GravityCompat.START)) {
 
             drawer!!.closeDrawer(GravityCompat.START)
-        } else {
+        } else if (myViewPager?.currentItem != 0) {
 
+            myViewPager?.currentItem = 0
+
+        }else {
             super.onBackPressed()
         }
     }

@@ -1,15 +1,19 @@
-package com.riyad.p5
+package com.riyad.p5.controller
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import com.riyad.p5.R
 import org.threeten.bp.LocalDate
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SearchActivity : AppCompatActivity() {
 
@@ -17,7 +21,6 @@ class SearchActivity : AppCompatActivity() {
 
     private var beginDate: LocalDate? = null
     private var endDate: LocalDate? = null
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,13 +39,17 @@ class SearchActivity : AppCompatActivity() {
         val endDateTextView = findViewById<TextView>(R.id.end_date)
         searchBtn.setOnClickListener {
 
-            val sections: List<String> = when {
-                checkboxBusiness.isChecked -> listOf("business")
-                checkBoxSports.isChecked -> listOf("sports")
-                checkBoxThechnology.isChecked -> listOf("thechnology")
-                checkBoxFood.isChecked -> listOf("food")
-                else -> emptyList()
-            }
+
+            val sections: ArrayList<String> = ArrayList()
+
+
+            if (checkboxBusiness.isChecked) sections.add("business")
+            if (checkBoxSports.isChecked) sections.add("sports")
+            if (checkBoxThechnology.isChecked) sections.add("thechnology")
+            if (checkBoxFood.isChecked) sections.add("food")
+
+
+            Log.i("SearchActivity", Arrays.toString(sections.toArray()))
 
             when (searchManager.checkUserInput(
                 inputUserSearch.query.toString(),
@@ -52,11 +59,16 @@ class SearchActivity : AppCompatActivity() {
             )) {
 
 
-                SearchManager.UserInputState.VALID -> Toast.makeText(
-                    this,
-                    "Bravo !! ",
-                    Toast.LENGTH_SHORT
-                ).show()
+                SearchManager.UserInputState.VALID -> {
+
+                    //TODO Retrofit appel
+
+
+
+                    //TODO Si le résultat est bon faire le mapping
+
+                    //TODO Envoyer la liste mapper à l'activité résultat
+                }
                 SearchManager.UserInputState.NO_USER_INPUT -> Toast.makeText(
                     this,
                     "Merci de remplir le champs ",

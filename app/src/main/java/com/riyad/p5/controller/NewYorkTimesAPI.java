@@ -1,4 +1,4 @@
-package com.riyad.p5;
+package com.riyad.p5.controller;
 
 import com.riyad.p5.data.model.MostPopularResult;
 import com.riyad.p5.data.model.TopStoriesResult;

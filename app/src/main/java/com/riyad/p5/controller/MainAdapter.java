@@ -1,4 +1,4 @@
-package com.riyad.p5;
+package com.riyad.p5.controller;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.riyad.p5.ui.Article;
+import com.riyad.p5.R;
+import com.riyad.p5.data.model.ui.Article;
 
 import java.util.List;
 

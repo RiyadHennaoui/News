@@ -1,4 +1,4 @@
-package com.riyad.p5
+package com.riyad.p5.controller
 
 import org.threeten.bp.LocalDate
 
@@ -16,7 +16,7 @@ class SearchManager {
 
     fun checkUserInput(
         searchInput: String,
-        sections: List<String>,
+        sections: ArrayList<String>,
         beginDate: LocalDate?,
         endDate: LocalDate?
     ): UserInputState {

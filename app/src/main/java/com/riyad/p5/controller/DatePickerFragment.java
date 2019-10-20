@@ -1,4 +1,4 @@
-package com.riyad.p5;
+package com.riyad.p5.controller;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

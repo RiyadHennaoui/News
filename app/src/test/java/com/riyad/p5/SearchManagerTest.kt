@@ -1,6 +1,7 @@
 package com.riyad.p5;
 
-import com.riyad.p5.SearchManager.UserInputState.*
+import com.riyad.p5.controller.SearchManager
+import com.riyad.p5.controller.SearchManager.UserInputState.*
 import org.junit.Assert
 import org.junit.Test;
 import org.threeten.bp.LocalDate
@@ -13,14 +14,15 @@ class SearchManagerTest {
 
         // given
         val userInput = ""
-        val checkBoxes = listOf("Business")
+        val checkBoxes = ArrayList(listOf("Business"))
         val beginDate = null
         val endDate = null
 
 
         // when
 
-        val result = SearchManager().checkUserInput(userInput, checkBoxes, beginDate, endDate)
+        val result = SearchManager()
+            .checkUserInput(userInput, checkBoxes, beginDate, endDate)
 
         // then
 
@@ -32,13 +34,14 @@ class SearchManagerTest {
 
         // given
         val userInput = ""
-        val checkBoxes = emptyList<String>()
+        val checkBoxes = ArrayList<String>()
         val beginDate = null
         val endDate = null
 
         // when
 
-        val result = SearchManager().checkUserInput(userInput, checkBoxes, beginDate, endDate)
+        val result = SearchManager()
+            .checkUserInput(userInput, checkBoxes, beginDate, endDate)
 
         // then
 
@@ -50,12 +53,13 @@ class SearchManagerTest {
 
         // given
         val userInput = "courgette"
-        val checkboxes = emptyList<String>()
+        val checkboxes = ArrayList<String>()
         val beginDate = null
         val endDate = null
         // when
 
-        val result = SearchManager().checkUserInput(userInput, checkboxes, beginDate, endDate)
+        val result = SearchManager()
+            .checkUserInput(userInput, checkboxes, beginDate, endDate)
 
         // then
 
@@ -67,12 +71,13 @@ class SearchManagerTest {
 
         // given
         val userInput = "courgette"
-        val checkboxes = listOf("Business")
+        val checkboxes = ArrayList(listOf("Business"))
         val beginDate = null
         val endDate = null
         // when
 
-        val result = SearchManager().checkUserInput(userInput, checkboxes,beginDate, endDate)
+        val result = SearchManager()
+            .checkUserInput(userInput, checkboxes,beginDate, endDate)
 
         // then
 
@@ -84,12 +89,13 @@ class SearchManagerTest {
 
         // given
         val userInput = "courgette"
-        val checkboxes = listOf("Business")
+        val checkboxes = ArrayList(listOf("Business"))
         val beginDate = LocalDate.of(2018, 8, 12)
         val endDate = LocalDate.of(2018, 7, 12)
         // when
 
-        val result = SearchManager().checkUserInput(userInput, checkboxes,beginDate, endDate)
+        val result = SearchManager()
+            .checkUserInput(userInput, checkboxes,beginDate, endDate)
 
         // then
 
@@ -102,12 +108,13 @@ class SearchManagerTest {
 
         // given
         val userInput = "courgette"
-        val checkboxes = listOf("Business")
+        val checkboxes = ArrayList(listOf("Business"))
         val beginDate = LocalDate.of(2018, 8, 12)
         val endDate = LocalDate.of(2018, 8, 11)
         // when
 
-        val result = SearchManager().checkUserInput(userInput, checkboxes,beginDate, endDate)
+        val result = SearchManager()
+            .checkUserInput(userInput, checkboxes,beginDate, endDate)
 
         // then
 
@@ -118,12 +125,13 @@ class SearchManagerTest {
 
         // given
         val userInput = "courgette"
-        val checkboxes = listOf("Business")
+        val checkboxes = ArrayList(listOf("Business"))
         val beginDate = LocalDate.of(2016, 3, 1)
         val endDate = LocalDate.of(2016, 2, 29)
         // when
 
-        val result = SearchManager().checkUserInput(userInput, checkboxes,beginDate, endDate)
+        val result = SearchManager()
+            .checkUserInput(userInput, checkboxes,beginDate, endDate)
 
         // then
 
@@ -135,12 +143,13 @@ class SearchManagerTest {
 
         // given
         val userInput = "courgette"
-        val checkboxes = listOf("Business")
+        val checkboxes = ArrayList(listOf("Business"))
         val beginDate = LocalDate.of(2018, 8, 12)
         val endDate = LocalDate.of(2018, 8, 13)
         // when
 
-        val result = SearchManager().checkUserInput(userInput, checkboxes,beginDate, endDate)
+        val result = SearchManager()
+            .checkUserInput(userInput, checkboxes,beginDate, endDate)
 
         // then
 
@@ -151,12 +160,13 @@ class SearchManagerTest {
 
         // given
         val userInput = "courgette"
-        val checkboxes = listOf("Business")
+        val checkboxes = ArrayList(listOf("Business"))
         val beginDate = LocalDate.of(2018, 8, 12)
         val endDate = null
         // when
 
-        val result = SearchManager().checkUserInput(userInput, checkboxes,beginDate, endDate)
+        val result = SearchManager()
+            .checkUserInput(userInput, checkboxes,beginDate, endDate)
 
         // then
 
@@ -168,12 +178,13 @@ class SearchManagerTest {
 
         // given
         val userInput = "courgette"
-        val checkboxes = listOf("Business")
+        val checkboxes = ArrayList(listOf("Business"))
         val beginDate = null
         val endDate = LocalDate.of(2018, 8, 13)
         // when
 
-        val result = SearchManager().checkUserInput(userInput, checkboxes,beginDate, endDate)
+        val result = SearchManager()
+            .checkUserInput(userInput, checkboxes,beginDate, endDate)
 
         // then
 
@@ -185,13 +196,14 @@ class SearchManagerTest {
 
         // given
         val userInput = "courgette"
-        val checkboxes = listOf("Business")
+        val checkboxes = ArrayList(listOf("Business"))
         val endDate = LocalDate.of(2019,8,12)
         val beginDate = LocalDate.of(2018,8, 12)
 
         // when
 
-        val result = SearchManager().checkUserInput(userInput,checkboxes,endDate,beginDate)
+        val result = SearchManager()
+            .checkUserInput(userInput,checkboxes,endDate,beginDate)
 
         // then
 
@@ -203,12 +215,13 @@ class SearchManagerTest {
         // given
 
         val userInput = "courgette"
-        val checkboxes = listOf("Business")
+        val checkboxes = ArrayList(listOf("Business"))
         val endDate = LocalDate.of(2019,8,12)
         val beginDate = LocalDate.of(2019,7, 12)
         // when
 
-        val result = SearchManager().checkUserInput(userInput, checkboxes, endDate, beginDate)
+        val result = SearchManager()
+            .checkUserInput(userInput, checkboxes, endDate, beginDate)
 
         // then
 
@@ -221,12 +234,13 @@ class SearchManagerTest {
         // given
 
         val userInput = "courgette"
-        val checkboxes = listOf("Business")
+        val checkboxes = ArrayList(listOf("Business"))
         val beginDate = null
         val endDate = LocalDate.of(2019,8,12)
         // when
 
-        val result = SearchManager().checkUserInput(userInput, checkboxes, beginDate, endDate)
+        val result = SearchManager()
+            .checkUserInput(userInput, checkboxes, beginDate, endDate)
 
         // then
 

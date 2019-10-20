@@ -1,11 +1,12 @@
-package com.riyad.p5;
+package com.riyad.p5.controller;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.riyad.p5.R;
 import com.riyad.p5.data.model.TopStoriesArticle;
 import com.riyad.p5.data.model.TopStoriesResult;
-import com.riyad.p5.ui.Article;
+import com.riyad.p5.data.model.ui.Article;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.riyad.p5;
+package com.riyad.p5.controller;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.riyad.p5.ui.Article;
+import com.riyad.p5.R;
+import com.riyad.p5.data.model.ui.Article;
 
 import java.util.ArrayList;
 import java.util.List;
