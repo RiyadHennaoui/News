@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.riyad.p5.R
 import org.threeten.bp.LocalDate
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -45,7 +46,7 @@ class SearchActivity : AppCompatActivity() {
 
             if (checkboxBusiness.isChecked) sections.add("business")
             if (checkBoxSports.isChecked) sections.add("sports")
-            if (checkBoxThechnology.isChecked) sections.add("thechnology")
+            if (checkBoxThechnology.isChecked) sections.add("technology")
             if (checkBoxFood.isChecked) sections.add("food")
 
 
@@ -61,13 +62,37 @@ class SearchActivity : AppCompatActivity() {
 
                 SearchManager.UserInputState.VALID -> {
 
+                    //TODO faire une variable local pour les sections a envoyer ( news_desk:("..." "...") )
+
+                    var paramFilter = "news_desk:("
+
+                    sections.forEach{
+                        paramFilter+= "\"$it\" "
+                    }
+                    paramFilter+=")"
+
+                    Log.i("SearchActivity",paramFilter)
+
+
+                    //TODO faire deux varibles avec conversion de date (YYYYMMDD)
+
+
+                   // SimpleDateFormat
+
+
                     //TODO Retrofit appel
+
+
 
 
 
                     //TODO Si le résultat est bon faire le mapping
 
+
+
                     //TODO Envoyer la liste mapper à l'activité résultat
+
+
                 }
                 SearchManager.UserInputState.NO_USER_INPUT -> Toast.makeText(
                     this,

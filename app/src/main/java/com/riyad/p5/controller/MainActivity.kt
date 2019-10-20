@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         myViewPager!!.adapter = ViewPagerAdapter(supportFragmentManager)
         myViewPager!!.addOnPageChangeListener(this)
 
-        // TODO
+
 
         drawer = findViewById(R.id.drawer_layout)
 

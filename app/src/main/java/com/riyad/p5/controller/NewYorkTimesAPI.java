@@ -2,6 +2,7 @@ package com.riyad.p5.controller;
 
 import com.riyad.p5.data.model.MostPopularResult;
 import com.riyad.p5.data.model.TopStoriesResult;
+import com.riyad.p5.data.model.search.Response;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -14,4 +15,9 @@ public interface NewYorkTimesAPI {
     Call<TopStoriesResult> getTopStories(@Path("section") String section, @Query("api-key") String apiKey);
     @GET("svc/mostpopular/v2/viewed/7.json")
     Call<MostPopularResult> getMostPopular(@Query("api-key") String  apiKey);
+    @GET("svc/search/v2/articlesearch.json")
+    Call<Response> getSearchResponse(@Query("q") String query, @Query("fq") String filter,
+                                     @Query("begin_date") String beginDate,
+                                     @Query("end_date") String endDate,
+                                     @Query("api-key") String apiKey);
 }
