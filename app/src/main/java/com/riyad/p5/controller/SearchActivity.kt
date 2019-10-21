@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.riyad.p5.R
 import org.threeten.bp.LocalDate
-import java.text.SimpleDateFormat
+import org.threeten.bp.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -20,8 +20,10 @@ class SearchActivity : AppCompatActivity() {
 
     private val searchManager = SearchManager()
 
-    private var beginDate: LocalDate? = null
-    private var endDate: LocalDate? = null
+    private var inputBeginDate: LocalDate? = null
+    private var inputEndDate: LocalDate? = null
+
+    private var DateFormat: DateTimeFormatter? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,8 +57,8 @@ class SearchActivity : AppCompatActivity() {
             when (searchManager.checkUserInput(
                 inputUserSearch.query.toString(),
                 sections,
-                beginDate,
-                endDate
+                inputBeginDate,
+                inputEndDate
             )) {
 
 
@@ -76,8 +78,13 @@ class SearchActivity : AppCompatActivity() {
 
                     //TODO faire deux varibles avec conversion de date (YYYYMMDD)
 
+                    val dateFormatter = DateTimeFormatter.BASIC_ISO_DATE
 
-                   // SimpleDateFormat
+                    val beginDate = inputBeginDate?.format(dateFormatter).toString()
+                    val endDate = inputEndDate?.format(dateFormatter).toString()
+
+                    Log.i("SearchActivity", beginDate)
+                    Log.i("SearchActivity", endDate)
 
 
                     //TODO Retrofit appel
@@ -125,7 +132,8 @@ class SearchActivity : AppCompatActivity() {
 
                         @SuppressLint("SetTextI18n")
                         beginDateTextView.text = "$dayOfMonth / ${monthOfYear + 1}  /  $year"
-                        beginDate = LocalDate.of(year, monthOfYear + 1, dayOfMonth)
+                        inputBeginDate = LocalDate.of(year, monthOfYear + 1, dayOfMonth)
+
                     },
                     now.year,
                     now.monthValue,
@@ -142,7 +150,7 @@ class SearchActivity : AppCompatActivity() {
 
                         @SuppressLint("SetTextI18n")
                         endDateTextView.text = "$dayOfMonth / ${monthOfYear + 1}  /  $year"
-                        endDate = LocalDate.of(year, monthOfYear + 1, dayOfMonth)
+                        inputEndDate = LocalDate.of(year, monthOfYear + 1, dayOfMonth)
                     },
                     now.year,
                     now.monthValue,
