@@ -11,8 +11,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.riyad.p5.R
+import com.riyad.p5.data.model.search.SearchResponse
+import com.riyad.p5.data.model.search.mapSearchResponseDataToSearchResult
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -22,8 +29,6 @@ class SearchActivity : AppCompatActivity() {
 
     private var inputBeginDate: LocalDate? = null
     private var inputEndDate: LocalDate? = null
-
-    private var DateFormat: DateTimeFormatter? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,12 +73,12 @@ class SearchActivity : AppCompatActivity() {
 
                     var paramFilter = "news_desk:("
 
-                    sections.forEach{
-                        paramFilter+= "\"$it\" "
+                    sections.forEach {
+                        paramFilter += "\"$it\" "
                     }
-                    paramFilter+=")"
+                    paramFilter += ")"
 
-                    Log.i("SearchActivity",paramFilter)
+                    Log.i("SearchActivity", paramFilter)
 
 
                     //TODO faire deux varibles avec conversion de date (YYYYMMDD)
@@ -90,11 +95,53 @@ class SearchActivity : AppCompatActivity() {
                     //TODO Retrofit appel
 
 
+                    val retrofit = Retrofit.Builder()
+                        .baseUrl("https://api.nytimes.com/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build()
 
+                    val serviceSearch = retrofit.create(NewYorkTimesAPI::class.java)
+
+                    val callSearch = serviceSearch
+                        .getSearchResponse(
+                            inputUserSearch.query.toString(),
+                            paramFilter,
+                            beginDate,
+                            endDate,
+                            "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5"
+                        )
+                    callSearch.enqueue(object : Callback<SearchResponse> {
+
+                        override fun onFailure(
+                            call: Call<SearchResponse>,
+                            t: Throwable
+                        ) {
+
+                            Log.w("SerchActivity onFailure", t.message, t)
+
+                        }
+
+                        override fun onResponse(
+                            call: Call<SearchResponse>,
+                            response: Response<SearchResponse>
+                        ) {
+
+                            response?.body()?.let {
+                                val searchResponseResult = mapSearchResponseDataToSearchResult(it)
+
+                                Log.i(
+                                    "Response",
+                                    "Yeahhh !! : $searchResponseResult  >>  " + response.message() + response.isSuccessful
+                                )
+                            }
+
+
+                        }
+
+                    })
 
 
                     //TODO Si le résultat est bon faire le mapping
-
 
 
                     //TODO Envoyer la liste mapper à l'activité résultat
