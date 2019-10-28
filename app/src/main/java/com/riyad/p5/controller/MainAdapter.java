@@ -52,7 +52,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         holder.mTvTitle.setText(mData.get(position).getTitle());
         holder.mDesc.setText(mData.get(position).getShortDesc());
 
-        holder.mSection.setText("Section : " + mData.get(position).getSection());
+        holder.mSection.setText(mData.get(position).getSection());
 
         Glide.with(holder.mIvThumbnail).load(mData.get(position).getImageUrl()).centerCrop().into(holder.mIvThumbnail);
 
