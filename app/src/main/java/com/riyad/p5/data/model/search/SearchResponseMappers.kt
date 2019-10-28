@@ -1,14 +1,19 @@
 package com.riyad.p5.data.model.search
 
-fun mapSearchResponseDataToSearchResult (searchResponse: SearchResponse) : SearchResult {
+import com.riyad.p5.data.model.ui.Article
 
-val responseFirst = searchResponse.response.docs.first()
-return SearchResult(
-    date = responseFirst.pubDate,
-    title = responseFirst.headline.printHeadline,
-    description = responseFirst.leadParagraph,
-    section = responseFirst.newsDesk,
-    urlImage = responseFirst.multimedia.first().url
+fun mapSearchResponseDataToSearchResult(searchResponse: SearchResponse): List<Article> {
+    val result: ArrayList<Article> = ArrayList()
+    searchResponse.response.docs.forEach { doc ->
 
-)
+        val article = Article(
+            doc.headline.printHeadline,
+            doc.pubDate,
+            doc.newsDesk,
+            doc.multimedia.first().url,
+            doc.leadParagraph
+        )
+        result.add(article)
+    }
+    return result
 }

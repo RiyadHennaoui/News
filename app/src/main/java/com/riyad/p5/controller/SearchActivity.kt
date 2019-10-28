@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import com.google.gson.Gson
 import com.riyad.p5.R
 import com.riyad.p5.data.model.search.SearchResponse
 import com.riyad.p5.data.model.search.mapSearchResponseDataToSearchResult
@@ -88,9 +89,6 @@ class SearchActivity : AppCompatActivity() {
                     val beginDate = inputBeginDate?.format(dateFormatter).toString()
                     val endDate = inputEndDate?.format(dateFormatter).toString()
 
-                    Log.i("SearchActivity", beginDate)
-                    Log.i("SearchActivity", endDate)
-
 
                     //TODO Retrofit appel
 
@@ -127,12 +125,20 @@ class SearchActivity : AppCompatActivity() {
                         ) {
 
                             response?.body()?.let {
+                                val gson = Gson()
+                                Log.i(
+                                    "Response",
+                                    "Yeahhh !! : ${gson.toJson(it)}  " )
                                 val searchResponseResult = mapSearchResponseDataToSearchResult(it)
+
+
+
 
                                 Log.i(
                                     "Response",
-                                    "Yeahhh !! : $searchResponseResult  >>  " + response.message() + response.isSuccessful
+                                    "Yeahhh !! : ${gson.toJson(searchResponseResult)}  >>  " + response.message() + response.isSuccessful
                                 )
+
                             }
 
 
