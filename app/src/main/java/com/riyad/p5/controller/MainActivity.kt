@@ -1,11 +1,9 @@
 package com.riyad.p5.controller
 
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -18,10 +16,9 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.riyad.p5.R
 
-import java.text.DateFormat
-import java.util.Calendar
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, ViewPager.OnPageChangeListener, DatePickerDialog.OnDateSetListener {
+
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, ViewPager.OnPageChangeListener/*, DatePickerDialog.OnDateSetListener*/ {
     private var drawer: DrawerLayout? = null
     private var myViewPager: ViewPager? = null
     private var myNavView: NavigationView? = null
@@ -172,14 +169,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
-    override fun onDateSet(datePicker: DatePicker, year: Int, month: Int, day: Int) {
+   /* override fun onDateSet(datePicker: DatePicker, year: Int, month: Int, day: Int) {
         val calendar = Calendar.getInstance()
 
         calendar.set(Calendar.YEAR, year)
         calendar.set(Calendar.MONTH, month)
         calendar.set(Calendar.DAY_OF_MONTH, day)
         val currentDayString = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
-    }
+    }*/
 
 
 }

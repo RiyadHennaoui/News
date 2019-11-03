@@ -2,6 +2,7 @@ package com.riyad.p5.controller
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -132,14 +133,24 @@ class SearchActivity : AppCompatActivity() {
                                 val searchResponseResult = mapSearchResponseDataToSearchResult(it)
 
 
+                                val intent = Intent(this@SearchActivity,NotificationActivity::class.java)
+                                intent.putExtra("articles", gson.toJson(searchResponseResult))
+                                startActivity(intent)
+
+                                //TODO créer un adaptater et renseigner les valeurs de searchResponseResult.
+
+                                //TODO donner cet adaptater au recyclerview
 
 
-                                Log.i(
-                                    "Response",
-                                    "Yeahhh !! : ${gson.toJson(searchResponseResult)}  >>  " + response.message() + response.isSuccessful
-                                )
 
-                            }
+
+
+                            Log.i(
+                                "Response",
+                                "Yeahhh !! : ${gson.toJson(searchResponseResult)}  >>  " + response.message() + response.isSuccessful
+                            )
+
+                        }
 
 
                         }
@@ -150,7 +161,7 @@ class SearchActivity : AppCompatActivity() {
                     //TODO Si le résultat est bon faire le mapping
 
 
-                    //TODO Envoyer la liste mapper à l'activité résultat
+                    //TODO Afficher la liste mapper au recyclerView
 
 
                 }
@@ -189,7 +200,7 @@ class SearchActivity : AppCompatActivity() {
 
                     },
                     now.year,
-                    now.monthValue,
+                    now.monthValue -1,
                     now.dayOfMonth
                 )
 
@@ -206,7 +217,7 @@ class SearchActivity : AppCompatActivity() {
                         inputEndDate = LocalDate.of(year, monthOfYear + 1, dayOfMonth)
                     },
                     now.year,
-                    now.monthValue,
+                    now.monthValue -1,
                     now.dayOfMonth
                 )
 
@@ -217,6 +228,8 @@ class SearchActivity : AppCompatActivity() {
 
 
     }
+
+
 
 
 }
