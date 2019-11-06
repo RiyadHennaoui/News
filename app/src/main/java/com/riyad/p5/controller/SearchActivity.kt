@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
@@ -147,6 +148,7 @@ class SearchActivity : AppCompatActivity() {
                                 )
                                 val searchResponseResult = mapSearchResponseDataToSearchResult(it)
 
+                                searchBtn.onEditorAction(EditorInfo.IME_ACTION_DONE)
                                 updateRv(searchResponseResult)
                                 intiRecyclerView()
 
@@ -272,6 +274,8 @@ class SearchActivity : AppCompatActivity() {
 
 
     }
+
+
 
 
 }
