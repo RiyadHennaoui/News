@@ -1,6 +1,7 @@
 package com.riyad.p5.controller;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.riyad.p5.R;
@@ -73,7 +74,7 @@ public class TopStoriesFragment extends AbsFragment {
         int minPixelSize = getResources().getDimensionPixelSize(R.dimen.thumbnail_size);
         List<Article> articles = new ArrayList<>();
 
-        if (!CollectionUtils.isEmpty(topStoriesResult.getTopStoriesArticles())) {
+       if (!CollectionUtils.isEmpty(topStoriesResult.getTopStoriesArticles())) {
             for (TopStoriesArticle topStoriesArticle : topStoriesResult.getTopStoriesArticles()) {
                 if (topStoriesArticle.getMultimedia() != null && !topStoriesArticle.getMultimedia().isEmpty()) {
                     String imageUrl = null;
@@ -86,6 +87,8 @@ public class TopStoriesFragment extends AbsFragment {
                         }
 
                     }
+
+                    Log.e("TropStoriesFragemnt", imageUrl + "");
 
                     articles.add(new Article(topStoriesArticle.getTitle(),
                             topStoriesArticle.getPublishedDate(),

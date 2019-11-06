@@ -15,6 +15,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/begin_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:hint="Begin Date"
+        app:layout_constraintBottom_toTopOf="@+id/checkbox_1"
+        app:layout_constraintEnd_toStartOf="@+id/checkbox_2"
+        app:layout_constraintStart_toStartOf="@+id/checkbox_1"
+        app:layout_constraintTop_toBottomOf="@+id/et_search" />
+
+    <TextView
+        android:id="@+id/end_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:hint="End Date"
+        app:layout_constraintBottom_toTopOf="@+id/checkbox_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/checkbox_2"
+        app:layout_constraintTop_toBottomOf="@+id/et_search" />
+
     <CheckBox
         android:id="@+id/checkbox_1"
         android:layout_width="0sp"
@@ -61,37 +85,12 @@
 
         />
 
-    <TextView
-        android:id="@+id/begin_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:hint="Begin Date"
-        app:layout_constraintBottom_toTopOf="@+id/checkbox_1"
-        app:layout_constraintEnd_toStartOf="@+id/checkbox_2"
-        app:layout_constraintStart_toStartOf="@+id/checkbox_1"
-        app:layout_constraintTop_toBottomOf="@+id/et_search" />
-
-    <TextView
-        android:id="@+id/end_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:hint="End Date"
-        app:layout_constraintBottom_toTopOf="@+id/checkbox_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/checkbox_2"
-        app:layout_constraintTop_toBottomOf="@+id/et_search" />
-
     <Button
         android:id="@+id/btn_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="10dp"
         android:background="@color/colorPersoDark"
         android:text="Search"
@@ -103,6 +102,7 @@
         app:layout_constraintTop_toBottomOf="@id/checkbox_3" />
 
     <include
+        android:id="@+id/rv_search_article"
         layout="@layout/article_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"

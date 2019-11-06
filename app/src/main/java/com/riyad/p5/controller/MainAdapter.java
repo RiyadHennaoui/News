@@ -23,7 +23,6 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     private List<Article> mData;
 
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,25 +35,8 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+        holder.bind(mData.get(position));
 
-        String strDate = mData.get(position).getDate();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        Date convertedDate = new Date();
-        try {
-            convertedDate = dateFormat.parse(strDate);
-            SimpleDateFormat sdfnewformat = new SimpleDateFormat("dd MMMM yyyy");
-            String finalDateString = sdfnewformat.format(convertedDate);
-            holder.mDatePub.setText(finalDateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        holder.mTvTitle.setText(mData.get(position).getTitle());
-        holder.mDesc.setText(mData.get(position).getShortDesc());
-
-        holder.mSection.setText(mData.get(position).getSection());
-
-        Glide.with(holder.mIvThumbnail).load(mData.get(position).getImageUrl()).centerCrop().into(holder.mIvThumbnail);
 
 // todo afficher les autres données sauf title.
     }
@@ -88,6 +70,37 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             mDesc = itemView.findViewById(R.id.item_main_iv_desc);
             mDatePub = itemView.findViewById(R.id.item_main_tv_date_pub);
             mSection = itemView.findViewById(R.id.item_main_tv_section);
+
+
         }
+
+        public void bind(Article article) {
+
+            String strDate = article.getDate();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            Date convertedDate = new Date();
+            try {
+                convertedDate = dateFormat.parse(strDate);
+                SimpleDateFormat sdfnewformat = new SimpleDateFormat("dd MMMM yyyy");
+                String finalDateString = sdfnewformat.format(convertedDate);
+                mDatePub.setText(finalDateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            mTvTitle.setText(article.getTitle());
+            mDesc.setText(article.getShortDesc());
+
+            mSection.setText(article.getSection());
+
+            Glide.with(mIvThumbnail).load(article.getImageUrl()).centerCrop().into(mIvThumbnail);
+
+            itemView.setOnClickListener(view -> {
+
+                //TODO ouvrir l'activité de la webView
+
+            });
+        }
+
     }
 }

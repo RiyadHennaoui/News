@@ -2,19 +2,25 @@ package com.riyad.p5.controller
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.riyad.p5.R
 import com.riyad.p5.data.model.search.SearchResponse
 import com.riyad.p5.data.model.search.mapSearchResponseDataToSearchResult
+import com.riyad.p5.data.model.ui.Article
+import kotlinx.android.synthetic.main.article_layout.*
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import retrofit2.Call
@@ -31,6 +37,9 @@ class SearchActivity : AppCompatActivity() {
 
     private var inputBeginDate: LocalDate? = null
     private var inputEndDate: LocalDate? = null
+    private lateinit var adapterSearch: MainAdapter
+    private lateinit var mData: List<Article>
+    lateinit var rvSearch: RecyclerView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +49,7 @@ class SearchActivity : AppCompatActivity() {
 
         val searchBtn = findViewById<Button>(R.id.btn_search)
 
+
         val inputUserSearch = findViewById<SearchView>(R.id.et_search)
         val checkboxBusiness = findViewById<CheckBox>(R.id.checkbox_1)
         val checkBoxSports = findViewById<CheckBox>(R.id.checkbox_2)
@@ -47,6 +57,8 @@ class SearchActivity : AppCompatActivity() {
         val checkBoxFood = findViewById<CheckBox>(R.id.checkbox_4)
         val beginDateTextView = findViewById<TextView>(R.id.begin_date)
         val endDateTextView = findViewById<TextView>(R.id.end_date)
+        rvSearch = findViewById(R.id.rv_search_article)
+
         searchBtn.setOnClickListener {
 
 
@@ -57,6 +69,7 @@ class SearchActivity : AppCompatActivity() {
             if (checkBoxSports.isChecked) sections.add("sports")
             if (checkBoxThechnology.isChecked) sections.add("technology")
             if (checkBoxFood.isChecked) sections.add("food")
+
 
 
             Log.i("SearchActivity", Arrays.toString(sections.toArray()))
@@ -125,32 +138,34 @@ class SearchActivity : AppCompatActivity() {
                             response: Response<SearchResponse>
                         ) {
 
+                            Log.e("OnResponse", "???")
                             response?.body()?.let {
                                 val gson = Gson()
                                 Log.i(
                                     "Response",
-                                    "Yeahhh !! : ${gson.toJson(it)}  " )
+                                    "Yeahhh !! : ${gson.toJson(it)}  "
+                                )
                                 val searchResponseResult = mapSearchResponseDataToSearchResult(it)
 
+                                updateRv(searchResponseResult)
+                                intiRecyclerView()
 
-                                val intent = Intent(this@SearchActivity,NotificationActivity::class.java)
-                                intent.putExtra("articles", gson.toJson(searchResponseResult))
-                                startActivity(intent)
+
+                                //  val intent = Intent(this@SearchActivity,NotificationActivity::class.java)
+                                // intent.putExtra("articles", gson.toJson(searchResponseResult))
+                                //  startActivity(intent)
 
                                 //TODO créer un adaptater et renseigner les valeurs de searchResponseResult.
 
                                 //TODO donner cet adaptater au recyclerview
 
 
+                                Log.i(
+                                    "Response",
+                                    "Yeahhh !! : ${gson.toJson(searchResponseResult)}  >>  " + response.message() + response.isSuccessful
+                                )
 
-
-
-                            Log.i(
-                                "Response",
-                                "Yeahhh !! : ${gson.toJson(searchResponseResult)}  >>  " + response.message() + response.isSuccessful
-                            )
-
-                        }
+                            }
 
 
                         }
@@ -200,7 +215,7 @@ class SearchActivity : AppCompatActivity() {
 
                     },
                     now.year,
-                    now.monthValue -1,
+                    now.monthValue - 1,
                     now.dayOfMonth
                 )
 
@@ -217,7 +232,7 @@ class SearchActivity : AppCompatActivity() {
                         inputEndDate = LocalDate.of(year, monthOfYear + 1, dayOfMonth)
                     },
                     now.year,
-                    now.monthValue -1,
+                    now.monthValue - 1,
                     now.dayOfMonth
                 )
 
@@ -229,7 +244,34 @@ class SearchActivity : AppCompatActivity() {
 
     }
 
+    fun onCreateView(
+        inflater: LayoutInflater?,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
 
+    ): View? {
+        val myView: View = inflater!!.inflate(R.layout.article_layout, container, false)
+
+
+        return myView
+    }
+
+    private fun updateRv(searchResponseResult: List<Article>) {
+        mData = searchResponseResult
+        adapterSearch = MainAdapter()
+        adapterSearch.setData(searchResponseResult)
+    }
+
+
+    private fun intiRecyclerView() {
+
+        rvSearch.apply {
+            layoutManager = LinearLayoutManager(this@SearchActivity)
+            adapter = adapterSearch
+        }
+
+
+    }
 
 
 }

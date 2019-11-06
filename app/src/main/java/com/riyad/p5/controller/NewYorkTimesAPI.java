@@ -4,7 +4,7 @@ import com.riyad.p5.data.model.MostPopularResult;
 import com.riyad.p5.data.model.TopStoriesResult;
 import com.riyad.p5.data.model.search.Response;
 import com.riyad.p5.data.model.search.SearchResponse;
-import com.riyad.p5.data.model.search.SearchResult;
+
 
 import retrofit2.Call;
 import retrofit2.http.GET;
