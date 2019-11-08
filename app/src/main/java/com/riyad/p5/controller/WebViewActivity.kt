@@ -1,10 +1,10 @@
 package com.riyad.p5.controller
 
-import android.content.Intent
 import android.os.Bundle
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.riyad.p5.R
 
 class WebViewActivity : AppCompatActivity() {
@@ -18,27 +18,30 @@ class WebViewActivity : AppCompatActivity() {
 
     companion object {
 
-        val EXTRA_IMAGE_URL = "imageurl"
-        val EXTRA_URL = "url"
+        const val EXTRA_ARTICLE_URL = "imageurl"
+
 
     }
 
-    lateinit var imageUrl:String
-    lateinit var url:String
+    lateinit var articleUrl:String
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
 
-        imageUrl = intent.getStringExtra(EXTRA_IMAGE_URL)
+        val toolbar = findViewById<Toolbar>(R.id.tb_web_view)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        articleUrl = intent.getStringExtra(EXTRA_ARTICLE_URL)
         webView = findViewById(R.id.web_view)
         webView.webViewClient = webViewClient
 
         val webSettings = webView.settings
         webSettings.javaScriptEnabled = true
 
-        webView.loadUrl(imageUrl)
+        webView.loadUrl(articleUrl)
 
 
     }

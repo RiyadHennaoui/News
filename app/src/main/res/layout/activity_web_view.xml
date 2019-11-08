@@ -5,13 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controller.WebViewActivity">
-    <Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_web_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintLeft_toRightOf="parent"/>
+        app:layout_constraintLeft_toRightOf="parent"
+        android:background="@color/colorPersoDark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:elevation="4dp"/>
     <WebView
         android:id="@+id/web_view"
         android:layout_width="match_parent"

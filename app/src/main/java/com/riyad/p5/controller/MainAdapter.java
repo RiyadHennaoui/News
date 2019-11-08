@@ -108,7 +108,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             itemView.setOnClickListener(view -> {
 
                  Intent intent = new Intent(context, WebViewActivity.class);
-                 intent.putExtra(WebViewActivity.Companion.getEXTRA_IMAGE_URL(),article.getArticleUrl());
+                 intent.putExtra(WebViewActivity.EXTRA_ARTICLE_URL,article.getArticleUrl());
                  context.startActivity(intent);
 
 
