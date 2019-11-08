@@ -260,7 +260,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun updateRv(searchResponseResult: List<Article>) {
         mData = searchResponseResult
-        adapterSearch = MainAdapter()
+        adapterSearch = MainAdapter(this)
         adapterSearch.setData(searchResponseResult)
     }
 

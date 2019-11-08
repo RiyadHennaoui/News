@@ -64,7 +64,8 @@ public class MostPopularFragment extends AbsFragment {
                 articles.add(new Article(mostPopularArticle.getTitle(),
                         mostPopularArticle.getPublishedDate(),
                         mostPopularArticle.getSection(),
-                        imageUrl, mostPopularArticle.getAbstract()));
+                        imageUrl, mostPopularArticle.getAbstract(),
+                        mostPopularArticle.getUrl()));
             }
         }
         return articles;
