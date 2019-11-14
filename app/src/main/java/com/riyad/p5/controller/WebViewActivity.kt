@@ -1,6 +1,8 @@
 package com.riyad.p5.controller
 
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
@@ -23,8 +25,7 @@ class WebViewActivity : AppCompatActivity() {
 
     }
 
-    lateinit var articleUrl:String
-
+    lateinit var articleUrl: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,5 +45,15 @@ class WebViewActivity : AppCompatActivity() {
         webView.loadUrl(articleUrl)
 
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if (item.getItemId() == android.R.id.home) // Press Back Icon
+        {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
