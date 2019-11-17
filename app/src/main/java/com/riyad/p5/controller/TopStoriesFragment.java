@@ -93,7 +93,8 @@ public class TopStoriesFragment extends AbsFragment {
                     articles.add(new Article(topStoriesArticle.getTitle(),
                             topStoriesArticle.getPublishedDate(),
                             topStoriesArticle.getSection(),
-                            imageUrl, topStoriesArticle.getAbstract()));
+                            imageUrl, topStoriesArticle.getAbstract(),
+                            topStoriesArticle.getUrl()));
                 }
             }
         }

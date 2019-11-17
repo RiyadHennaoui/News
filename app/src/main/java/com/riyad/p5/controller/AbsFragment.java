@@ -30,7 +30,7 @@ public abstract class AbsFragment extends Fragment {
 
     }
 
-    private MainAdapter mAdapter = new MainAdapter();
+    private MainAdapter mAdapter ;
     private List<Article> mData = new ArrayList<>();
     protected NewYorkTimesAPI service;
 
@@ -40,6 +40,7 @@ public abstract class AbsFragment extends Fragment {
         View myView = inflater.inflate(R.layout.article_layout, container,false);
         init();
         RecyclerView myRecyclerView = myView.findViewById(R.id.rv_article);
+        mAdapter =  new MainAdapter(getContext());
 
         myRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         myRecyclerView.setAdapter(mAdapter);

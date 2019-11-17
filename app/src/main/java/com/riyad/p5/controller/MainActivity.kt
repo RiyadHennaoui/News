@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
             R.id.menu_min -> {
+                startActivity(Intent(this, NotificationActivity::class.java))
             }
 
             R.id.menu_about -> {

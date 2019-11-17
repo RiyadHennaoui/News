@@ -14,7 +14,8 @@ fun mapSearchResponseDataToSearchResult(searchResponse: SearchResponse): List<Ar
             doc.pubDate,
             doc.newsDesk,
             getImageUrl(doc),
-            doc.leadParagraph
+            doc.leadParagraph,
+            doc.webUrl
         )
         result.add(article)
     }

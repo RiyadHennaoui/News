@@ -10,13 +10,15 @@ public class Article implements Parcelable {
     private String section;
     private String imageUrl;
     private String shortDesc;
+    private String articleUrl;
 
-    public Article(String title, String date, String section, String imageUrl, String shortDesc) {
+    public Article(String title, String date, String section, String imageUrl, String shortDesc, String articleUrl) {
         this.title = title;
         this.date = date;
         this.section = section;
         this.imageUrl = imageUrl;
         this.shortDesc = shortDesc;
+        this.articleUrl = articleUrl;
     }
 
     public String getTitle() {
@@ -35,6 +37,8 @@ public class Article implements Parcelable {
         return imageUrl;
     }
 
+    public String getArticleUrl(){return articleUrl;}
+
     public String getShortDesc() {
         return shortDesc;
     }
@@ -51,6 +55,7 @@ public class Article implements Parcelable {
         dest.writeString(this.section);
         dest.writeString(this.imageUrl);
         dest.writeString(this.shortDesc);
+        dest.writeString(this.articleUrl);
     }
 
      Article(Parcel in) {
@@ -59,6 +64,7 @@ public class Article implements Parcelable {
         this.section = in.readString();
         this.imageUrl = in.readString();
         this.shortDesc = in.readString();
+        this.articleUrl = in.readString();
     }
 
     public static final Parcelable.Creator<Article> CREATOR = new Parcelable.Creator<Article>() {

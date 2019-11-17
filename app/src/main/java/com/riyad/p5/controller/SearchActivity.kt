@@ -62,6 +62,7 @@ class SearchActivity : AppCompatActivity() {
 
         searchBtn.setOnClickListener {
 
+            searchBtn.onEditorAction(EditorInfo.IME_ACTION_DONE)
 
             val sections: ArrayList<String> = ArrayList()
 
@@ -148,7 +149,7 @@ class SearchActivity : AppCompatActivity() {
                                 )
                                 val searchResponseResult = mapSearchResponseDataToSearchResult(it)
 
-                                searchBtn.onEditorAction(EditorInfo.IME_ACTION_DONE)
+
                                 updateRv(searchResponseResult)
                                 intiRecyclerView()
 
@@ -162,10 +163,7 @@ class SearchActivity : AppCompatActivity() {
                                 //TODO donner cet adaptater au recyclerview
 
 
-                                Log.i(
-                                    "Response",
-                                    "Yeahhh !! : ${gson.toJson(searchResponseResult)}  >>  " + response.message() + response.isSuccessful
-                                )
+
 
                             }
 
@@ -260,7 +258,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun updateRv(searchResponseResult: List<Article>) {
         mData = searchResponseResult
-        adapterSearch = MainAdapter()
+        adapterSearch = MainAdapter(this)
         adapterSearch.setData(searchResponseResult)
     }
 

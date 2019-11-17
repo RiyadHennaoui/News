@@ -1,5 +1,8 @@
 package com.riyad.p5.controller;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +24,13 @@ import java.util.List;
 class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     private List<Article> mData;
+    private Context context;
+
+    MainAdapter(Context con){
+
+        this.context = con;
+
+    }
 
 
     @NonNull
@@ -96,6 +106,11 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             Glide.with(mIvThumbnail).load(article.getImageUrl()).centerCrop().into(mIvThumbnail);
 
             itemView.setOnClickListener(view -> {
+
+                 Intent intent = new Intent(context, WebViewActivity.class);
+                 intent.putExtra(WebViewActivity.EXTRA_ARTICLE_URL,article.getArticleUrl());
+                 context.startActivity(intent);
+
 
                 //TODO ouvrir l'activité de la webView
 
