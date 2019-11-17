@@ -1,32 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
-    <ImageView
-        android:id="@+id/item_main_iv_thumbnail"
-        android:layout_width="@dimen/thumbnail_size"
-        android:layout_height="@dimen/thumbnail_size"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:src="@tools:sample/avatars"
-        android:layout_margin="16dp"
-        />
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/item_main_tv_title"
-        android:layout_width="0dp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/item_main_iv_thumbnail"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Trump is a moron, once again"
-        android:layout_margin="16dp"
-        />
+        android:layout_margin="7dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="11dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="@dimen/cardview_default_elevation">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_main_iv_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="#bdbdbd" />
+
+
+            <TextView
+                android:id="@+id/item_main_tv_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/item_main_tv_title"
+                android:layout_alignLeft="@+id/item_main_tv_title"
+                android:layout_alignTop="@+id/frame_layout_pub_date"
+                android:layout_alignEnd="@+id/frame_layout_pub_date"
+                android:layout_alignRight="@+id/frame_layout_pub_date"
+                android:layout_marginEnd="160dp"
+                android:layout_marginRight="160dp"
+                android:drawablePadding="20dp"
+                android:ellipsize="end"
+                android:gravity="bottom"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="Section"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:id="@+id/frame_layout_pub_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_main_iv_thumbnail"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="-40dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/cardview_light_background">
+
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@mipmap/ic_news"></ImageView>
+
+                <TextView
+                    android:id="@+id/item_main_tv_date_pub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginRight="10dp"
+                    android:text="01 Janvier 2019"
+                    android:textColor="#606060">
+
+                </TextView>
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/item_main_tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_main_iv_thumbnail"
+                android:textSize="18sp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="sans-serif-light"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/item_main_iv_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_main_tv_title"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"/>
+
+
+
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

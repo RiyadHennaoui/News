@@ -1,4 +1,4 @@
-package com.riyad.p5;
+package com.riyad.p5.controller;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

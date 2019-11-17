@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/item_main_iv_thumbnail"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toTopOf="@id/item_main_tv_date_pub"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/item_main_tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/item_main_iv_thumbnail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_main_iv_thumbnail"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Trump is a moron, once again" />
+
+    <TextView
+        android:id="@+id/item_main_tv_date_pub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/item_main_iv_desc"
+        app:layout_constraintEnd_toStartOf="@id/item_main_tv_section"
+        app:layout_constraintStart_toStartOf="@id/item_main_iv_thumbnail"
+        app:layout_constraintTop_toBottomOf="@id/item_main_iv_thumbnail"
+        tools:text="01/01/01"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/item_main_tv_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/item_main_tv_date_pub"
+        app:layout_constraintTop_toBottomOf="@id/item_main_iv_thumbnail"
+        app:layout_constraintBottom_toTopOf="@id/item_main_iv_desc"
+        tools:text="Section"
+        android:textAlignment="textEnd"
+        android:gravity="end" />
+
+    <TextView
+        android:id="@+id/item_main_iv_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_main_tv_date_pub"
+        tools:text="azeazeazeazeazeazeazeazeazeazeazeazeaze azeazeazeaze" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

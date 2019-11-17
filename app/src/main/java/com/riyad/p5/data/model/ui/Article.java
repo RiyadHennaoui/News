@@ -1,4 +1,4 @@
-package com.riyad.p5.ui;
+package com.riyad.p5.data.model.ui;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -53,7 +53,7 @@ public class Article implements Parcelable {
         dest.writeString(this.shortDesc);
     }
 
-    protected Article(Parcel in) {
+     Article(Parcel in) {
         this.title = in.readString();
         this.date = in.readString();
         this.section = in.readString();
