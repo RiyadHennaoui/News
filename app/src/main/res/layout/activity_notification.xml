@@ -36,48 +36,48 @@
 
 
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/checkbox1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="CheckBox1"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox2"
+        android:text="Business"
+        app:layout_constraintEnd_toStartOf="@id/checkbox2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_view" />
 
     <CheckBox
-        android:id="@id/checkBox2"
+        android:id="@+id/checkbox2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="CheckBox2"
+        android:text="Sport"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/checkBox1"
+        app:layout_constraintStart_toEndOf="@id/checkbox1"
         app:layout_constraintTop_toBottomOf="@id/search_view" />
 
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/checkbox3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="CheckBox3"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox4"
+        android:text="Technologie"
+        app:layout_constraintEnd_toStartOf="@+id/checkbox4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkBox1" />
+        app:layout_constraintTop_toBottomOf="@id/checkbox1" />
 
     <CheckBox
-        android:id="@id/checkBox4"
+        android:id="@+id/checkbox4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="CheckBox4"
+        android:text="Food"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/checkBox3"
-        app:layout_constraintTop_toBottomOf="@id/checkBox2" />
+        app:layout_constraintStart_toEndOf="@id/checkbox3"
+        app:layout_constraintTop_toBottomOf="@id/checkbox2" />
 
     <Switch
         android:id="@+id/switch1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enable notifications (once per day)"
-        app:layout_constraintTop_toBottomOf="@id/checkBox3"
+        app:layout_constraintTop_toBottomOf="@id/checkbox3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
