@@ -61,29 +61,17 @@ public class MostPopularFragment extends AbsFragment {
     }
 
     private List<Article> mapResult(MostPopularResult mostPopularResult) {
-        int minPixelSize = getResources().getDimensionPixelSize(R.dimen.thumbnail_size);
         List<Article> articles = new ArrayList<>();
 
         if (!CollectionUtils.isEmpty(mostPopularResult.getResults())) {
             for (MostPopularArticle mostPopularArticle : mostPopularResult.getResults()) {
                 if (mostPopularArticle.getMedia() != null && !mostPopularArticle.getMedia().isEmpty()) {
-                    String imageUrl = null;
 
-                    for (int i = 0; i < mostPopularArticle.getMedia().size(); i++) {
-                        if (mostPopularArticle.getMedia().get(i).getMediaMetadata() != null &&
-                                !mostPopularArticle.getMedia().get(i).getMediaMetadata().isEmpty()) {
-                            for (int j = 0; j < mostPopularArticle.getMedia().get(i).getMediaMetadata().size(); j++) {
+                    String imageUrl = mostPopularArticle.getMedia().get(0).getMediaMetadata().get(
+                            mostPopularArticle.getMedia().get(0).getMediaMetadata().size() -1
+                    ).getUrl();
 
-                                if (mostPopularArticle.getMedia().get(i).getMediaMetadata().get(j).getHeight() >= minPixelSize &&
-                                        mostPopularArticle.getMedia().get(i).getMediaMetadata().get(j).getWidth() >= minPixelSize) {
 
-                                    imageUrl = mostPopularArticle.getMedia().get(i).getMediaMetadata().get(j).getUrl();
-
-                                }
-                            }
-                        }
-                    }
-                        Log.i("MostPopularFragment", imageUrl + "");
 
                         articles.add(new Article(mostPopularArticle.getTitle(),
                                 mostPopularArticle.getPublishedDate() + "T05:00:12-05:00",
