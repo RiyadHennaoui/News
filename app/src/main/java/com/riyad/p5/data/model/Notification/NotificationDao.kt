@@ -9,7 +9,7 @@ import androidx.room.Query
 interface NotificationDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNotificationUserInput(notificationUserInput: NotificationUserInput) : Int
+    fun insertNotificationUserInput(notificationUserInput: NotificationUserInput)
 
     @Query("SELECT * FROM NotificationUserInput")
     fun getNotificationUserInput() : NotificationUserInput

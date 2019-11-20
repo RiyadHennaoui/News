@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class NotificationUserInput (
     @PrimaryKey(autoGenerate = false)
-    var id: Int,
+    var id: Int = 0,
     var inputSearchUser: String,
     var sections: ArrayList<String>
 )

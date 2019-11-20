@@ -8,6 +8,7 @@ import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.riyad.p5.R
+import com.riyad.p5.data.model.Notification.Converters
 import com.riyad.p5.data.model.Notification.NotificationDao
 import com.riyad.p5.data.model.Notification.NotificationUserInput
 
@@ -25,7 +26,7 @@ class NotificationActivity : AppCompatActivity() {
 
         val notificationSwitch = findViewById<Switch>(R.id.switch1)
 
-        val inputUserNotification = findViewById<SearchView>(R.id.search_view)
+        val inputUserNotification = findViewById<androidx.appcompat.widget.SearchView>(R.id.search_view)
         val checkBoxBusiness = findViewById<CheckBox>(R.id.checkbox1)
         val checkBoxSports = findViewById<CheckBox>(R.id.checkbox2)
         val checkBoxThechnology = findViewById<CheckBox>(R.id.checkbox3)
@@ -33,50 +34,102 @@ class NotificationActivity : AppCompatActivity() {
 
         val notificationDao = App.database.notificationDao()
 
-        notificationSwitch.setOnClickListener {
 
-            val sections: ArrayList<String> = ArrayList()
+        notificationSwitch.setOnCheckedChangeListener { compoundButton, isChecked ->
 
+            if (isChecked){
 
-            if (checkBoxBusiness.isChecked) sections.add("business")
-            if (checkBoxSports.isChecked) sections.add("sports")
-            if (checkBoxThechnology.isChecked) sections.add("technology")
-            if (checkBoxFood.isChecked) sections.add("food")
+                Log.i("IsChecked", "True")
+                //TODO Enregistrer sur le tel pour utilisation ulterieur
 
-            when (notificationManager.checkUserInput(
-                inputUserNotification.query.toString(),
-                sections
-            )) {
-
-                NotificationManager.UserInputState.VALID -> {
-
-                    notificationDao
-                        .insertNotificationUserInput(NotificationUserInput(0,
-                            inputUserNotification.query.toString(),
-                            sections))
-
-                    Log.i("NotificationActivity", notificationDao.toString())
+                val sections: ArrayList<String> = ArrayList()
 
 
+                if (checkBoxBusiness.isChecked) sections.add("business")
+                if (checkBoxSports.isChecked) sections.add("sports")
+                if (checkBoxThechnology.isChecked) sections.add("technology")
+                if (checkBoxFood.isChecked) sections.add("food")
+
+                when (notificationManager.checkUserInput(
+                    inputUserNotification.query.toString(),
+                    sections
+                )) {
+
+                    NotificationManager.UserInputState.VALID -> {
+
+                        // TODO Les opérations de room doivent être dans un background Thread Observable ou Coroutines
+
+                        notificationDao
+                            .insertNotificationUserInput(
+                                NotificationUserInput(
+                                    inputSearchUser = inputUserNotification.query.toString(),
+                                    sections = sections
+                                )
+                            )
+
+                        Log.i("NotificationActivity", notificationDao.toString())
+
+
+                    }
                 }
 
-                NotificationManager.UserInputState.NO_USER_INPUT -> {
 
-                    Toast.makeText(this, "Merci de replir le champs", Toast.LENGTH_SHORT).show()
-
-                }
-
-                NotificationManager.UserInputState.NO_SECTION_SELECTED -> {
-
-                    Toast.makeText(this, "please selcet Section ",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+            }else{
+                Log.i("IsChecked", "false")
+//                TODO a enlever du tel.
 
             }
 
 
         }
+
+//        notificationSwitch.setOnClickListener {
+//
+//            Log.i("NotificationActivity", "OnClickSwitch")
+//            val sections: ArrayList<String> = ArrayList()
+//
+//
+//            if (checkBoxBusiness.isChecked) sections.add("business")
+//            if (checkBoxSports.isChecked) sections.add("sports")
+//            if (checkBoxThechnology.isChecked) sections.add("technology")
+//            if (checkBoxFood.isChecked) sections.add("food")
+//
+//            when (notificationManager.checkUserInput(
+//                inputUserNotification.query.toString(),
+//                sections
+//            )) {
+//
+//                NotificationManager.UserInputState.VALID -> {
+//
+//                    val converters = Converters.fromArrayList(sections)
+//
+//                    notificationDao
+//                        .insertNotificationUserInput(NotificationUserInput(0,
+//                            inputUserNotification.query.toString(),
+//                            converters))
+//
+//                    Log.i("NotificationActivity", notificationDao.toString())
+//
+//
+//                }
+//
+//                NotificationManager.UserInputState.NO_USER_INPUT -> {
+//
+//                    Toast.makeText(this, "Merci de replir le champs", Toast.LENGTH_SHORT).show()
+//
+//                }
+//
+//                NotificationManager.UserInputState.NO_SECTION_SELECTED -> {
+//
+//                    Toast.makeText(this, "please selcet Section ",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//
+//            }
+//
+//
+//        }
 //
 //        val stringSearchResponseResult = intent.getStringExtra("articles")
 //
