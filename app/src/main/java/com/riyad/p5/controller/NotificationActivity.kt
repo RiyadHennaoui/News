@@ -11,6 +11,9 @@ import com.riyad.p5.R
 import com.riyad.p5.data.model.Notification.Converters
 import com.riyad.p5.data.model.Notification.NotificationDao
 import com.riyad.p5.data.model.Notification.NotificationUserInput
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 
 
 class NotificationActivity : AppCompatActivity() {
@@ -59,13 +62,18 @@ class NotificationActivity : AppCompatActivity() {
 
                         // TODO Les opérations de room doivent être dans un background Thread Observable ou Coroutines
 
-                        notificationDao
-                            .insertNotificationUserInput(
-                                NotificationUserInput(
-                                    inputSearchUser = inputUserNotification.query.toString(),
-                                    sections = sections
+                        CoroutineScope(IO).launch {
+
+                            notificationDao
+                                .insertNotificationUserInput(
+                                    NotificationUserInput(
+                                        inputSearchUser = inputUserNotification.query.toString(),
+                                        sections = sections
+                                    )
                                 )
-                            )
+
+                        }
+
 
                         Log.i("NotificationActivity", notificationDao.toString())
 
@@ -152,4 +160,6 @@ class NotificationActivity : AppCompatActivity() {
         //TODO Docs sur les tests instrumentalisés
 
     }
+
+
 }
