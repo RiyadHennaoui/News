@@ -2,6 +2,7 @@ package com.riyad.p5.controller
 
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.EditorInfo
 import android.widget.CheckBox
 import android.widget.SearchView
 import android.widget.Switch
@@ -11,6 +12,7 @@ import com.riyad.p5.R
 import com.riyad.p5.data.model.Notification.Converters
 import com.riyad.p5.data.model.Notification.NotificationDao
 import com.riyad.p5.data.model.Notification.NotificationUserInput
+import kotlinx.android.synthetic.main.activity_notification.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -60,7 +62,9 @@ class NotificationActivity : AppCompatActivity() {
 
                     NotificationManager.UserInputState.VALID -> {
 
+                        switch1.onEditorAction(EditorInfo.IME_ACTION_DONE)
                         // TODO Les opérations de room doivent être dans un background Thread Observable ou Coroutines
+
 
                         CoroutineScope(IO).launch {
 
@@ -72,6 +76,7 @@ class NotificationActivity : AppCompatActivity() {
                                     )
                                 )
 
+                            Log.i("ajouter", "fait" + notificationDao.getNotificationUserInput().inputSearchUser)
                         }
 
 
@@ -84,6 +89,14 @@ class NotificationActivity : AppCompatActivity() {
 
             }else{
                 Log.i("IsChecked", "false")
+
+                CoroutineScope(IO).launch {
+
+                    notificationDao.deleteNotificationInProgress(notificationDao.getNotificationUserInput())
+                    Log.i("suppression", "supprimé" )
+
+                }
+
 //                TODO a enlever du tel.
 
             }
