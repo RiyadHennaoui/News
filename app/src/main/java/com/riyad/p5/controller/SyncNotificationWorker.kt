@@ -96,7 +96,7 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) : W
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             putExtra("articlesNotif", gson.toJson(searchNotificationResult))
                         }
-                        Log.i("articles verif", gson.toJson(searchNotificationResult))
+//                        Log.i("articles verif", gson.toJson(searchNotificationResult))
 
 
                         sendNotificationResult(it, applicationContext, intent)
