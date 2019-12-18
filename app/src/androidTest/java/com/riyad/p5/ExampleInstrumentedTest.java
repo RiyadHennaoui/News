@@ -2,6 +2,7 @@ package com.riyad.p5;
 
 import android.content.Context;
 
+
 import androidx.test.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
@@ -24,4 +25,10 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.riyad.p5", appContext.getPackageName());
     }
+
+    // TODO Tester si dans l'onglet home la liste des articles n'est pas vide.
+    //TODO Lorsqu'on clique sur un article qu'il lance la WebViewActivity
+    //TODO Tester l'ouverture des autres fragements >>> ne pas oublier le NavDrawer
+    //TODO Tester si le résultat de la recherche est bonne SearchActivity
+    //TODO Tester l'enregistrement des notifications ( query, checkBox et switch )
 }

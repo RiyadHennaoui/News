@@ -9,7 +9,7 @@ interface NotificationDao {
     fun insertNotificationUserInput(notificationUserInput: NotificationUserInput)
 
     @Query("SELECT * FROM NotificationUserInput")
-    fun getNotificationUserInput() : NotificationUserInput
+    fun getNotificationUserInput() : NotificationUserInput?
 
     @Delete
     fun deleteNotificationInProgress(notificationUserInput: NotificationUserInput)

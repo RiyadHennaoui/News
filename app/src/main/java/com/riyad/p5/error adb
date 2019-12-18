@@ -1,0 +1,11 @@
+Unable to establish a connection to adb.
+
+Check the Event Log for possible issues.
+This can happen if you have an incompatible version of adb running already,
+or if localhost is pointing to the wrong address.
+Try re-opening Studio after killing any existing adb daemons and verifying that your
+localhost entry is pointing to 127.0.0.1 or ::1 for IPv4 or IPv6, respectively.
+
+If this happens repeatedly, please file a bug at http://b.android.com including the following:
+  1. Output of the command: 'C:\Users\riyad\AppData\Local\Android\Sdk\platform-tools\adb.exe devices'
+  2. Your idea.log file (Help | Show Log in Explorer)
