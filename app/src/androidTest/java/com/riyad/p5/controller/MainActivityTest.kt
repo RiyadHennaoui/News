@@ -1,6 +1,8 @@
 package com.riyad.p5.controller
 
 import android.view.Gravity
+import android.view.View
+import android.view.ViewGroup
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
@@ -9,10 +11,19 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.DrawerMatchers.isClosed
 import androidx.test.espresso.contrib.NavigationViewActions
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.rule.ActivityTestRule
 import com.riyad.p5.R
+import com.riyad.p5.controller.MainAdapter.ViewHolder
+import org.hamcrest.Description
+import org.hamcrest.Matcher
+import org.hamcrest.TypeSafeMatcher
+import org.hamcrest.core.AllOf.allOf
+import org.hamcrest.core.IsNull.notNullValue
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -23,6 +34,34 @@ class MainActivityTest {
     // TODO Tester si dans l'onglet home la liste des articles n'est pas vide.
 
 
+    @Rule
+    @JvmField
+    val mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
+
+
+    @Before
+
+    fun setUp() {
+
+        val mActivity = mActivityRule.getActivity()
+
+        assertThat(mActivity, notNullValue())
+
+    }
+
+    @Test
+    fun myListShouldNotBeEmpty() {
+
+        Thread.sleep(1000)
+        onView(
+            allOf(
+                withId(R.id.rv_article),
+                isDisplayed()
+            )
+        )
+            .check(matches(hasMinimumChildCount(1)))
+
+    }
 
 
     //TODO Tester l'ouverture de la SearchActivity quand on click sur le bouton search
@@ -30,7 +69,7 @@ class MainActivityTest {
     @Test
     fun test_isSearchActivityInView() {
 
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+//        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
         onView(withId(R.id.main)).check(matches(isDisplayed()))
     }
@@ -59,6 +98,27 @@ class MainActivityTest {
     }
 
     //TODO Lorsqu'on clique sur un article qu'il lance la WebViewActivity
+
+    @Test
+    fun test_articleClicked_toWebView() {
+        Thread.sleep(2000)
+        onView(
+            allOf(
+                withId(R.id.rv_article),
+                isDisplayed()
+            )
+        )
+//            .check(matches(hasMinimumChildCount(1)))
+              .perform(actionOnItemAtPosition<ViewHolder>(0, click()))
+
+
+        Thread.sleep(2000)
+
+        onView(withId(R.id.web_view)).check(matches(isDisplayed()))
+//            .check(matches(withId(R.id.tb_web_view)))
+            pressBack()
+        onView(withId(R.id.main)).check(matches(isDisplayed()))
+    }
 
 
     //TODO Tester l'ouverture des autres fragements >>> ne pas oublier le NavDrawer
@@ -102,5 +162,23 @@ class MainActivityTest {
 
         //SETUP
 
+    }
+
+    private fun childAtPosition(
+        parentMatcher: Matcher<View>, position: Int
+    ): Matcher<View> {
+
+        return object : TypeSafeMatcher<View>() {
+            override fun describeTo(description: Description) {
+                description.appendText("Child at position $position in parent ")
+                parentMatcher.describeTo(description)
+            }
+
+            public override fun matchesSafely(view: View): Boolean {
+                val parent = view.parent
+                return parent is ViewGroup && parentMatcher.matches(parent)
+                        && view == parent.getChildAt(position)
+            }
+        }
     }
 }
