@@ -10,7 +10,7 @@ import org.threeten.bp.LocalDate
 class SearchManagerTest {
 
     @Test
-    fun `should return NO_USER_INPUT when user input is empty and one checckbox selected`() {
+    fun `should return NO_USER_INPUT when user input is empty and one checkbox selected`() {
 
         // given
         val userInput = ""

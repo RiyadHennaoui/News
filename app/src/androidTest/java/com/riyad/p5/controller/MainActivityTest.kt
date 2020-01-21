@@ -1,0 +1,170 @@
+package com.riyad.p5.controller
+
+import android.view.Gravity
+import android.view.View
+import android.view.ViewGroup
+import androidx.test.core.app.ActivityScenario
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.swipeLeft
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.DrawerActions
+import androidx.test.espresso.contrib.DrawerMatchers.isClosed
+import androidx.test.espresso.contrib.NavigationViewActions
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.rule.ActivityTestRule
+import com.riyad.p5.R
+import com.riyad.p5.controller.MainAdapter.ViewHolder
+import org.hamcrest.Description
+import org.hamcrest.Matcher
+import org.hamcrest.TypeSafeMatcher
+import org.hamcrest.core.AllOf.allOf
+import org.hamcrest.core.IsNull.notNullValue
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+
+
+@RunWith(AndroidJUnit4ClassRunner::class)
+class MainActivityTest {
+
+    // TODO Tester si dans l'onglet home la liste des articles n'est pas vide.
+
+
+    @Rule
+    @JvmField
+    val mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
+
+
+    @Before
+
+    fun setUp() {
+
+        val mActivity = mActivityRule.getActivity()
+
+        assertThat(mActivity, notNullValue())
+
+    }
+
+    @Test
+    fun myListShouldNotBeEmpty() {
+
+        Thread.sleep(1000)
+        onView(
+            allOf(
+                withId(R.id.rv_article),
+                isDisplayed()
+            )
+        )
+            .check(matches(hasMinimumChildCount(1)))
+
+    }
+
+
+    //TODO Tester l'ouverture de la SearchActivity quand on click sur le bouton search
+
+    @Test
+    fun test_isSearchActivityInView() {
+
+//        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+
+        onView(withId(R.id.main)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun test_navSearchActivity() {
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+
+        onView(withId(R.id.search_btn)).perform(click())
+
+        onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
+
+    }
+
+    @Test
+    fun test_backPress_toMainActivity() {
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+
+        onView(withId(R.id.search_btn)).perform(click())
+
+        onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
+
+        pressBack()
+
+        onView(withId(R.id.main)).check(matches(isDisplayed()))
+    }
+
+    //TODO Lorsqu'on clique sur un article qu'il lance la WebViewActivity
+
+    @Test
+    fun test_articleClicked_toWebView() {
+        Thread.sleep(2000)
+        onView(
+            allOf(
+                withId(R.id.rv_article),
+                isDisplayed()
+            )
+        )
+
+              .perform(actionOnItemAtPosition<ViewHolder>(0, click()))
+
+
+        Thread.sleep(2000)
+
+        onView(withId(R.id.web_view)).check(matches(isDisplayed()))
+
+            pressBack()
+        onView(withId(R.id.main)).check(matches(isDisplayed()))
+    }
+
+
+    //TODO Tester l'ouverture des autres fragements >>> ne pas oublier le NavDrawer
+
+
+    @Test
+    fun test_isNavDrawerVisible() {
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+
+        // Open Drawer to click on navigation
+        onView(withId(R.id.drawer_layout))
+            .check(matches(isClosed(Gravity.LEFT)))
+            .perform(DrawerActions.open())
+
+
+        onView(withId(R.id.navigation_view))
+            .perform(NavigationViewActions.navigateTo(R.id.nav_business))
+        Thread.sleep(1000)
+
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+        onView(withId(R.id.navigation_view))
+            .perform(NavigationViewActions.navigateTo(R.id.nav_mostPopular))
+        Thread.sleep(1000)
+
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+        onView(withId(R.id.navigation_view))
+            .perform(NavigationViewActions.navigateTo(R.id.nav_topStories))
+        Thread.sleep(1000)
+
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+        onView(withId(R.id.navigation_view))
+            .perform(NavigationViewActions.navigateTo(R.id.nav_share))
+
+
+    }
+
+    @Test
+    fun test_changeFragmentAfterSwipe(){
+
+        onView(withId(R.id.main_vp_articles)).perform(swipeLeft())
+        onView(withId(R.id.main_tl)).check(matches(hasDescendant(withText("Most Popular"))))
+
+    }
+
+
+
+
+}

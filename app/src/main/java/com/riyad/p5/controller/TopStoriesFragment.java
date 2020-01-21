@@ -88,7 +88,7 @@ public class TopStoriesFragment extends AbsFragment {
 
                     }
 
-                    Log.e("TropStoriesFragemnt", imageUrl + "");
+//                    Log.e("TropStoriesFragemnt", imageUrl + "");
 
                     articles.add(new Article(topStoriesArticle.getTitle(),
                             topStoriesArticle.getPublishedDate(),

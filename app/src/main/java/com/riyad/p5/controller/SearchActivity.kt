@@ -40,7 +40,7 @@ class SearchActivity : AppCompatActivity() {
     private var inputEndDate: LocalDate? = null
     private lateinit var adapterSearch: MainAdapter
     private lateinit var mData: List<Article>
-    lateinit var rvSearch: RecyclerView
+    private lateinit var rvSearch: RecyclerView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
