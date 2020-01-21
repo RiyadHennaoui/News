@@ -7,6 +7,7 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.swipeLeft
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.DrawerMatchers.isClosed
@@ -108,14 +109,14 @@ class MainActivityTest {
                 isDisplayed()
             )
         )
-//            .check(matches(hasMinimumChildCount(1)))
+
               .perform(actionOnItemAtPosition<ViewHolder>(0, click()))
 
 
         Thread.sleep(2000)
 
         onView(withId(R.id.web_view)).check(matches(isDisplayed()))
-//            .check(matches(withId(R.id.tb_web_view)))
+
             pressBack()
         onView(withId(R.id.main)).check(matches(isDisplayed()))
     }
@@ -151,34 +152,19 @@ class MainActivityTest {
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
         onView(withId(R.id.navigation_view))
             .perform(NavigationViewActions.navigateTo(R.id.nav_share))
-        Thread.sleep(1000)
 
 
     }
 
     @Test
-    fun test_isFragmentDataVisible() {
+    fun test_changeFragmentAfterSwipe(){
 
-
-        //SETUP
+        onView(withId(R.id.main_vp_articles)).perform(swipeLeft())
+        onView(withId(R.id.main_tl)).check(matches(hasDescendant(withText("Most Popular"))))
 
     }
 
-    private fun childAtPosition(
-        parentMatcher: Matcher<View>, position: Int
-    ): Matcher<View> {
 
-        return object : TypeSafeMatcher<View>() {
-            override fun describeTo(description: Description) {
-                description.appendText("Child at position $position in parent ")
-                parentMatcher.describeTo(description)
-            }
 
-            public override fun matchesSafely(view: View): Boolean {
-                val parent = view.parent
-                return parent is ViewGroup && parentMatcher.matches(parent)
-                        && view == parent.getChildAt(position)
-            }
-        }
-    }
+
 }
