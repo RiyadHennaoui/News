@@ -35,9 +35,9 @@
                 android:icon="@drawable/baseline_search_white_48"
                 android:title="Search" />
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/baseline_share_white_48"
-                android:title="Share" />
+                android:id="@+id/nav_notification"
+                android:icon="@mipmap/ic_notification"
+                android:title="Notification" />
 
 
         </menu>

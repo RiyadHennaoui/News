@@ -17,8 +17,8 @@ import com.google.android.material.tabs.TabLayout
 import com.riyad.p5.R
 
 
-
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, ViewPager.OnPageChangeListener/*, DatePickerDialog.OnDateSetListener*/ {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    ViewPager.OnPageChangeListener/*, DatePickerDialog.OnDateSetListener*/ {
     private var drawer: DrawerLayout? = null
     private var myViewPager: ViewPager? = null
     private var myNavView: NavigationView? = null
@@ -45,7 +45,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer = findViewById(R.id.drawer_layout)
 
-        val toggle = ActionBarDrawerToggle(this, drawer, myToolbar,
+        val toggle = ActionBarDrawerToggle(
+            this, drawer, myToolbar,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
@@ -81,6 +82,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 myViewPager!!.currentItem = 3
                 drawer!!.closeDrawer(GravityCompat.START)
             }
+
+            R.id.nav_search -> {
+                myViewPager!!.currentItem = 4
+                startActivity(Intent(this, SearchActivity::class.java))
+
+            }
+
+            R.id.nav_notification -> {
+
+                startActivity(Intent(this, NotificationActivity::class.java))
+            }
         }
 
         return true
@@ -98,7 +110,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
 
 
-            R.id.menu_min -> {
+            R.id.menu_notification -> {
                 startActivity(Intent(this, NotificationActivity::class.java))
             }
 
@@ -114,11 +126,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         }
 
-        if (item.itemId == R.id.menu_min) {
 
-            // TODO afficher la page de notifications faire un switch
-
-        }
         return super.onOptionsItemSelected(item)
     }
 
@@ -130,7 +138,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             myViewPager?.currentItem = 0
 
-        }else {
+        } else {
             super.onBackPressed()
         }
     }
@@ -170,14 +178,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
-   /* override fun onDateSet(datePicker: DatePicker, year: Int, month: Int, day: Int) {
-        val calendar = Calendar.getInstance()
+    /* override fun onDateSet(datePicker: DatePicker, year: Int, month: Int, day: Int) {
+         val calendar = Calendar.getInstance()
 
-        calendar.set(Calendar.YEAR, year)
-        calendar.set(Calendar.MONTH, month)
-        calendar.set(Calendar.DAY_OF_MONTH, day)
-        val currentDayString = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
-    }*/
+         calendar.set(Calendar.YEAR, year)
+         calendar.set(Calendar.MONTH, month)
+         calendar.set(Calendar.DAY_OF_MONTH, day)
+         val currentDayString = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
+     }*/
 
 
 }
