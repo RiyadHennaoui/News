@@ -60,6 +60,8 @@ dependencies {
     androidTestImplementation "androidx.test:rules:$androidx_test"
     androidTestImplementation "androidx.test:core:$androidx_test"
     androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:3.0.1"
+
 
 
     //Room

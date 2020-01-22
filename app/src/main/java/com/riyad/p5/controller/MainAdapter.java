@@ -112,7 +112,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                  context.startActivity(intent);
 
 
-                //TODO ouvrir l'activité de la webView
+
 
             });
         }

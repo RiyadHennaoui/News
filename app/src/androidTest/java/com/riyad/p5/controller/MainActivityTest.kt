@@ -13,6 +13,9 @@ import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.DrawerMatchers.isClosed
 import androidx.test.espresso.contrib.NavigationViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
+import androidx.test.espresso.intent.Intents.intended
+import androidx.test.espresso.intent.matcher.IntentMatchers
+import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.rule.ActivityTestRule
@@ -37,7 +40,7 @@ class MainActivityTest {
 
     @Rule
     @JvmField
-    val mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
+    val mActivityRule = IntentsTestRule<MainActivity>(MainActivity::class.java)
 
 
     @Before
@@ -150,8 +153,12 @@ class MainActivityTest {
         Thread.sleep(1000)
 
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
-        onView(withId(R.id.navigation_view))
-            .perform(NavigationViewActions.navigateTo(R.id.nav_share))
+        onView(withId(R.id.nav_notification))
+            .perform(click())
+        Thread.sleep(1000)
+
+        intended(IntentMatchers.hasComponent(NotificationActivity::class.java.name))
+
 
 
     }

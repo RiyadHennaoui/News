@@ -49,7 +49,7 @@ public abstract class AbsFragment extends Fragment {
             // TODO RIYAD RESTORE STATE
             mAdapter.setData(savedInstanceState.getParcelableArrayList("toto"));
 
-            Toast.makeText(getContext(), "This is not my first rodeo", Toast.LENGTH_SHORT).show();
+
         }
 
 
