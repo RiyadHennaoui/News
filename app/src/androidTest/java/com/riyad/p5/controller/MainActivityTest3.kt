@@ -27,85 +27,85 @@ class MainActivityTest3 {
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
-    @Test
-    fun mainActivityTest3() {
-        val tabView = onView(
-            allOf(
-                withContentDescription("business"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.main_tl),
-                        0
-                    ),
-                    2
-                ),
-                isDisplayed()
-            )
-        )
-        tabView.perform(click())
-
-        val linearLayout = onView(
-            allOf(
-                childAtPosition(
-                    allOf(
-                        withId(R.id.rv_article),
-                        withParent(withId(R.id.main_vp_articles))
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        linearLayout.perform(click())
-
-        val appCompatImageButton = onView(
-            allOf(
-                withContentDescription("Navigate up"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.tb_web_view),
-                        childAtPosition(
-                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                            0
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatImageButton.perform(click())
-
-        val linearLayout2 = onView(
-            allOf(
-                childAtPosition(
-                    allOf(
-                        withId(R.id.rv_article),
-                        withParent(withId(R.id.main_vp_articles))
-                    ),
-                    2
-                ),
-                isDisplayed()
-            )
-        )
-        linearLayout2.perform(click())
-    }
-
-    private fun childAtPosition(
-        parentMatcher: Matcher<View>, position: Int
-    ): Matcher<View> {
-
-        return object : TypeSafeMatcher<View>() {
-            override fun describeTo(description: Description) {
-                description.appendText("Child at position $position in parent ")
-                parentMatcher.describeTo(description)
-            }
-
-            public override fun matchesSafely(view: View): Boolean {
-                val parent = view.parent
-                return parent is ViewGroup && parentMatcher.matches(parent)
-                        && view == parent.getChildAt(position)
-            }
-        }
-    }
+//    @Test
+//    fun mainActivityTest3() {
+//        val tabView = onView(
+//            allOf(
+//                withContentDescription("business"),
+//                childAtPosition(
+//                    childAtPosition(
+//                        withId(R.id.main_tl),
+//                        0
+//                    ),
+//                    2
+//                ),
+//                isDisplayed()
+//            )
+//        )
+//        tabView.perform(click())
+//
+//        val linearLayout = onView(
+//            allOf(
+//                childAtPosition(
+//                    allOf(
+//                        withId(R.id.rv_article),
+//                        withParent(withId(R.id.main_vp_articles))
+//                    ),
+//                    0
+//                ),
+//                isDisplayed()
+//            )
+//        )
+//        linearLayout.perform(click())
+//
+//        val appCompatImageButton = onView(
+//            allOf(
+//                withContentDescription("Navigate up"),
+//                childAtPosition(
+//                    allOf(
+//                        withId(R.id.tb_web_view),
+//                        childAtPosition(
+//                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
+//                            0
+//                        )
+//                    ),
+//                    1
+//                ),
+//                isDisplayed()
+//            )
+//        )
+//        appCompatImageButton.perform(click())
+//
+//        val linearLayout2 = onView(
+//            allOf(
+//                childAtPosition(
+//                    allOf(
+//                        withId(R.id.rv_article),
+//                        withParent(withId(R.id.main_vp_articles))
+//                    ),
+//                    2
+//                ),
+//                isDisplayed()
+//            )
+//        )
+//        linearLayout2.perform(click())
+//    }
+//
+//    private fun childAtPosition(
+//        parentMatcher: Matcher<View>, position: Int
+//    ): Matcher<View> {
+//
+//        return object : TypeSafeMatcher<View>() {
+//            override fun describeTo(description: Description) {
+//                description.appendText("Child at position $position in parent ")
+//                parentMatcher.describeTo(description)
+//            }
+//
+//            public override fun matchesSafely(view: View): Boolean {
+//                val parent = view.parent
+//                return parent is ViewGroup && parentMatcher.matches(parent)
+//                        && view == parent.getChildAt(position)
+//            }
+//        }
+//    }
 }

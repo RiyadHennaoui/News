@@ -26,38 +26,38 @@ class MainActivityTest2 {
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
-    @Test
-    fun mainActivityTest2() {
-        val linearLayout = onView(
-            allOf(
-                childAtPosition(
-                    allOf(
-                        withId(R.id.rv_article),
-                        withParent(withId(R.id.main_vp_articles))
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        linearLayout.perform(click())
-    }
-
-    private fun childAtPosition(
-        parentMatcher: Matcher<View>, position: Int
-    ): Matcher<View> {
-
-        return object : TypeSafeMatcher<View>() {
-            override fun describeTo(description: Description) {
-                description.appendText("Child at position $position in parent ")
-                parentMatcher.describeTo(description)
-            }
-
-            public override fun matchesSafely(view: View): Boolean {
-                val parent = view.parent
-                return parent is ViewGroup && parentMatcher.matches(parent)
-                        && view == parent.getChildAt(position)
-            }
-        }
-    }
+//    @Test
+//    fun mainActivityTest2() {
+//        val linearLayout = onView(
+//            allOf(
+//                childAtPosition(
+//                    allOf(
+//                        withId(R.id.rv_article),
+//                        withParent(withId(R.id.main_vp_articles))
+//                    ),
+//                    0
+//                ),
+//                isDisplayed()
+//            )
+//        )
+//        linearLayout.perform(click())
+//    }
+//
+//    private fun childAtPosition(
+//        parentMatcher: Matcher<View>, position: Int
+//    ): Matcher<View> {
+//
+//        return object : TypeSafeMatcher<View>() {
+//            override fun describeTo(description: Description) {
+//                description.appendText("Child at position $position in parent ")
+//                parentMatcher.describeTo(description)
+//            }
+//
+//            public override fun matchesSafely(view: View): Boolean {
+//                val parent = view.parent
+//                return parent is ViewGroup && parentMatcher.matches(parent)
+//                        && view == parent.getChildAt(position)
+//            }
+//        }
+//    }
 }
