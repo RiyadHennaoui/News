@@ -221,7 +221,7 @@ class SearchManagerTest {
         // when
 
         val result = SearchManager()
-            .checkUserInput(userInput, checkboxes, endDate, beginDate)
+            .checkUserInput(userInput, checkboxes, beginDate, endDate)
 
         // then
 
