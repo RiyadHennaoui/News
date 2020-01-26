@@ -29,6 +29,7 @@ before_script:
 
 script:
   - ./gradlew assembleRelease --stacktrace
+  - ./gradlew --warning-mode all
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
