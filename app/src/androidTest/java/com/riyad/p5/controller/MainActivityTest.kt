@@ -39,25 +39,26 @@ class MainActivityTest {
 
 
     @Rule
-    @JvmField
+//    @JvmField
 //    val mActivityRule = IntentsTestRule<MainActivity>(MainActivity::class.java)
-    val mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
+//    val mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
 
 
 
-    @Before
-
-    fun setUp() {
-
-        val mActivity = mActivityRule.getActivity()
-
-        assertThat(mActivity, notNullValue())
-
-    }
+//    @Before
+//
+//    fun setUp() {
+//
+//        val mActivity = mActivityRule.getActivity()
+//
+//        assertThat(mActivity, notNullValue())
+//
+//    }
 
     @Test
     fun myListShouldNotBeEmpty() {
 
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
         Thread.sleep(1000)
         onView(
             allOf(
@@ -75,7 +76,7 @@ class MainActivityTest {
     @Test
     fun test_isSearchActivityInView() {
 
-//        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
         onView(withId(R.id.main)).check(matches(isDisplayed()))
     }
@@ -107,6 +108,8 @@ class MainActivityTest {
 
     @Test
     fun test_articleClicked_toWebView() {
+
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
         Thread.sleep(1000)
         onView(
             allOf(
@@ -167,6 +170,8 @@ class MainActivityTest {
 
     @Test
     fun test_changeFragmentAfterSwipe(){
+
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
         Thread.sleep(500)
         onView(withId(R.id.main_vp_articles)).perform(swipeLeft())
