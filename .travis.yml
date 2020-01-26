@@ -25,6 +25,8 @@ before_script:
   - android-wait-for-emulator
   - ./gradlew connectedCheck
   - - adb shell input keyevent 82 &
+
+after_failure:
   - ./gradlew --warning-mode=all
 
 after_success:
