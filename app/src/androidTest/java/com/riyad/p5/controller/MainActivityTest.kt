@@ -40,7 +40,9 @@ class MainActivityTest {
 
     @Rule
     @JvmField
-    val mActivityRule = IntentsTestRule<MainActivity>(MainActivity::class.java)
+//    val mActivityRule = IntentsTestRule<MainActivity>(MainActivity::class.java)
+    val mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
+
 
 
     @Before
