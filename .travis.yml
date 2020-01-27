@@ -8,6 +8,8 @@ env:
     - EMULATOR_API_LEVEL=22
     - ANDROID_BUILD_TOOLS_VERSION=27.0.3
     - ANDROID_ABI=armeabi-v7a
+    - sys-img-x86-android-27
+    - sys-img-armeabi-v7a-android-22
 
 android:
   components:
@@ -26,6 +28,7 @@ before_script:
   - android-wait-for-emulator
   - ./gradlew build connectedCheck
   - - adb shell input keyevent 82 &
+  
 
 script:
 #  - ./gradlew assembleRelease --stacktrace
