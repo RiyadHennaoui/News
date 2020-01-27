@@ -99,9 +99,9 @@ class MainActivityTest {
 
         onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
 
-//         pressBack()
+        pressBack()
 
-//         onView(withId(R.id.main)).check(matches(isDisplayed()))
+        onView(withId(R.id.main)).check(matches(isDisplayed()))
     }
 
     //TODO Lorsqu'on clique sur un article qu'il lance la WebViewActivity
