@@ -143,19 +143,19 @@ class MainActivityTest {
            .perform(DrawerActions.open())
 
 
-//        onView(withId(R.id.navigation_view))
-//            .perform(NavigationViewActions.navigateTo(R.id.nav_business))
-//        Thread.sleep(1000)
+        onView(withId(R.id.navigation_view))
+           .perform(NavigationViewActions.navigateTo(R.id.nav_business))
+        Thread.sleep(1000)
 
-//        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
-//        onView(withId(R.id.navigation_view))
-//            .perform(NavigationViewActions.navigateTo(R.id.nav_mostPopular))
-//        Thread.sleep(1000)
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+        onView(withId(R.id.navigation_view))
+            .perform(NavigationViewActions.navigateTo(R.id.nav_mostPopular))
+        Thread.sleep(1000)
 
-//        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
-//        onView(withId(R.id.navigation_view))
-//            .perform(NavigationViewActions.navigateTo(R.id.nav_topStories))
-//        Thread.sleep(1000)
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+        onView(withId(R.id.navigation_view))
+            .perform(NavigationViewActions.navigateTo(R.id.nav_topStories))
+        Thread.sleep(1000)
 
 //        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
 //        onView(withId(R.id.nav_notification))
