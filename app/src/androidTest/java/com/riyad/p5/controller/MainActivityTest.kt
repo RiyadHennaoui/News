@@ -40,20 +40,20 @@ class MainActivityTest {
 //
 //    }
 
-     @Test
-     fun myListShouldNotBeEmpty() {
-
-         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-         Thread.sleep(1000)
-         onView(
-             allOf(
-                 withId(R.id.rv_article),
-                 isDisplayed()
-             )
-         )
-             .check(matches(hasMinimumChildCount(1)))
-
-     }
+//     @Test
+//     fun myListShouldNotBeEmpty() {
+//
+//         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+//         Thread.sleep(1000)
+//         onView(
+//             allOf(
+//                 withId(R.id.rv_article),
+//                 isDisplayed()
+//             )
+//         )
+//             .check(matches(hasMinimumChildCount(1)))
+//
+//     }
 
 
     //TODO Tester l'ouverture de la SearchActivity quand on click sur le bouton search
