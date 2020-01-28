@@ -81,15 +81,15 @@ class MainActivityTest {
 //         onView(withId(R.id.main)).check(matches(isDisplayed()))
 //     }
 
-     @Test
-     fun test_navSearchActivity() {
-         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-
-         onView(withId(R.id.search_btn)).perform(click())
-
-         onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
-
-     }
+//     @Test
+//     fun test_navSearchActivity() {
+//         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+//
+//         onView(withId(R.id.search_btn)).perform(click())
+//
+//         onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
+//
+//     }
 
     @Test
     fun test_backPress_toMainActivity() {
@@ -157,11 +157,11 @@ class MainActivityTest {
             .perform(NavigationViewActions.navigateTo(R.id.nav_topStories))
         Thread.sleep(1000)
 
-//        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
-//        onView(withId(R.id.nav_notification))
-//            .perform(click())
-//        Thread.sleep(1000)
-
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+        onView(withId(R.id.nav_notification))
+            .perform(click())
+       Thread.sleep(1000)
+         onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
 //        intended(IntentMatchers.hasComponent(NotificationActivity::class.java.name))
 
 
