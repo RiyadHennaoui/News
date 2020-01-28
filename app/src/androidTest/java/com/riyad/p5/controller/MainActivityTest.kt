@@ -81,15 +81,15 @@ class MainActivityTest {
 //         onView(withId(R.id.main)).check(matches(isDisplayed()))
 //     }
 
-//     @Test
-//     fun test_navSearchActivity() {
-//         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+     @Test
+     fun test_navSearchActivity() {
+         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
-//         onView(withId(R.id.search_btn)).perform(click())
+         onView(withId(R.id.search_btn)).perform(click())
 
-//         onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
+         onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
 
-//     }
+     }
 
     @Test
     fun test_backPress_toMainActivity() {
@@ -106,19 +106,19 @@ class MainActivityTest {
 
     //TODO Lorsqu'on clique sur un article qu'il lance la WebViewActivity
 
-     @Test
-     fun test_articleClicked_toWebView() {
+  //   @Test
+ //    fun test_articleClicked_toWebView() {
 
-         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-         Thread.sleep(1000)
-         onView(
-             allOf(
-                 withId(R.id.rv_article),
-                 isDisplayed()
-             )
-         )
+      //   val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+     //    Thread.sleep(1000)
+    //     onView(
+  //           allOf(
+    //             withId(R.id.rv_article),
+  //               isDisplayed()
+//             )
+  //       )
 
-               .perform(actionOnItemAtPosition<ViewHolder>(0, click()))
+//               .perform(actionOnItemAtPosition<ViewHolder>(0, click()))
 
 
 //         Thread.sleep(1000)
@@ -127,7 +127,7 @@ class MainActivityTest {
 
 //             pressBack()
 //         onView(withId(R.id.main)).check(matches(isDisplayed()))
-     }
+//     }
 
 
     //TODO Tester l'ouverture des autres fragements >>> ne pas oublier le NavDrawer
