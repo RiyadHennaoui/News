@@ -13,6 +13,7 @@ import androidx.test.espresso.contrib.NavigationViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.riyad.p5.R
+import org.hamcrest.CoreMatchers.allOf
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -39,20 +40,20 @@ class MainActivityTest {
 //
 //    }
 
-//     @Test
-//     fun myListShouldNotBeEmpty() {
+     @Test
+     fun myListShouldNotBeEmpty() {
 
-//         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-//         Thread.sleep(1000)
-//         onView(
-//             allOf(
-//                 withId(R.id.rv_article),
-//                 isDisplayed()
-//             )
-//         )
-//             .check(matches(hasMinimumChildCount(1)))
+         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+         Thread.sleep(1000)
+         onView(
+             allOf(
+                 withId(R.id.rv_article),
+                 isDisplayed()
+             )
+         )
+             .check(matches(hasMinimumChildCount(1)))
 
-//     }
+     }
 
 
     //TODO Tester l'ouverture de la SearchActivity quand on click sur le bouton search
