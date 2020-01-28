@@ -1,33 +1,18 @@
 package com.riyad.p5.controller
 
 import android.view.Gravity
-import android.view.View
-import android.view.ViewGroup
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.swipeLeft
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.DrawerMatchers.isClosed
 import androidx.test.espresso.contrib.NavigationViewActions
-import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
-import androidx.test.espresso.intent.Intents.intended
-import androidx.test.espresso.intent.matcher.IntentMatchers
-import androidx.test.espresso.intent.rule.IntentsTestRule
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
-import androidx.test.rule.ActivityTestRule
 import com.riyad.p5.R
-import com.riyad.p5.controller.MainAdapter.ViewHolder
-import org.hamcrest.Description
-import org.hamcrest.Matcher
-import org.hamcrest.TypeSafeMatcher
-import org.hamcrest.core.AllOf.allOf
-import org.hamcrest.core.IsNull.notNullValue
-import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -42,7 +27,6 @@ class MainActivityTest {
 //    @JvmField
 //    val mActivityRule = IntentsTestRule<MainActivity>(MainActivity::class.java)
 //    val mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
-
 
 
 //    @Before
@@ -73,13 +57,25 @@ class MainActivityTest {
 
     //TODO Tester l'ouverture de la SearchActivity quand on click sur le bouton search
 
-//     @Test
-//     fun test_isSearchActivityInView() {
+    @Test
+    fun test_isSearchActivityInView() {
 
-//         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
-//         onView(withId(R.id.main)).check(matches(isDisplayed()))
-//     }
+        onView(withId(R.id.search_btn)).perform(click())
+        onView(withId(R.id.search_activity))
+            .check(matches(isDisplayed()))
+
+    }
+
+    @Test
+    fun test_navNotificationActivity(){
+
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        onView(withId(R.id.menu_notification)).perform(click())
+        onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
+
+    }
 
 //     @Test
 //     fun test_navSearchActivity() {
@@ -106,17 +102,17 @@ class MainActivityTest {
 
     //TODO Lorsqu'on clique sur un article qu'il lance la WebViewActivity
 
-  //   @Test
- //    fun test_articleClicked_toWebView() {
+    //   @Test
+    //    fun test_articleClicked_toWebView() {
 
-      //   val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-     //    Thread.sleep(1000)
+    //   val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+    //    Thread.sleep(1000)
     //     onView(
-  //           allOf(
+    //           allOf(
     //             withId(R.id.rv_article),
-  //               isDisplayed()
+    //               isDisplayed()
 //             )
-  //       )
+    //       )
 
 //               .perform(actionOnItemAtPosition<ViewHolder>(0, click()))
 
@@ -133,18 +129,18 @@ class MainActivityTest {
     //TODO Tester l'ouverture des autres fragements >>> ne pas oublier le NavDrawer
 
 
-   @Test
-   fun test_isNavDrawerVisible() {
-       val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+    @Test
+    fun test_isNavDrawerVisible() {
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
-       // Open Drawer to click on navigation
-       onView(withId(R.id.drawer_layout))
-           .check(matches(isClosed(Gravity.LEFT)))
-           .perform(DrawerActions.open())
+        // Open Drawer to click on navigation
+        onView(withId(R.id.drawer_layout))
+            .check(matches(isClosed(Gravity.LEFT)))
+            .perform(DrawerActions.open())
 
 
         onView(withId(R.id.navigation_view))
-           .perform(NavigationViewActions.navigateTo(R.id.nav_business))
+            .perform(NavigationViewActions.navigateTo(R.id.nav_business))
         Thread.sleep(1000)
 
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
@@ -157,16 +153,15 @@ class MainActivityTest {
             .perform(NavigationViewActions.navigateTo(R.id.nav_topStories))
         Thread.sleep(1000)
 
-        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
-        onView(withId(R.id.nav_notification))
-            .perform(click())
-       Thread.sleep(1000)
-         onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
+//        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+//        onView(withId(R.id.nav_notification))
+//            .perform(click())
+//       Thread.sleep(1000)
+//         onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
 //        intended(IntentMatchers.hasComponent(NotificationActivity::class.java.name))
 
 
-
-   }
+    }
 
 //     @Test
 //     fun test_changeFragmentAfterSwipe(){
@@ -178,8 +173,6 @@ class MainActivityTest {
 //         onView(withId(R.id.main_tl)).check(matches(hasDescendant(withText("Most Popular"))))
 
 //     }
-
-
 
 
 }
