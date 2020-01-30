@@ -28,6 +28,7 @@ class MainActivityTest {
 
     // TODO Tester si dans l'onglet home la liste des articles n'est pas vide.
 
+// TODO test
 
     @Rule
     @JvmField
