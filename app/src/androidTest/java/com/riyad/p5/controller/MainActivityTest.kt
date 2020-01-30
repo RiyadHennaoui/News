@@ -123,12 +123,13 @@ class MainActivityTest {
                .perform(actionOnItemAtPosition<MainAdapter.ViewHolder>(0, click()))
 
 
-         Thread.sleep(1000)
+//         Thread.sleep(1000)
+//
+//         onView(withId(R.id.web_view)).check(matches(isDisplayed()))
 
-         onView(withId(R.id.web_view)).check(matches(isDisplayed()))
-
-             pressBack()
-         onView(withId(R.id.main)).check(matches(isDisplayed()))
+//           Thread.sleep(1000)
+//             pressBack()
+//         onView(withId(R.id.main)).check(matches(isDisplayed()))
      }
 
 
