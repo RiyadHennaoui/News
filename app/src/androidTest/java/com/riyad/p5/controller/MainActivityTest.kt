@@ -64,16 +64,16 @@ class MainActivityTest {
 
     //TODO Tester l'ouverture de la SearchActivity quand on click sur le bouton search
 
-//    @Test
-//    fun test_isSearchActivityInView() {
-//
+    @Test
+    fun test_isSearchActivityInView() {
+
 //        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-//
-//        onView(withId(R.id.search_btn)).perform(click())
-//        onView(withId(R.id.search_activity))
-//            .check(matches(isDisplayed()))
-//
-//    }
+
+        onView(withId(R.id.search_btn)).perform(click())
+        onView(withId(R.id.search_activity))
+            .check(matches(isDisplayed()))
+
+    }
 
 //    @Test
 //    fun test_navNotificationActivity(){
