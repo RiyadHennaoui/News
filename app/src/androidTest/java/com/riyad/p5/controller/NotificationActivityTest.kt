@@ -18,7 +18,7 @@ import org.junit.runner.RunWith
 class NotificationActivityTest  {
 
     @Test
-    fun searchActivity_isDisplayed(){
+    fun notificationActivity_isDisplayed(){
 
         val activityScenario = ActivityScenario.launch(NotificationActivity::class.java)
 
@@ -32,7 +32,8 @@ class NotificationActivityTest  {
         val activityScenario = ActivityScenario.launch(NotificationActivity::class.java)
 
 
-        onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
         onView(withId(R.id.checkbox1))
             .perform(ViewActions.click())
             .check(matches(isChecked()))
