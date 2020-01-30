@@ -10,10 +10,15 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.DrawerMatchers.isClosed
 import androidx.test.espresso.contrib.NavigationViewActions
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
+import androidx.test.espresso.intent.Intents.intended
+import androidx.test.espresso.intent.matcher.IntentMatchers
+import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.riyad.p5.R
 import org.hamcrest.CoreMatchers.allOf
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -24,9 +29,9 @@ class MainActivityTest {
     // TODO Tester si dans l'onglet home la liste des articles n'est pas vide.
 
 
-//    @Rule
-//    @JvmField
-//    val mActivityRule = IntentsTestRule<MainActivity>(MainActivity::class.java)
+    @Rule
+    @JvmField
+    val mActivityRule = IntentsTestRule<MainActivity>(MainActivity::class.java)
 //    val mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
 
 
@@ -103,28 +108,28 @@ class MainActivityTest {
 
     //TODO Lorsqu'on clique sur un article qu'il lance la WebViewActivity
 
-    //   @Test
-    //    fun test_articleClicked_toWebView() {
+       @Test
+        fun test_articleClicked_toWebView() {
 
-    //   val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-    //    Thread.sleep(1000)
-    //     onView(
-    //           allOf(
-    //             withId(R.id.rv_article),
-    //               isDisplayed()
-//             )
-    //       )
+       val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        Thread.sleep(1000)
+         onView(
+               allOf(
+                 withId(R.id.rv_article),
+                   isDisplayed()
+             )
+           )
 
-//               .perform(actionOnItemAtPosition<ViewHolder>(0, click()))
+               .perform(actionOnItemAtPosition<MainAdapter.ViewHolder>(0, click()))
 
 
-//         Thread.sleep(1000)
+         Thread.sleep(1000)
 
-//         onView(withId(R.id.web_view)).check(matches(isDisplayed()))
+         onView(withId(R.id.web_view)).check(matches(isDisplayed()))
 
-//             pressBack()
-//         onView(withId(R.id.main)).check(matches(isDisplayed()))
-//     }
+             pressBack()
+         onView(withId(R.id.main)).check(matches(isDisplayed()))
+     }
 
 
     //TODO Tester l'ouverture des autres fragements >>> ne pas oublier le NavDrawer
@@ -154,12 +159,14 @@ class MainActivityTest {
             .perform(NavigationViewActions.navigateTo(R.id.nav_topStories))
         Thread.sleep(1000)
 
-//        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+        onView(withId(R.id.navigation_view))
+            .perform(NavigationViewActions.navigateTo(R.id.nav_notification))
 //        onView(withId(R.id.nav_notification))
 //            .perform(click())
-//       Thread.sleep(1000)
-//         onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
-//        intended(IntentMatchers.hasComponent(NotificationActivity::class.java.name))
+       Thread.sleep(1000)
+         onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
+        intended(IntentMatchers.hasComponent(NotificationActivity::class.java.name))
 
 
     }
