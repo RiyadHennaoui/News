@@ -26,18 +26,18 @@ fun searchActivity_isDisplayed(){
 
     }
 
-//    @Test
-//    fun buisinessCheckbox_isChecked(){
-//        val activityScenario = ActivityScenario.launch(SearchActivity::class.java)
-//
-//
-//        onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
-//        onView(withId(R.id.checkBox1))
-//            .perform(click())
-//
-//
-//
-//    }
+    @Test
+    fun buisinessCheckbox_isChecked(){
+        val activityScenario = ActivityScenario.launch(SearchActivity::class.java)
+
+
+        onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
+        onView(withId(R.id.checkbox_1))
+            .perform(click())
+
+
+
+    }
 
 
 }
