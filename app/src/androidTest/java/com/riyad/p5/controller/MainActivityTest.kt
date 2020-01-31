@@ -172,6 +172,18 @@ class MainActivityTest {
 
 
     }
+    
+    @Test
+    fun navToSearchActivity(){
+        
+                onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+        onView(withId(R.id.navigation_view))
+            .perform(NavigationViewActions.navigateTo(R.id.nav_search))
+//        onView(withId(R.id.nav_notification))
+//            .perform(click())
+       Thread.sleep(1000)
+         onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
+        intended(IntentMatchers.hasComponent(SearchActivity::class.java.name))
 
      @Test
      fun test_changeFragmentAfterSwipe(){
