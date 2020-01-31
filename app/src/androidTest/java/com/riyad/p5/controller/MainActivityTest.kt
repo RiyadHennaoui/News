@@ -184,6 +184,8 @@ class MainActivityTest {
        Thread.sleep(1000)
          onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
         intended(IntentMatchers.hasComponent(SearchActivity::class.java.name))
+        
+    }
 
      @Test
      fun test_changeFragmentAfterSwipe(){
