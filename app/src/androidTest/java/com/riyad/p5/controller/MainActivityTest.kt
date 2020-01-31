@@ -175,6 +175,7 @@ class MainActivityTest {
     
     @Test
     fun navToSearchActivity(){
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
         
                 onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
         onView(withId(R.id.navigation_view))
