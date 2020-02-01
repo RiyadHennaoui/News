@@ -49,7 +49,7 @@ class MainActivityTest {
     @Test
     fun myListShouldNotBeEmpty() {
 
-//         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
         Thread.sleep(1000)
         onView(
             allOf(
