@@ -113,7 +113,7 @@ class MainActivityTest {
         fun test_articleClicked_toWebView() {
 
        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-        Thread.sleep(1000)
+        Thread.sleep(3000)
          onView(
                allOf(
                  withId(R.id.rv_article),
@@ -122,6 +122,8 @@ class MainActivityTest {
            )
 
                .perform(actionOnItemAtPosition<MainAdapter.ViewHolder>(0, click()))
+           intended(IntentMatchers.hasComponent(WebViewActivity::class.java.name))
+
 
 
 //         Thread.sleep(1000)
