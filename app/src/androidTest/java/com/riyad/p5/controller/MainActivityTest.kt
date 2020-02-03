@@ -48,7 +48,7 @@ class MainActivityTest {
 
 //     @Test
 //     fun myListShouldNotBeEmpty() {
-//
+
 //         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 //         Thread.sleep(1000)
 //         onView(
@@ -58,7 +58,7 @@ class MainActivityTest {
 //             )
 //         )
 //             .check(matches(hasMinimumChildCount(1)))
-//
+
 //     }
 
 
@@ -75,14 +75,15 @@ class MainActivityTest {
 
     }
 
-//    @Test
-//    fun test_navNotificationActivity(){
-//
-//        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-//        onView(withId(R.id.menu_notification)).perform(click())
-//        onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
-//
-//    }
+   @Test
+   fun test_navNotificationActivity(){
+
+       val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+       onView(withId(R.id.menu_notification)).perform(click())
+       onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
+       intended(IntentMatchers.hasComponent(NotificationActivity::class.java.name))
+
+   }
 
 //     @Test
 //     fun test_navSearchActivity() {
@@ -161,6 +162,11 @@ class MainActivityTest {
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
         onView(withId(R.id.navigation_view))
             .perform(NavigationViewActions.navigateTo(R.id.nav_topStories))
+        Thread.sleep(1000)
+        
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+        onView(withId(R.id.navigation_view))
+            .perform(NavigationViewActions.navigateTo(R.id.nav_sport))
         Thread.sleep(1000)
 
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
