@@ -221,7 +221,10 @@ class MainActivityTest {
         onView(withId(R.id.main_vp_articles)).perform(swipeLeft())
         onView(withId(R.id.main_tl)).check(matches(hasDescendant(withText("SPORTS"))))
         Thread.sleep(3000)
-//        onView(withId(R.id.rv_article)).perform(actionOnItemAtPosition<MainAdapter.ViewHolder>(0, click() ))
+
+
+        onView(allOf(withId(R.id.main_vp_articles), withChild(withId(R.id.rv_article))))
+            .perform(actionOnItemAtPosition<MainAdapter.ViewHolder>(0, click() ))
 
 
 
