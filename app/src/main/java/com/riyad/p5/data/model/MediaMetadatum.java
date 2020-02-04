@@ -9,9 +9,9 @@ public class MediaMetadatum {
     @SerializedName("url")
     @Expose
     private String url;
-    @SerializedName("format")
-    @Expose
-    private String format;
+//    @SerializedName("format")
+//    @Expose
+//    private String format;
     @SerializedName("height")
     @Expose
     private Integer height;
@@ -23,17 +23,17 @@ public class MediaMetadatum {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getFormat() {
-        return format;
-    }
-
-    public void setFormat(String format) {
-        this.format = format;
-    }
+//    public void setUrl(String url) {
+//        this.url = url;
+//    }
+//
+//    public String getFormat() {
+//        return format;
+//    }
+//
+//    public void setFormat(String format) {
+//        this.format = format;
+//    }
 
     public Integer getHeight() {
         return height;
