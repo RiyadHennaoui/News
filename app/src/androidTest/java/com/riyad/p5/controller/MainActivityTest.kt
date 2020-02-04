@@ -10,6 +10,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.DrawerMatchers.isClosed
 import androidx.test.espresso.contrib.NavigationViewActions
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers
@@ -207,5 +208,23 @@ class MainActivityTest {
 
      }
 
+    @Test
+    fun test_SportListisNotEmpty() {
+
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+
+        Thread.sleep(500)
+        onView(withId(R.id.main_vp_articles)).perform(swipeLeft())
+        onView(withId(R.id.main_tl)).check(matches(hasDescendant(withText("Most Popular"))))
+        onView(withId(R.id.main_vp_articles)).perform(swipeLeft())
+        onView(withId(R.id.main_tl)).check(matches(hasDescendant(withText("BUSINESS"))))
+        onView(withId(R.id.main_vp_articles)).perform(swipeLeft())
+        onView(withId(R.id.main_tl)).check(matches(hasDescendant(withText("SPORTS"))))
+        Thread.sleep(3000)
+//        onView(withId(R.id.rv_article)).perform(actionOnItemAtPosition<MainAdapter.ViewHolder>(0, click() ))
+
+
+
+    }
 
 }
