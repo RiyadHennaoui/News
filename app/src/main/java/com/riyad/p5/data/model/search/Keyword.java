@@ -9,15 +9,15 @@ public class Keyword {
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("value")
-    @Expose
-    private String value;
-    @SerializedName("rank")
-    @Expose
-    private Integer rank;
-    @SerializedName("major")
-    @Expose
-    private String major;
+//    @SerializedName("value")
+//    @Expose
+//    private String value;
+//    @SerializedName("rank")
+//    @Expose
+//    private Integer rank;
+//    @SerializedName("major")
+//    @Expose
+//    private String major;
 
     public String getName() {
         return name;
@@ -27,28 +27,28 @@ public class Keyword {
         this.name = name;
     }
 
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public Integer getRank() {
-        return rank;
-    }
-
-    public void setRank(Integer rank) {
-        this.rank = rank;
-    }
-
-    public String getMajor() {
-        return major;
-    }
-
-    public void setMajor(String major) {
-        this.major = major;
-    }
+//    public String getValue() {
+//        return value;
+//    }
+//
+//    public void setValue(String value) {
+//        this.value = value;
+//    }
+//
+//    public Integer getRank() {
+//        return rank;
+//    }
+//
+//    public void setRank(Integer rank) {
+//        this.rank = rank;
+//    }
+//
+//    public String getMajor() {
+//        return major;
+//    }
+//
+//    public void setMajor(String major) {
+//        this.major = major;
+//    }
 
 }
