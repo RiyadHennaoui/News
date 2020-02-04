@@ -73,7 +73,7 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) : W
             ) {
 
                 Log.e("OnResponse", "???")
-                response?.body()?.let {
+                response.body()?.let {
 
                     val gson = Gson()
                     Log.i(

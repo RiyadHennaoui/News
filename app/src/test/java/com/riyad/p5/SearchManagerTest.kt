@@ -1,9 +1,9 @@
-package com.riyad.p5;
+package com.riyad.p5
 
 import com.riyad.p5.controller.SearchManager
 import com.riyad.p5.controller.SearchManager.UserInputState.*
 import org.junit.Assert
-import org.junit.Test;
+import org.junit.Test
 import org.threeten.bp.LocalDate
 
 

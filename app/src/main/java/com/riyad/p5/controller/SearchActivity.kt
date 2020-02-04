@@ -141,7 +141,7 @@ class SearchActivity : AppCompatActivity() {
                         ) {
 
                             Log.e("OnResponse", "???")
-                            response?.body()?.let {
+                            response.body()?.let {
                                 val gson = Gson()
                                 Log.i(
                                     "Response",

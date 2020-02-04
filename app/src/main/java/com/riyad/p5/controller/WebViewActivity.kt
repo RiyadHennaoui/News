@@ -49,7 +49,7 @@ class WebViewActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if (item.getItemId() == android.R.id.home) // Press Back Icon
+        if (item.itemId == android.R.id.home) // Press Back Icon
         {
             finish()
             return true
