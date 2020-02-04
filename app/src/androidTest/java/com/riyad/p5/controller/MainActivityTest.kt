@@ -75,15 +75,15 @@ class MainActivityTest {
 
     }
 
-   @Test
-   fun test_navNotificationActivity(){
-
-       val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-       onView(withId(R.id.menu_notification)).perform(click())
-       onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
-       intended(IntentMatchers.hasComponent(NotificationActivity::class.java.name))
-
-   }
+//   @Test
+//   fun test_navNotificationActivity(){
+//
+//       val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+//       onView(withId(R.id.menu_notification)).perform(click())
+//       onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
+//       intended(IntentMatchers.hasComponent(NotificationActivity::class.java.name))
+//
+//   }
 
 //     @Test
 //     fun test_navSearchActivity() {
