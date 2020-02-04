@@ -1,5 +1,7 @@
 package com.riyad.p5.controller
 
+import android.widget.AutoCompleteTextView
+import android.widget.EditText
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
@@ -69,6 +71,17 @@ fun searchActivity_isDisplayed(){
 //    }
 //
 
+//    @Test
+//    fun open_SearchView_inview(){
+//
+//        val activityScenario = ActivityScenario.launch(SearchActivity::class.java)
+//
+//        onView(withId(R.id.et_search)).perform(click())
+//        onView(isAssignableFrom(AutoCompleteTextView::class.java)).perform(typeText("HELSINKI"))
+//
+//        Thread.sleep(6000)
+//
+//    }
 
 
 }
