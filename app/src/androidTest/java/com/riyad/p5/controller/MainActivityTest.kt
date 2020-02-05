@@ -1,9 +1,9 @@
 package com.riyad.p5.controller
 
 import android.view.Gravity
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.pressBack
+import androidx.test.espresso.Espresso.*
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeLeft
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -223,8 +223,13 @@ class MainActivityTest {
         Thread.sleep(3000)
 
 
-        onView(allOf(withId(R.id.main_vp_articles), withChild(withId(R.id.rv_article))))
-            .perform(actionOnItemAtPosition<MainAdapter.ViewHolder>(0, click() ))
+//        onView(allOf(withId(R.id.rv_article), withParent(withId(R.id.main_tl))))
+//                onView(withId(R.id.rv_article))
+//                onData(withId(R.id.item_view))
+//                    .inAdapterView(withId(R.id.rv_article))
+//                    .atPosition(0)
+//                    .perform(click())
+//            .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(1, click() ))
 
 
 
