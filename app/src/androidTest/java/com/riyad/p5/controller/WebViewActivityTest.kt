@@ -25,8 +25,6 @@ class WebViewActivityTest{
     @Test
     fun webViewActivity_isDisplyed(){
 
-//        val activityScenario = ActivityScenario.launch(WebViewActivity::class.java)
-
         val intent = Intent()
         intent.putExtra(WebViewActivity.EXTRA_ARTICLE_URL, "https://stackoverflow.com/questions/31752303/espresso-startactivity-that-depends-on-intent/45502924")
 
