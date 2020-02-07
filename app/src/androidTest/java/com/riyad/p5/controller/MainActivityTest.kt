@@ -72,6 +72,7 @@ class MainActivityTest {
 
                .perform(actionOnItemAtPosition<MainAdapter.ViewHolder>(0, click()))
            intended(IntentMatchers.hasComponent(WebViewActivity::class.java.name))
+        }
 
 
     @Test
