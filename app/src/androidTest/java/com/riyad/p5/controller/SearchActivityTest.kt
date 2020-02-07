@@ -51,37 +51,4 @@ fun searchActivity_isDisplayed(){
 
     }
 
-//    @Test
-//    fun search_Trump() {
-//        val activityScenario = ActivityScenario.launch(SearchActivity::class.java)
-//
-//        onView(withId(R.id.et_search))
-//            .perform(openLinkWithText("Trump"))
-//            .perform(click())
-//                Thread.sleep(3000)
-//        onView(withId(R.id.et_search))
-//            .perform(typeText(STRING_TO_BE_TYPED), closeSoftKeyboard())
-//        onView(withId(R.id.btn_search)).perform(click())
-//        onView(withText(STRING_TO_BE_TYPED)).check(matches(isDisplayed()))
-//    }
-//
-//    companion object {
-//
-//        val STRING_TO_BE_TYPED = "Espresso"
-//    }
-//
-
-//    @Test
-//    fun open_SearchView_inview(){
-//
-//        val activityScenario = ActivityScenario.launch(SearchActivity::class.java)
-//
-//        onView(withId(R.id.et_search)).perform(click())
-//        onView(isAssignableFrom(AutoCompleteTextView::class.java)).perform(typeText("HELSINKI"))
-//
-//        Thread.sleep(6000)
-//
-//    }
-
-
 }
