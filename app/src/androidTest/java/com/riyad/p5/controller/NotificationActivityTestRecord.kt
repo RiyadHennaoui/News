@@ -124,23 +124,6 @@ class NotificationActivityTestRecord {
         )
         appCompatImageButton.perform(click())
 
-//        val switch_ = onView(
-//            allOf(
-//                withId(R.id.switch1), withText("Enable notifications (once per day)"),
-//                childAtPosition(
-//                    allOf(
-//                        withId(R.id.notification_activity),
-//                        childAtPosition(
-//                            withId(android.R.id.content),
-//                            0
-//                        )
-//                    ),
-//                    6
-//                ),
-//                isDisplayed()
-//            )
-//        )
-//        switch_.perform(pressImeActionButton())
     }
 
     private fun childAtPosition(
