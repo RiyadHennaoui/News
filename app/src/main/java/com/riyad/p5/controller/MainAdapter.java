@@ -47,8 +47,6 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
         holder.bind(mData.get(position));
 
-
-// todo afficher les autres données sauf title.
     }
 
 

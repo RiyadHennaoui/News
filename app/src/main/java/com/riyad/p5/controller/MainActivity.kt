@@ -149,27 +149,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onPageSelected(position: Int) {
 
-//        Toast.makeText(this, "" + position, Toast.LENGTH_LONG).show()
-//        when (position) {
-//
-//            0 ->
-//
-//                myNavView!!.setCheckedItem(R.id.nav_topStories)
-//
-//            1 ->
-//
-//
-//                myNavView!!.setCheckedItem(R.id.nav_mostPopular)
-//            2 ->
-//
-//
-//                myNavView!!.setCheckedItem(R.id.nav_business)
-//            3 ->
-//
-//                myNavView!!.setCheckedItem(R.id.nav_sport)
-//        }
-
-
     }
 
     override fun onPageScrollStateChanged(state: Int) {

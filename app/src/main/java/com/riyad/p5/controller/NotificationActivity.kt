@@ -66,12 +66,6 @@ class NotificationActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
 
-//TODO récupérer les préférences de notifications déjà enregistrer sur Room
-
-
-        //TODO trouver comment afficher le texte de la dernière recherche utilisateur
-
-           // Log.i("DAO recp", notificationDao.getNotificationUserInput().toString())
             inputUserNotification.isIconified = false
 
             CoroutineScope(Dispatchers.Main).launch{
@@ -96,66 +90,8 @@ class NotificationActivity : AppCompatActivity() {
 
             }
 
-
-
-
-
-
-
-
-//        notificationSwitch.setOnClickListener {
-//
-//            Log.i("NotificationActivity", "OnClickSwitch")
-//            val sections: ArrayList<String> = ArrayList()
-//
-//
-//            if (checkBoxBusiness.isChecked) sections.add("business")
-//            if (checkBoxSports.isChecked) sections.add("sports")
-//            if (checkBoxThechnology.isChecked) sections.add("technology")
-//            if (checkBoxFood.isChecked) sections.add("food")
-//
-//            when (notificationManager.checkUserInput(
-//                inputUserNotification.query.toString(),
-//                sections
-//            )) {
-//
-//                NotificationManager.UserInputState.VALID -> {
-//
-//                    val converters = Converters.fromArrayList(sections)
-//
-//                    notificationDao
-//                        .insertNotificationUserInput(NotificationUserInput(0,
-//                            inputUserNotification.query.toString(),
-//                            converters))
-//
-//                    Log.i("NotificationActivity", notificationDao.toString())
-//
-//
-//                }
-//
-//                NotificationManager.UserInputState.NO_USER_INPUT -> {
-//
-//                    Toast.makeText(this, "Merci de replir le champs", Toast.LENGTH_SHORT).show()
-//
-//                }
-//
-//                NotificationManager.UserInputState.NO_SECTION_SELECTED -> {
-//
-//                    Toast.makeText(this, "please selcet Section ",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//
-//            }
-//
-//
-//        }
-//
-
-//
-//
         val type = object : TypeToken<List<Article>>() {}.type
-//
+        
         if (intent.getStringExtra("articles") != null) {
             val stringSearchResponseResult = intent.getStringExtra("articles")!!
             Log.i("données", stringSearchResponseResult)
@@ -165,17 +101,7 @@ class NotificationActivity : AppCompatActivity() {
             updateRvNotification(searchResponseResult)
             initRecyclerViewNotification()
         }
-//        Log.i("NotificationActivity", searchResponseResult.get(0).title)
 
-        //TODO faire les tests unitaires en premier. s'inspiré de SearchActivity.
-
-        //TODO enregistrer les preferences de notification (sharedpreferences ou room)
-
-        //TODO executer de manière récurante la vérification de ces notifications (workmanger  ou jobScheduler)
-
-        //TODO enregistrer lorsque l'utilsateur click sur le précedent du toolbar ou celui du téléphone
-
-        //TODO Docs sur les tests instrumentalisés
 
     }
 
@@ -194,10 +120,6 @@ class NotificationActivity : AppCompatActivity() {
             if (it.sections.contains("food")) checkBoxFood.isChecked = true
             if (it.sections.contains("technology")) checkBoxThechnology.isChecked = true
             if (it.sections.contains("sports")) checkBoxSports.isChecked = true
-
-            //TODO revoir le fonctionnement des coroutines!
-            //TODO Lire https://github.com/Kotlin/kotlinx.coroutines/blob/master/ui/coroutines-guide-ui.md
-            //  notificationSwitch.isChecked = true
 
         }
     }
@@ -234,7 +156,6 @@ class NotificationActivity : AppCompatActivity() {
                 inputUserNotification.query.toString(),
                 sections
             )) {
-//TODO Ajouter les 2 autres enum
 
 
 
@@ -253,7 +174,7 @@ class NotificationActivity : AppCompatActivity() {
                 NotificationManager.UserInputState.VALID -> {
 
                     switch1.onEditorAction(EditorInfo.IME_ACTION_DONE)
-                    // TODO Les opérations de room doivent être dans un background Thread Observable ou Coroutines
+                 
 
 
                     CoroutineScope(IO).launch {
@@ -278,7 +199,6 @@ class NotificationActivity : AppCompatActivity() {
 
                     }
 
-//                        val work = OneTimeWorkRequestBuilder<SyncNotificationWorker>()
                     val work =
                         PeriodicWorkRequestBuilder<SyncNotificationWorker>(1, TimeUnit.DAYS)
                             .build()
@@ -299,7 +219,6 @@ class NotificationActivity : AppCompatActivity() {
 
             }
 
-//                TODO a enlever du tel.
 
         }
     }

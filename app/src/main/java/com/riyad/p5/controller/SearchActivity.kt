@@ -86,8 +86,6 @@ class SearchActivity : AppCompatActivity() {
 
                 SearchManager.UserInputState.VALID -> {
 
-                    //TODO faire une variable local pour les sections a envoyer ( news_desk:("..." "...") )
-
                     var paramFilter = "news_desk:("
 
                     sections.forEach {
@@ -98,15 +96,10 @@ class SearchActivity : AppCompatActivity() {
                     Log.i("SearchActivity", paramFilter)
 
 
-                    //TODO faire deux varibles avec conversion de date (YYYYMMDD)
-
                     val dateFormatter = DateTimeFormatter.BASIC_ISO_DATE
 
                     val beginDate = inputBeginDate?.format(dateFormatter).toString()
                     val endDate = inputEndDate?.format(dateFormatter).toString()
-
-
-                    //TODO Retrofit appel
 
 
                     val retrofit = Retrofit.Builder()
@@ -154,29 +147,12 @@ class SearchActivity : AppCompatActivity() {
                                 intiRecyclerView()
 
 
-                                //  val intent = Intent(this@SearchActivity,NotificationActivity::class.java)
-                                // intent.putExtra("articles", gson.toJson(searchResponseResult))
-                                //  startActivity(intent)
-
-                                //TODO créer un adaptater et renseigner les valeurs de searchResponseResult.
-
-                                //TODO donner cet adaptater au recyclerview
-
-
-
-
                             }
 
 
                         }
 
                     })
-
-
-                    //TODO Si le résultat est bon faire le mapping
-
-
-                    //TODO Afficher la liste mapper au recyclerView
 
 
                 }
