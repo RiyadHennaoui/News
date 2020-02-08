@@ -76,8 +76,20 @@ class NotificationActivity : AppCompatActivity() {
 
             CoroutineScope(Dispatchers.Main).launch{
 
-                val recoverDataUserInput = async(IO){recoverDataUserInput()}
-                recoverDataUserInput.await()
+                val recoverDataUserInput = async(IO){recoverDataUserInput2()}
+                recoverDataUserInput.await()?.let{
+
+                    Log.i("Coroutine", gson.toJson(it))
+
+
+                    inputUserNotification.setQuery(it.inputSearchUser, false)
+
+                    if (it.sections.contains("business")) checkBoxBusiness.isChecked = true
+                    if (it.sections.contains("food")) checkBoxFood.isChecked = true
+                    if (it.sections.contains("technology")) checkBoxThechnology.isChecked = true
+                    if (it.sections.contains("sports")) checkBoxSports.isChecked = true
+
+                }
 
 
                 notificationSwitch.isChecked = true
@@ -166,6 +178,9 @@ class NotificationActivity : AppCompatActivity() {
         //TODO Docs sur les tests instrumentalisés
 
     }
+
+
+    private fun recoverDataUserInput2() = notificationDao.getNotificationUserInput()
 
     private fun recoverDataUserInput() {
         notificationDao.getNotificationUserInput()?.let {

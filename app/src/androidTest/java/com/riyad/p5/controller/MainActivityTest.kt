@@ -1,16 +1,15 @@
 package com.riyad.p5.controller
 
 import android.view.Gravity
-import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.Espresso.*
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeLeft
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.DrawerMatchers.isClosed
 import androidx.test.espresso.contrib.NavigationViewActions
-import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers
@@ -34,41 +33,11 @@ class MainActivityTest {
     @Rule
     @JvmField
     val mActivityRule = IntentsTestRule<MainActivity>(MainActivity::class.java)
-//    val mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
 
-
-//    @Before
-//
-//    fun setUp() {
-//
-//        val mActivity = mActivityRule.getActivity()
-//
-//        assertThat(mActivity, notNullValue())
-//
-//    }
-
-//     @Test
-//     fun myListShouldNotBeEmpty() {
-
-//         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-//         Thread.sleep(1000)
-//         onView(
-//             allOf(
-//                 withId(R.id.rv_article),
-//                 isDisplayed()
-//             )
-//         )
-//             .check(matches(hasMinimumChildCount(1)))
-
-//     }
-
-
-    //TODO Tester l'ouverture de la SearchActivity quand on click sur le bouton search
 
     @Test
     fun test_isSearchActivityInView() {
 
-//        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
         onView(withId(R.id.search_btn)).perform(click())
         onView(withId(R.id.search_activity))
@@ -76,25 +45,6 @@ class MainActivityTest {
 
     }
 
-//   @Test
-//   fun test_navNotificationActivity(){
-//
-//       val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-//       onView(withId(R.id.menu_notification)).perform(click())
-//       onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
-//       intended(IntentMatchers.hasComponent(NotificationActivity::class.java.name))
-//
-//   }
-
-//     @Test
-//     fun test_navSearchActivity() {
-//         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-//
-//         onView(withId(R.id.search_btn)).perform(click())
-//
-//         onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
-//
-//     }
 
     @Test
     fun test_backPress_toMainActivity() {
@@ -111,34 +61,23 @@ class MainActivityTest {
 
     //TODO Lorsqu'on clique sur un article qu'il lance la WebViewActivity
 
-       @Test
-        fun test_articleClicked_toWebView() {
+    @Test
+    fun test_articleClicked_toWebView() {
 
-       val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
         Thread.sleep(3000)
-         onView(
-               allOf(
-                 withId(R.id.rv_article),
-                   isDisplayed()
-             )
-           )
+        onView(
+            allOf(
+                withId(R.id.rv_article),
+                isDisplayed()
+            )
+        )
 
-               .perform(actionOnItemAtPosition<MainAdapter.ViewHolder>(0, click()))
-           intended(IntentMatchers.hasComponent(WebViewActivity::class.java.name))
-
-
-
-//         Thread.sleep(1000)
-//
-//         onView(withId(R.id.web_view)).check(matches(isDisplayed()))
-
-//           Thread.sleep(1000)
-//             pressBack()
-//         onView(withId(R.id.main)).check(matches(isDisplayed()))
-     }
+            .perform(actionOnItemAtPosition<MainAdapter.ViewHolder>(0, click()))
+        intended(IntentMatchers.hasComponent(WebViewActivity::class.java.name))
 
 
-    //TODO Tester l'ouverture des autres fragements >>> ne pas oublier le NavDrawer
+    }
 
 
     @Test
@@ -164,7 +103,7 @@ class MainActivityTest {
         onView(withId(R.id.navigation_view))
             .perform(NavigationViewActions.navigateTo(R.id.nav_topStories))
         Thread.sleep(1000)
-        
+
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
         onView(withId(R.id.navigation_view))
             .perform(NavigationViewActions.navigateTo(R.id.nav_sport))
@@ -173,40 +112,35 @@ class MainActivityTest {
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
         onView(withId(R.id.navigation_view))
             .perform(NavigationViewActions.navigateTo(R.id.nav_notification))
-//        onView(withId(R.id.nav_notification))
-//            .perform(click())
-       Thread.sleep(1000)
-         onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
+        Thread.sleep(1000)
+        onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
         intended(IntentMatchers.hasComponent(NotificationActivity::class.java.name))
 
 
     }
-    
+
     @Test
-    fun navToSearchActivity(){
+    fun navToSearchActivity() {
         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-        
-                onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
+
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
         onView(withId(R.id.navigation_view))
             .perform(NavigationViewActions.navigateTo(R.id.nav_search))
-//        onView(withId(R.id.nav_notification))
-//            .perform(click())
-       Thread.sleep(1000)
-         onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
-//        intended(IntentMatchers.hasComponent(SearchActivity::class.java.name))
-        
+        Thread.sleep(1000)
+        onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
+
     }
 
-     @Test
-     fun test_changeFragmentAfterSwipe(){
+    @Test
+    fun test_changeFragmentAfterSwipe() {
 
-         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
-         Thread.sleep(500)
-         onView(withId(R.id.main_vp_articles)).perform(swipeLeft())
-         onView(withId(R.id.main_tl)).check(matches(hasDescendant(withText("Most Popular"))))
+        Thread.sleep(500)
+        onView(withId(R.id.main_vp_articles)).perform(swipeLeft())
+        onView(withId(R.id.main_tl)).check(matches(hasDescendant(withText("Most Popular"))))
 
-     }
+    }
 
     @Test
     fun test_SportListisNotEmpty() {
@@ -221,17 +155,6 @@ class MainActivityTest {
         onView(withId(R.id.main_vp_articles)).perform(swipeLeft())
         onView(withId(R.id.main_tl)).check(matches(hasDescendant(withText("SPORTS"))))
         Thread.sleep(3000)
-
-
-//        onView(allOf(withId(R.id.rv_article), withParent(withId(R.id.main_tl))))
-//                onView(withId(R.id.rv_article))
-//                onData(withId(R.id.item_view))
-//                    .inAdapterView(withId(R.id.rv_article))
-//                    .atPosition(0)
-//                    .perform(click())
-//            .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(1, click() ))
-
-
 
     }
 

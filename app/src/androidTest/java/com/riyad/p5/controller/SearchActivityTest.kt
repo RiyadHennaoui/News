@@ -1,16 +1,12 @@
 package com.riyad.p5.controller
 
-import android.widget.AutoCompleteTextView
-import android.widget.EditText
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.riyad.p5.R
-import kotlinx.android.synthetic.main.search_layout.view.*
-import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -29,7 +25,7 @@ fun searchActivity_isDisplayed(){
     }
 
     @Test
-    fun Checkboxs_isChecked(){
+    fun checkboxs_isChecked(){
         val activityScenario = ActivityScenario.launch(SearchActivity::class.java)
 
 
@@ -50,38 +46,6 @@ fun searchActivity_isDisplayed(){
 
 
     }
-
-//    @Test
-//    fun search_Trump() {
-//        val activityScenario = ActivityScenario.launch(SearchActivity::class.java)
-//
-//        onView(withId(R.id.et_search))
-//            .perform(openLinkWithText("Trump"))
-//            .perform(click())
-//                Thread.sleep(3000)
-//        onView(withId(R.id.et_search))
-//            .perform(typeText(STRING_TO_BE_TYPED), closeSoftKeyboard())
-//        onView(withId(R.id.btn_search)).perform(click())
-//        onView(withText(STRING_TO_BE_TYPED)).check(matches(isDisplayed()))
-//    }
-//
-//    companion object {
-//
-//        val STRING_TO_BE_TYPED = "Espresso"
-//    }
-//
-
-//    @Test
-//    fun open_SearchView_inview(){
-//
-//        val activityScenario = ActivityScenario.launch(SearchActivity::class.java)
-//
-//        onView(withId(R.id.et_search)).perform(click())
-//        onView(isAssignableFrom(AutoCompleteTextView::class.java)).perform(typeText("HELSINKI"))
-//
-//        Thread.sleep(6000)
-//
-//    }
 
 
 }
