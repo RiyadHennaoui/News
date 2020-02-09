@@ -46,7 +46,7 @@ public abstract class AbsFragment extends Fragment {
         myRecyclerView.setAdapter(mAdapter);
 
         if (savedInstanceState != null) {
-            // TODO RIYAD RESTORE STATE
+            // TODO RIYAD RESTORE STATE and change toto
             mAdapter.setData(savedInstanceState.getParcelableArrayList("toto"));
 
 
@@ -69,7 +69,7 @@ public abstract class AbsFragment extends Fragment {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
 
-        // TODO RIYAD SAVE COLLECTION OF ITEMS
+        // TODO RIYAD SAVE COLLECTION OF ITEMS and change toto
         savedInstanceState.putParcelableArrayList("toto", new ArrayList<>(mData));
     }
 

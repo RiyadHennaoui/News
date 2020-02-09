@@ -26,9 +26,6 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4ClassRunner::class)
 class MainActivityTest {
 
-    // TODO Tester si dans l'onglet home la liste des articles n'est pas vide.
-
-// TODO test
 
     @Rule
     @JvmField
@@ -59,7 +56,6 @@ class MainActivityTest {
         onView(withId(R.id.main)).check(matches(isDisplayed()))
     }
 
-    //TODO Lorsqu'on clique sur un article qu'il lance la WebViewActivity
 
     @Test
     fun test_articleClicked_toWebView() {

@@ -141,7 +141,6 @@ class NotificationActivity : AppCompatActivity() {
         if (notificationSwitch.isChecked) {
 
             Log.i("IsChecked", "True")
-            //TODO Enregistrer sur le tel pour utilisation ulterieur
 
             val sections: ArrayList<String> = ArrayList()
 

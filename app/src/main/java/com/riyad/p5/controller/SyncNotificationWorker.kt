@@ -83,8 +83,6 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) : W
                     val searchNotificationResult = mapSearchResponseDataToSearchResult(it)
 
 
-//TODO afficher une notification avec in intent et l'intent va contenir la liste d'article.
-
                     if (it.response.docs.isEmpty()) {
                         Toast.makeText(
                             applicationContext,
@@ -96,7 +94,6 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) : W
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             putExtra("articlesNotif", gson.toJson(searchNotificationResult))
                         }
-//                        Log.i("articles verif", gson.toJson(searchNotificationResult))
 
 
                         sendNotificationResult(it, applicationContext, intent)
@@ -127,14 +124,11 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) : W
                 searchNotificationResult.response.docs.first().headline.main.toString()
             val numbreOfResponse = searchNotificationResult.response.docs.size.toString()
 
-//        val date = searchNotificationResult.first().date
-
             val builder = NotificationCompat.Builder(context, App.NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_news)
                 .setContentTitle(title)
                 .setContentText("Result of Search Today is : " + numbreOfResponse)
                 .setContentIntent(pendingIntent)
-//            .setContentText(date)
                 .setAutoCancel(true)
 
 
