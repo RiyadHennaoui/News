@@ -4,25 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
-
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.riyad.p5.R
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-    ViewPager.OnPageChangeListener/*, DatePickerDialog.OnDateSetListener*/ {
+    ViewPager.OnPageChangeListener {
     private var drawer: DrawerLayout? = null
     private var myViewPager: ViewPager? = null
     private var myNavView: NavigationView? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,15 +30,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val myToolbar = findViewById<Toolbar>(R.id.toolbar)
         myNavView = findViewById(R.id.navigation_view)
 
-
         setSupportActionBar(myToolbar)
 
         myTabLayout.setupWithViewPager(myViewPager)
 
         myViewPager!!.adapter = ViewPagerAdapter(supportFragmentManager)
         myViewPager!!.addOnPageChangeListener(this)
-
-
 
         drawer = findViewById(R.id.drawer_layout)
 
@@ -55,8 +49,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         myNavView!!.setNavigationItemSelectedListener(this)
         myNavView!!.setCheckedItem(R.id.nav_topStories)
-
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -94,22 +86,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this, NotificationActivity::class.java))
             }
         }
-
         return true
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.articles_menu, menu)
-
-
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-
-
             R.id.menu_notification -> {
                 startActivity(Intent(this, NotificationActivity::class.java))
             }
@@ -123,19 +110,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.search_btn -> {
                 startActivity(Intent(this, SearchActivity::class.java))
             }
-
         }
-
-
         return super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {
         if (drawer!!.isDrawerOpen(GravityCompat.START)) {
-
             drawer!!.closeDrawer(GravityCompat.START)
-        } else if (myViewPager?.currentItem != 0) {
 
+        } else if (myViewPager?.currentItem != 0) {
             myViewPager?.currentItem = 0
 
         } else {
@@ -143,21 +126,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
-    }
+    override fun onPageSelected(position: Int) {}
 
-    override fun onPageSelected(position: Int) {
-
-    }
-
-    override fun onPageScrollStateChanged(state: Int) {
-
-
-    }
-
-
-
-
-
+    override fun onPageScrollStateChanged(state: Int) {}
 }

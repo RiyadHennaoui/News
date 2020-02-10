@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,12 +23,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public abstract class AbsFragment extends Fragment {
 
     protected void setNewArticleList (List<Article> articles){
-
         mData = articles;
         mAdapter.setData(articles);
-
     }
 
+    private final String SAVED_INSTANCE_STATE_KEY = "SAVED_INSTANCE_STATE_KEY";
     private MainAdapter mAdapter ;
     private List<Article> mData = new ArrayList<>();
     protected NewYorkTimesAPI service;
@@ -38,7 +36,7 @@ public abstract class AbsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View myView = inflater.inflate(R.layout.article_layout, container,false);
-        init();
+        initRetrofitService();
         RecyclerView myRecyclerView = myView.findViewById(R.id.rv_article);
         mAdapter =  new MainAdapter(getContext());
 
@@ -46,12 +44,8 @@ public abstract class AbsFragment extends Fragment {
         myRecyclerView.setAdapter(mAdapter);
 
         if (savedInstanceState != null) {
-            // TODO RIYAD RESTORE STATE and change toto
-            mAdapter.setData(savedInstanceState.getParcelableArrayList("toto"));
-
-
+            mAdapter.setData(savedInstanceState.getParcelableArrayList(SAVED_INSTANCE_STATE_KEY));
         }
-
 
         return myView;
     }
@@ -69,20 +63,17 @@ public abstract class AbsFragment extends Fragment {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
 
-        // TODO RIYAD SAVE COLLECTION OF ITEMS and change toto
-        savedInstanceState.putParcelableArrayList("toto", new ArrayList<>(mData));
+        savedInstanceState.putParcelableArrayList(SAVED_INSTANCE_STATE_KEY, new ArrayList<>(mData));
     }
 
-    private void init() {
+    private void initRetrofitService() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.nytimes.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
          service = retrofit.create(NewYorkTimesAPI.class);
-
     }
-
 
     public abstract String getTitle();
 }

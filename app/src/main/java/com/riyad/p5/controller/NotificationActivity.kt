@@ -43,7 +43,6 @@ class NotificationActivity : AppCompatActivity() {
     private lateinit var notificationDao: NotificationDao
     private lateinit var notificationSwitch: Switch
 
-
     val gson = Gson()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,32 +65,25 @@ class NotificationActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
 
-            inputUserNotification.isIconified = false
+        inputUserNotification.isIconified = false
 
-            CoroutineScope(Dispatchers.Main).launch{
+        CoroutineScope(Dispatchers.Main).launch {
 
-                val recoverDataUserInput = async(IO){recoverDataUserInput2()}
-                recoverDataUserInput.await()?.let{
+            val recoverDataUserInput = async(IO) { recoverDataUserInput() }
+            recoverDataUserInput.await()?.let {
+                Log.i("Coroutine", gson.toJson(it))
+                inputUserNotification.setQuery(it.inputSearchUser, false)
 
-                    Log.i("Coroutine", gson.toJson(it))
-
-
-                    inputUserNotification.setQuery(it.inputSearchUser, false)
-
-                    if (it.sections.contains("business")) checkBoxBusiness.isChecked = true
-                    if (it.sections.contains("food")) checkBoxFood.isChecked = true
-                    if (it.sections.contains("technology")) checkBoxThechnology.isChecked = true
-                    if (it.sections.contains("sports")) checkBoxSports.isChecked = true
-
-                }
-
-
-                notificationSwitch.isChecked = true
-
+                if (it.sections.contains("business")) checkBoxBusiness.isChecked = true
+                if (it.sections.contains("food")) checkBoxFood.isChecked = true
+                if (it.sections.contains("technology")) checkBoxThechnology.isChecked = true
+                if (it.sections.contains("sports")) checkBoxSports.isChecked = true
             }
+            notificationSwitch.isChecked = true
+        }
 
         val type = object : TypeToken<List<Article>>() {}.type
-        
+
         if (intent.getStringExtra("articles") != null) {
             val stringSearchResponseResult = intent.getStringExtra("articles")!!
             Log.i("données", stringSearchResponseResult)
@@ -106,28 +98,11 @@ class NotificationActivity : AppCompatActivity() {
     }
 
 
-    private fun recoverDataUserInput2() = notificationDao.getNotificationUserInput()
-
-    private fun recoverDataUserInput() {
-        notificationDao.getNotificationUserInput()?.let {
-
-            Log.i("Coroutine", gson.toJson(it))
-
-
-            inputUserNotification.setQuery(it.inputSearchUser, false)
-
-            if (it.sections.contains("business")) checkBoxBusiness.isChecked = true
-            if (it.sections.contains("food")) checkBoxFood.isChecked = true
-            if (it.sections.contains("technology")) checkBoxThechnology.isChecked = true
-            if (it.sections.contains("sports")) checkBoxSports.isChecked = true
-
-        }
-    }
+    private fun recoverDataUserInput() = notificationDao.getNotificationUserInput()
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         if (item.itemId == android.R.id.home) {
-
             save()
             finish()
             return true
@@ -139,13 +114,8 @@ class NotificationActivity : AppCompatActivity() {
     private fun save() {
 
         if (notificationSwitch.isChecked) {
-
             Log.i("IsChecked", "True")
-
             val sections: ArrayList<String> = ArrayList()
-
-
-
             if (checkBoxBusiness.isChecked) sections.add("business")
             if (checkBoxSports.isChecked) sections.add("sports")
             if (checkBoxThechnology.isChecked) sections.add("technology")
@@ -155,9 +125,6 @@ class NotificationActivity : AppCompatActivity() {
                 inputUserNotification.query.toString(),
                 sections
             )) {
-
-
-
                 NotificationManager.UserInputState.NO_USER_INPUT -> {
 
                     Toast.makeText(this, "Merci de replir le champs", Toast.LENGTH_SHORT).show()
@@ -166,19 +133,17 @@ class NotificationActivity : AppCompatActivity() {
 
                 NotificationManager.UserInputState.NO_SECTION_SELECTED -> {
 
-                    Toast.makeText(this, "please selcet Section ",
+                    Toast.makeText(
+                        this, "please selcet Section ",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+
                 NotificationManager.UserInputState.VALID -> {
 
                     switch1.onEditorAction(EditorInfo.IME_ACTION_DONE)
-                 
-
 
                     CoroutineScope(IO).launch {
-
-
                         notificationDao
                             .insertNotificationUserInput(
                                 NotificationUserInput(
@@ -186,41 +151,33 @@ class NotificationActivity : AppCompatActivity() {
                                     sections = sections
                                 )
                             )
-
                         Log.i(
                             "ajouter",
-                            "fait" + notificationDao.getNotificationUserInput()!!.inputSearchUser
+                            "fait " + notificationDao.getNotificationUserInput()!!.inputSearchUser
                         )
                         Log.i(
                             "NotificationActivity",
                             notificationDao.getNotificationUserInput()!!.sections.get(0)
                         )
-
                     }
 
                     val work =
                         PeriodicWorkRequestBuilder<SyncNotificationWorker>(1, TimeUnit.DAYS)
                             .build()
                     WorkManager.getInstance(this).enqueue(work)
-
-
                 }
             }
-
 
         } else {
             Log.i("IsChecked", "false")
 
             CoroutineScope(IO).launch {
-
                 notificationDao.deleteNotificationInProgress(notificationDao.getNotificationUserInput()!!)
                 Log.i("suppression", "supprimé")
-
             }
-
-
         }
     }
+
 
     private fun updateRvNotification(notificationResult: List<Article>) {
 
@@ -230,23 +187,18 @@ class NotificationActivity : AppCompatActivity() {
         val gson = Gson()
 
         Log.i("List d'article", gson.toJson(mData))
-
     }
 
     private fun initRecyclerViewNotification() {
 
         rvNotification.apply {
-
             layoutManager = LinearLayoutManager(this@NotificationActivity)
             adapter = adapterNotification
         }
-
     }
 
     override fun onBackPressed() {
-
         save()
-
         super.onBackPressed()
     }
 }

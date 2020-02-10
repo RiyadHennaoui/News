@@ -11,6 +11,5 @@ import com.riyad.p5.data.model.Notification.NotificationUserInput
 @Database(entities = [NotificationUserInput::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun notificationDao() : NotificationDao
-
+    abstract fun notificationDao(): NotificationDao
 }

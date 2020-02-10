@@ -1,6 +1,5 @@
 package com.riyad.p5.controller;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -26,10 +25,8 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     private List<Article> mData;
     private Context context;
 
-    MainAdapter(Context con){
-
+    MainAdapter(Context con) {
         this.context = con;
-
     }
 
 
@@ -44,9 +41,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         holder.bind(mData.get(position));
-
     }
 
 
@@ -57,7 +52,6 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     public void setData(@NonNull List<Article> articles) {
         mData = articles;
-
         notifyDataSetChanged();
     }
 
@@ -72,14 +66,11 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             mIvThumbnail = itemView.findViewById(R.id.item_main_iv_thumbnail);
             mTvTitle = itemView.findViewById(R.id.item_main_tv_title);
             mDesc = itemView.findViewById(R.id.item_main_iv_desc);
             mDatePub = itemView.findViewById(R.id.item_main_tv_date_pub);
             mSection = itemView.findViewById(R.id.item_main_tv_section);
-
-
         }
 
         public void bind(Article article) {
@@ -98,20 +89,14 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
             mTvTitle.setText(article.getTitle());
             mDesc.setText(article.getShortDesc());
-
             mSection.setText(article.getSection());
 
             Glide.with(mIvThumbnail).load(article.getImageUrl()).centerCrop().into(mIvThumbnail);
 
             itemView.setOnClickListener(view -> {
-
-                 Intent intent = new Intent(context, WebViewActivity.class);
-                 intent.putExtra(WebViewActivity.EXTRA_ARTICLE_URL,article.getArticleUrl());
-                 context.startActivity(intent);
-
-
-
-
+                Intent intent = new Intent(context, WebViewActivity.class);
+                intent.putExtra(WebViewActivity.EXTRA_ARTICLE_URL, article.getArticleUrl());
+                context.startActivity(intent);
             });
         }
 
