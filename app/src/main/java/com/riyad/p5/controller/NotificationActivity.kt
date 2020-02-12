@@ -81,10 +81,6 @@ class NotificationActivity : AppCompatActivity() {
             notificationSwitch.isChecked = true
         }
 
-
-
-//            CoroutineScope(Dispatchers.Main).launch {
-
                 val type = object : TypeToken<List<Article>>() {}.type
 
                 if (intent.getStringExtra("articlesNotif") != null) {
@@ -100,7 +96,6 @@ class NotificationActivity : AppCompatActivity() {
             }
 
 
-//        }
     }
 
 

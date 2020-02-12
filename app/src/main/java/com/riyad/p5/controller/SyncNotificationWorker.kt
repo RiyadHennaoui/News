@@ -124,11 +124,13 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) :
         if (searchNotificationResult.response.docs.isNotEmpty()) {
             val pendingIntent: PendingIntent = PendingIntent.getActivity(
                 applicationContext,
-                0, intent, 0
+                0, intent, PendingIntent.FLAG_ONE_SHOT
+
             )
             val title: String =
                 searchNotificationResult.response.docs.first().headline.main.toString()
             val numbreOfResponse = searchNotificationResult.response.docs.size.toString()
+
 
             val builder = NotificationCompat.Builder(context, App.NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_news)

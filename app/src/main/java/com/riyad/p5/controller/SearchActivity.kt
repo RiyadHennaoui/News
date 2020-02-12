@@ -4,9 +4,6 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.CheckBox
@@ -20,6 +17,7 @@ import com.riyad.p5.R
 import com.riyad.p5.data.model.search.SearchResponse
 import com.riyad.p5.data.model.search.mapSearchResponseDataToSearchResult
 import com.riyad.p5.data.model.ui.Article
+import com.riyad.p5.utils.RetrofitConstant
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import retrofit2.Call
@@ -37,7 +35,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var adapterSearch: MainAdapter
     private lateinit var mData: List<Article>
     private lateinit var rvSearch: RecyclerView
-    private var API_KEY = "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5"
+
 
     // Toast Messages
 
@@ -107,7 +105,7 @@ class SearchActivity : AppCompatActivity() {
                             paramFilter,
                             beginDate,
                             endDate,
-                            API_KEY
+                            RetrofitConstant.API_KEY
                         )
 
                     // HTTP Resquest
@@ -118,7 +116,8 @@ class SearchActivity : AppCompatActivity() {
                             t: Throwable
                         ) {
 
-                            Log.e(TAG, "On Error " + t.message, t)
+
+                            //TODO Ajouter un swipeTorefresh
                         }
 
                         override fun onResponse(
@@ -198,7 +197,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun retrofitCall(): Retrofit {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.nytimes.com/")
+            .baseUrl(RetrofitConstant.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         return retrofit

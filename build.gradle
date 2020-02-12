@@ -21,6 +21,8 @@ allprojects {
     repositories {
         google()
         jcenter()
+        //add JitPack repository for MarkdownView
+        maven { url "https://jitpack.io" }
         
     }
 }

@@ -8,6 +8,7 @@ import com.riyad.p5.R;
 import com.riyad.p5.data.model.TopStoriesArticle;
 import com.riyad.p5.data.model.TopStoriesResult;
 import com.riyad.p5.data.model.ui.Article;
+import com.riyad.p5.utils.RetrofitConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,6 @@ import retrofit2.Response;
 public class TopStoriesFragment extends AbsFragment {
     public static final String KEY_SECTION = "KEY_SECTION";
     private Call<TopStoriesResult> myCurrentCall;
-    private String API_KEY = "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5";
     public static TopStoriesFragment newInstance(String section) {
 
         Bundle args = new Bundle();
@@ -39,7 +39,7 @@ public class TopStoriesFragment extends AbsFragment {
         }
 
         //Call New York Times API
-        myCurrentCall = service.getTopStories(getArguments().getString(KEY_SECTION), API_KEY);
+        myCurrentCall = service.getTopStories(getArguments().getString(KEY_SECTION), RetrofitConstant.API_KEY);
 
         myCurrentCall.enqueue(new Callback<TopStoriesResult>() {
             @Override

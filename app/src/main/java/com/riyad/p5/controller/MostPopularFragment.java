@@ -5,6 +5,7 @@ import android.widget.Toast;
 import com.riyad.p5.data.model.MostPopularArticle;
 import com.riyad.p5.data.model.MostPopularResult;
 import com.riyad.p5.data.model.ui.Article;
+import com.riyad.p5.utils.RetrofitConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,6 @@ import retrofit2.Response;
 
 public class MostPopularFragment extends AbsFragment {
     private Call<MostPopularResult> call;
-    private String API_KEY = "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5";
     private String mostPopularTitle = "Most Popular";
 
     @Override
@@ -25,7 +25,7 @@ public class MostPopularFragment extends AbsFragment {
             call.isCanceled();
         }
 
-        call = service.getMostPopular(API_KEY);
+        call = service.getMostPopular(RetrofitConstant.API_KEY);
 
         //Call New York Times API
         call.enqueue(new Callback<MostPopularResult>() {

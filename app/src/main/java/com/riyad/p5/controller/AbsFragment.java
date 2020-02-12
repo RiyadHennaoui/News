@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.riyad.p5.R;
 import com.riyad.p5.data.model.ui.Article;
+import com.riyad.p5.utils.RetrofitConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +69,7 @@ public abstract class AbsFragment extends Fragment {
 
     private void initRetrofitService() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.nytimes.com/")
+                .baseUrl(RetrofitConstant.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

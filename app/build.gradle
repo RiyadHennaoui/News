@@ -90,6 +90,9 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
+    //MarkdownView
+    implementation "com.github.mukeshsolanki:MarkdownView-Android:1.0.8"
+
 
 
     def work_version = "2.2.0"

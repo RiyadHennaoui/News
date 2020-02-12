@@ -50,8 +50,6 @@ public class Multimedium implements android.os.Parcelable {
         dest.writeValue(this.width);
     }
 
-    public Multimedium() {
-    }
 
     protected Multimedium(Parcel in) {
         this.url = in.readString();
