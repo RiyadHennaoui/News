@@ -101,9 +101,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this, NotificationActivity::class.java))
             }
 
-            R.id.menu_about -> {
-            }
-
             R.id.menu_help -> {
             }
 

@@ -10,10 +10,6 @@
         android:id="@+id/menu_help"
         android:title="@string/help"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/menu_about"
-        android:title="@string/about"
-        app:showAsAction="never" />
 
     <item
         android:id="@+id/search_btn"

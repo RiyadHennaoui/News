@@ -11,11 +11,8 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.google.gson.Gson
 import com.riyad.p5.R
-import com.riyad.p5.data.model.Notification.NotificationDao
 import com.riyad.p5.data.model.search.SearchResponse
-import com.riyad.p5.data.model.search.SearchResult
 import com.riyad.p5.data.model.search.mapSearchResponseDataToSearchResult
-import com.riyad.p5.data.model.ui.Article
 import org.threeten.bp.LocalDate
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,8 +21,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 private const val NOTIFICATION_ID = 0
+private val API_KEY = "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5"
 
-class SyncNotificationWorker(context: Context, parameters: WorkerParameters) : Worker(context, parameters) {
+class SyncNotificationWorker(context: Context, parameters: WorkerParameters) :
+    Worker(context, parameters) {
     override fun doWork(): Result {
 
         Log.i("Worker", "Work !!")
@@ -52,8 +51,8 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) : W
             .getSearchResponse(
                 notificationDao.inputSearchUser,
                 paramFilter, notificationDate,
-                notificationDate,
-                "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5"
+                notificationDate, API_KEY
+
             )
 
         callNotificationSearch.enqueue(object : Callback<SearchResponse> {
@@ -90,11 +89,13 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) : W
                             Toast.LENGTH_LONG
                         ).show()
                     } else {
-                        val intent = Intent(applicationContext,NotificationActivity::class.java).apply {
-                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            Log.i("NotificationActivity", gson.toJson(searchNotificationResult))
-                            putExtra("articlesNotif", gson.toJson(searchNotificationResult))
-                        }
+                        val intent =
+                            Intent(applicationContext, NotificationActivity::class.java).apply {
+                                flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                Log.i("NotificationActivity", gson.toJson(searchNotificationResult))
+                                putExtra("articlesNotif", gson.toJson(searchNotificationResult))
+                            }
 
 
                         sendNotificationResult(it, applicationContext, intent)
@@ -111,10 +112,14 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) : W
         })
 
 
-            return Result.success()
-        }
+        return Result.success()
+    }
 
-    private fun sendNotificationResult(searchNotificationResult: SearchResponse, context: Context, intent: Intent) {
+    private fun sendNotificationResult(
+        searchNotificationResult: SearchResponse,
+        context: Context,
+        intent: Intent
+    ) {
 
         if (searchNotificationResult.response.docs.isNotEmpty()) {
             val pendingIntent: PendingIntent = PendingIntent.getActivity(
