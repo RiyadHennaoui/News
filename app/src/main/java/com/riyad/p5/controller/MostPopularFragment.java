@@ -27,6 +27,7 @@ public class MostPopularFragment extends AbsFragment {
 
         call = service.getMostPopular(API_KEY);
 
+        //Call New York Times API
         call.enqueue(new Callback<MostPopularResult>() {
             @Override
             public void onResponse(Call<MostPopularResult> call, Response<MostPopularResult> response) {

@@ -92,6 +92,7 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) : W
                     } else {
                         val intent = Intent(applicationContext,NotificationActivity::class.java).apply {
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            Log.i("NotificationActivity", gson.toJson(searchNotificationResult))
                             putExtra("articlesNotif", gson.toJson(searchNotificationResult))
                         }
 
@@ -134,7 +135,7 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) : W
 
             NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, builder.build())
         }
-        Log.e("notif", "notification")
+        Log.e("NotificationActivity", "notification")
 
 
     }

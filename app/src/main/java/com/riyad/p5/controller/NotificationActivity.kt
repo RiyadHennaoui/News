@@ -71,7 +71,6 @@ class NotificationActivity : AppCompatActivity() {
 
             val recoverDataUserInput = async(IO) { recoverDataUserInput() }
             recoverDataUserInput.await()?.let {
-                Log.i("Coroutine", gson.toJson(it))
                 inputUserNotification.setQuery(it.inputSearchUser, false)
 
                 if (it.sections.contains("business")) checkBoxBusiness.isChecked = true
@@ -82,19 +81,26 @@ class NotificationActivity : AppCompatActivity() {
             notificationSwitch.isChecked = true
         }
 
-        val type = object : TypeToken<List<Article>>() {}.type
-
-        if (intent.getStringExtra("articles") != null) {
-            val stringSearchResponseResult = intent.getStringExtra("articles")!!
-            Log.i("données", stringSearchResponseResult)
-            val searchResponseResult: List<Article> =
-                gson.fromJson(stringSearchResponseResult, type)
-
-            updateRvNotification(searchResponseResult)
-            initRecyclerViewNotification()
-        }
 
 
+//            CoroutineScope(Dispatchers.Main).launch {
+
+                val type = object : TypeToken<List<Article>>() {}.type
+
+                if (intent.getStringExtra("articlesNotif") != null) {
+                    Log.i("Notification Adapteur","thread Main Adapter")
+                    val stringSearchResponseResult = intent.getStringExtra("articlesNotif")!!
+                    val searchResponseResult: List<Article> =
+                        gson.fromJson(stringSearchResponseResult, type)
+                    Log.i("NotificationActivity", stringSearchResponseResult)
+
+                updateRvNotification(searchResponseResult)
+                initRecyclerViewNotification()
+
+            }
+
+
+//        }
     }
 
 
@@ -114,7 +120,6 @@ class NotificationActivity : AppCompatActivity() {
     private fun save() {
 
         if (notificationSwitch.isChecked) {
-            Log.i("IsChecked", "True")
             val sections: ArrayList<String> = ArrayList()
             if (checkBoxBusiness.isChecked) sections.add("business")
             if (checkBoxSports.isChecked) sections.add("sports")
@@ -127,14 +132,14 @@ class NotificationActivity : AppCompatActivity() {
             )) {
                 NotificationManager.UserInputState.NO_USER_INPUT -> {
 
-                    Toast.makeText(this, "Merci de replir le champs", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "please fill in the field", Toast.LENGTH_SHORT).show()
 
                 }
 
                 NotificationManager.UserInputState.NO_SECTION_SELECTED -> {
 
                     Toast.makeText(
-                        this, "please selcet Section ",
+                        this, "please select Section ",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -151,14 +156,6 @@ class NotificationActivity : AppCompatActivity() {
                                     sections = sections
                                 )
                             )
-                        Log.i(
-                            "ajouter",
-                            "fait " + notificationDao.getNotificationUserInput()!!.inputSearchUser
-                        )
-                        Log.i(
-                            "NotificationActivity",
-                            notificationDao.getNotificationUserInput()!!.sections.get(0)
-                        )
                     }
 
                     val work =
@@ -169,11 +166,8 @@ class NotificationActivity : AppCompatActivity() {
             }
 
         } else {
-            Log.i("IsChecked", "false")
-
-            CoroutineScope(IO).launch {
+                    CoroutineScope(IO).launch {
                 notificationDao.deleteNotificationInProgress(notificationDao.getNotificationUserInput()!!)
-                Log.i("suppression", "supprimé")
             }
         }
     }
@@ -184,9 +178,6 @@ class NotificationActivity : AppCompatActivity() {
         mData = notificationResult
         adapterNotification = MainAdapter(this)
         adapterNotification.setData(notificationResult)
-        val gson = Gson()
-
-        Log.i("List d'article", gson.toJson(mData))
     }
 
     private fun initRecyclerViewNotification() {

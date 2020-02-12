@@ -16,12 +16,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.riyad.p5.R
 import com.riyad.p5.data.model.search.SearchResponse
 import com.riyad.p5.data.model.search.mapSearchResponseDataToSearchResult
 import com.riyad.p5.data.model.ui.Article
-import kotlinx.android.synthetic.main.article_layout.*
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import retrofit2.Call
@@ -29,8 +27,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
-import kotlin.collections.ArrayList
 
 class SearchActivity : AppCompatActivity() {
 
@@ -41,16 +37,22 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var adapterSearch: MainAdapter
     private lateinit var mData: List<Article>
     private lateinit var rvSearch: RecyclerView
+    private var API_KEY = "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5"
+
+    // Toast Messages
+
+    private val noUserInputString ="Merci de remplir le champs"
+    private val noSectionSelected = "please select Section "
+    private val incoherentDate = "begin date shouldn't be after end date "
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search_layout)
+        val TAG = "SerchActivity onFailure"
 
 
         val searchBtn = findViewById<Button>(R.id.btn_search)
-
-
         val inputUserSearch = findViewById<SearchView>(R.id.et_search)
         val checkboxBusiness = findViewById<CheckBox>(R.id.checkbox_1)
         val checkBoxSports = findViewById<CheckBox>(R.id.checkbox_2)
@@ -60,21 +62,19 @@ class SearchActivity : AppCompatActivity() {
         val endDateTextView = findViewById<TextView>(R.id.end_date)
         rvSearch = findViewById(R.id.rv_search_article)
 
+
+        // ACTION
         searchBtn.setOnClickListener {
 
             searchBtn.onEditorAction(EditorInfo.IME_ACTION_DONE)
 
             val sections: ArrayList<String> = ArrayList()
 
-
             if (checkboxBusiness.isChecked) sections.add("business")
             if (checkBoxSports.isChecked) sections.add("sports")
             if (checkBoxThechnology.isChecked) sections.add("technology")
             if (checkBoxFood.isChecked) sections.add("food")
 
-
-
-            Log.i("SearchActivity", Arrays.toString(sections.toArray()))
 
             when (searchManager.checkUserInput(
                 inputUserSearch.query.toString(),
@@ -93,19 +93,11 @@ class SearchActivity : AppCompatActivity() {
                     }
                     paramFilter += ")"
 
-                    Log.i("SearchActivity", paramFilter)
-
-
                     val dateFormatter = DateTimeFormatter.BASIC_ISO_DATE
-
                     val beginDate = inputBeginDate?.format(dateFormatter).toString()
                     val endDate = inputEndDate?.format(dateFormatter).toString()
 
-
-                    val retrofit = Retrofit.Builder()
-                        .baseUrl("https://api.nytimes.com/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build()
+                    val retrofit = retrofitCall()
 
                     val serviceSearch = retrofit.create(NewYorkTimesAPI::class.java)
 
@@ -115,8 +107,10 @@ class SearchActivity : AppCompatActivity() {
                             paramFilter,
                             beginDate,
                             endDate,
-                            "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5"
+                            API_KEY
                         )
+
+                    // HTTP Resquest
                     callSearch.enqueue(object : Callback<SearchResponse> {
 
                         override fun onFailure(
@@ -124,51 +118,38 @@ class SearchActivity : AppCompatActivity() {
                             t: Throwable
                         ) {
 
-                            Log.w("SerchActivity onFailure", t.message, t)
-
+                            Log.e(TAG, "On Error " + t.message, t)
                         }
 
                         override fun onResponse(
                             call: Call<SearchResponse>,
                             response: Response<SearchResponse>
                         ) {
-
-                            Log.e("OnResponse", "???")
                             response.body()?.let {
-                                val gson = Gson()
-                                Log.i(
-                                    "Response",
-                                    "Yeahhh !! : ${gson.toJson(it)}  "
-                                )
                                 val searchResponseResult = mapSearchResponseDataToSearchResult(it)
-
-
                                 updateRv(searchResponseResult)
                                 intiRecyclerView()
-
-
                             }
-
 
                         }
 
                     })
 
-
+                // Toast for error case
                 }
                 SearchManager.UserInputState.NO_USER_INPUT -> Toast.makeText(
                     this,
-                    "Merci de remplir le champs ",
+                    noUserInputString,
                     Toast.LENGTH_SHORT
                 ).show()
                 SearchManager.UserInputState.NO_SECTION_SELECTED -> Toast.makeText(
                     this,
-                    "please selcet Section ",
+                    noSectionSelected,
                     Toast.LENGTH_SHORT
                 ).show()
                 SearchManager.UserInputState.INCOHERENT_DATES -> Toast.makeText(
                     this,
-                    "begin date shouldn't be after end date ",
+                    incoherentDate,
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -176,8 +157,7 @@ class SearchActivity : AppCompatActivity() {
 
         }
 
-
-
+        // Date Picker
         LocalDate.now().let { now: LocalDate ->
 
             beginDateTextView.setOnClickListener {
@@ -211,26 +191,28 @@ class SearchActivity : AppCompatActivity() {
                     now.monthValue - 1,
                     now.dayOfMonth
                 )
-
                 dpd.show()
             }
-
         }
-
-
     }
 
-    fun onCreateView(
-        inflater: LayoutInflater?,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-
-    ): View? {
-        val myView: View = inflater!!.inflate(R.layout.article_layout, container, false)
-
-
-        return myView
+    private fun retrofitCall(): Retrofit {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://api.nytimes.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        return retrofit
     }
+
+//    fun onCreateView(
+//        inflater: LayoutInflater?,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//
+//    ): View? {
+//        val myView: View = inflater!!.inflate(R.layout.article_layout, container, false)
+//        return myView
+//    }
 
     private fun updateRv(searchResponseResult: List<Article>) {
         mData = searchResponseResult
@@ -248,8 +230,6 @@ class SearchActivity : AppCompatActivity() {
 
 
     }
-
-
 
 
 }
