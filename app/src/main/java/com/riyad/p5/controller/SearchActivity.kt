@@ -204,16 +204,6 @@ class SearchActivity : AppCompatActivity() {
         return retrofit
     }
 
-//    fun onCreateView(
-//        inflater: LayoutInflater?,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//
-//    ): View? {
-//        val myView: View = inflater!!.inflate(R.layout.article_layout, container, false)
-//        return myView
-//    }
-
     private fun updateRv(searchResponseResult: List<Article>) {
         mData = searchResponseResult
         adapterSearch = MainAdapter(this)

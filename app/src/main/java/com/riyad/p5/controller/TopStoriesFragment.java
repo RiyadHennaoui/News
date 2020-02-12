@@ -19,6 +19,7 @@ import retrofit2.Response;
 public class TopStoriesFragment extends AbsFragment {
     public static final String KEY_SECTION = "KEY_SECTION";
     private Call<TopStoriesResult> myCurrentCall;
+    private String API_KEY = "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5";
     public static TopStoriesFragment newInstance(String section) {
 
         Bundle args = new Bundle();
@@ -37,7 +38,8 @@ public class TopStoriesFragment extends AbsFragment {
 
         }
 
-        myCurrentCall = service.getTopStories(getArguments().getString(KEY_SECTION), "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5");
+        //Call New York Times API
+        myCurrentCall = service.getTopStories(getArguments().getString(KEY_SECTION), API_KEY);
 
         myCurrentCall.enqueue(new Callback<TopStoriesResult>() {
             @Override
@@ -70,6 +72,7 @@ public class TopStoriesFragment extends AbsFragment {
         return getArguments().getString(KEY_SECTION);
     }
 
+    // Map response of articles
     private List<Article> mapResult(TopStoriesResult topStoriesResult) {
         int minPixelSize = getResources().getDimensionPixelSize(R.dimen.thumbnail_size);
         List<Article> articles = new ArrayList<>();

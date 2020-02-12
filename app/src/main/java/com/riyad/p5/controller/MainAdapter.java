@@ -72,6 +72,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             mDatePub = itemView.findViewById(R.id.item_main_tv_date_pub);
             mSection = itemView.findViewById(R.id.item_main_tv_section);
         }
+        // Bind data in views
 
         public void bind(Article article) {
 
