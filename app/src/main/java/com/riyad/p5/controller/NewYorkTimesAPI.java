@@ -15,7 +15,7 @@ public interface NewYorkTimesAPI {
 
     @GET("svc/topstories/v2/{section}.json")
     Call<TopStoriesResult> getTopStories(@Path("section") String section, @Query("api-key") String apiKey);
-    @GET("svc/mostpopular/v2/viewed/7.json")
+    @GET("svc/mostpopular/v2/viewed/30.json")
     Call<MostPopularResult> getMostPopular(@Query("api-key") String  apiKey);
     @GET("svc/search/v2/articlesearch.json")
     Call<SearchResponse> getSearchResponse(@Query("q") String query, @Query("fq") String filter,
