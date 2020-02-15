@@ -23,9 +23,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var myNavView: NavigationView? = null
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         val swipeRefresh = findViewById<SwipeRefreshLayout>(R.id.main_swipe_refresh)
         myViewPager = findViewById(R.id.main_vp_articles)
@@ -37,8 +40,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         myTabLayout.setupWithViewPager(myViewPager)
 
-        myViewPager!!.adapter = ViewPagerAdapter(supportFragmentManager)
-        myViewPager!!.addOnPageChangeListener(this)
+        initViewPager()
 
         drawer = findViewById(R.id.drawer_layout)
 
@@ -50,11 +52,38 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer!!.addDrawerListener(toggle)
         toggle.syncState()
 
-        initViewPager()
+        myNavView!!.setNavigationItemSelectedListener(this)
+        myNavView!!.setCheckedItem(R.id.nav_topStories)
 
         swipeRefresh.setOnRefreshListener {
 
-            initViewPager()
+          when(myViewPager!!.currentItem)  {
+
+              0-> {
+
+                  initViewPager()
+
+              }
+
+              1 -> {
+
+                  initViewPager()
+                  myViewPager!!.currentItem = 1
+
+              }
+
+              2 -> {
+
+                  initViewPager()
+
+              }
+
+              3 -> {
+
+                  initViewPager()
+              }
+
+          }
 
             swipeRefresh.isRefreshing = false
 
@@ -63,8 +92,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun initViewPager() {
-        myNavView!!.setNavigationItemSelectedListener(this)
-        myNavView!!.setCheckedItem(R.id.nav_topStories)
+        myViewPager!!.adapter = ViewPagerAdapter(supportFragmentManager)
+        myViewPager!!.addOnPageChangeListener(this)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

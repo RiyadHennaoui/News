@@ -1,8 +1,11 @@
 package com.riyad.p5.controller;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.riyad.p5.R;
 import com.riyad.p5.data.model.TopStoriesArticle;
@@ -55,7 +58,8 @@ public class TopStoriesFragment extends AbsFragment {
             @Override
             public void onFailure(Call<TopStoriesResult> call, Throwable t) {
 
-                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "please swipe to refresh", Toast.LENGTH_LONG).show();
+
 
             }
         });
