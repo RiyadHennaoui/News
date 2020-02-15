@@ -109,33 +109,11 @@ class SearchActivity : AppCompatActivity() {
                         )
 
                     // HTTP Resquest
-                    callSearch.enqueue(object : Callback<SearchResponse> {
-
-                        override fun onFailure(
-                            call: Call<SearchResponse>,
-                            t: Throwable
-                        ) {
+                    searchCall(callSearch)
 
 
-                            //TODO Ajouter un swipeTorefresh
-                        }
-
-                        override fun onResponse(
-                            call: Call<SearchResponse>,
-                            response: Response<SearchResponse>
-                        ) {
-                            response.body()?.let {
-                                val searchResponseResult = mapSearchResponseDataToSearchResult(it)
-                                updateRv(searchResponseResult)
-                                intiRecyclerView()
-                            }
-
-                        }
-
-                    })
-
-                // Toast for error case
                 }
+                // Toast for error case
                 SearchManager.UserInputState.NO_USER_INPUT -> Toast.makeText(
                     this,
                     noUserInputString,
@@ -193,6 +171,31 @@ class SearchActivity : AppCompatActivity() {
                 dpd.show()
             }
         }
+    }
+
+    private fun searchCall(callSearch: Call<SearchResponse>) {
+        callSearch.enqueue(object : Callback<SearchResponse> {
+
+            override fun onFailure(
+                call: Call<SearchResponse>,
+                t: Throwable
+            ) {
+
+
+                //TODO Ajouter un swipeTorefresh
+            }
+
+            override fun onResponse(
+                call: Call<SearchResponse>,
+                response: Response<SearchResponse>
+            ) {
+                response.body()?.let {
+                    val searchResponseResult = mapSearchResponseDataToSearchResult(it)
+                    updateRv(searchResponseResult)
+                    intiRecyclerView()
+                }
+            }
+        })
     }
 
     private fun retrofitCall(): Retrofit {

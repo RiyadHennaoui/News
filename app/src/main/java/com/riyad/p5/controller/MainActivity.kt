@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
@@ -21,10 +22,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var myViewPager: ViewPager? = null
     private var myNavView: NavigationView? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val swipeRefresh = findViewById<SwipeRefreshLayout>(R.id.main_swipe_refresh)
         myViewPager = findViewById(R.id.main_vp_articles)
         val myTabLayout = findViewById<TabLayout>(R.id.main_tl)
         val myToolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -47,6 +50,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer!!.addDrawerListener(toggle)
         toggle.syncState()
 
+        initViewPager()
+
+        swipeRefresh.setOnRefreshListener {
+
+            initViewPager()
+
+            swipeRefresh.isRefreshing = false
+
+        }
+
+    }
+
+    private fun initViewPager() {
         myNavView!!.setNavigationItemSelectedListener(this)
         myNavView!!.setCheckedItem(R.id.nav_topStories)
     }
