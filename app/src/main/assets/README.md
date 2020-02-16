@@ -27,6 +27,8 @@ You can navigate around the top stories, the most popular articles, the subjects
 
 ![]News/app/src/main/assets/Notification.gif
 
+![](http://i.imgur.com/OUkLi.gif)
+
 
 
 
