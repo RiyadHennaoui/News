@@ -147,6 +147,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.menu_help -> {
+                startActivity(Intent(this, AboutActivity::class.java))
             }
 
             R.id.search_btn -> {
