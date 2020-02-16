@@ -40,7 +40,7 @@ android {
             checkReleaseBuilds false
             // Or, if you prefer, you can continue to check for errors in release builds,
             // but continue the build even when errors are found:
-           // abortOnError false
+            // abortOnError false
         }
     }
 }
@@ -78,8 +78,6 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
 
 
-
-
     //Room
     def room_version = "2.2.1"
     implementation "androidx.room:room-runtime:$room_version"
@@ -94,10 +92,8 @@ dependencies {
     implementation "com.github.mukeshsolanki:MarkdownView-Android:1.0.8"
 
 
-
     def work_version = "2.2.0"
     implementation "androidx.work:work-runtime-ktx:$work_version"
-
 
 
 }
