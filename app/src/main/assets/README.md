@@ -9,7 +9,7 @@ You can navigate around the top stories, the most popular articles, the subjects
 
 ### *How to navigate in main screen*
 
-![]News/assets/nav_viewPager.gif
+![]app/src/main/assets/nav_viewPager.gif
 
 ### *How to navigate with nav drawer
 
