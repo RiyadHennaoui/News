@@ -7,18 +7,10 @@
 
 
     <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CheckBox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <CheckBox
         android:id="@+id/checkBox1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="CheckBox"
+        android:text="@string/Business"
         app:layout_constraintEnd_toStartOf="@id/checkBox2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +19,7 @@
         android:id="@+id/checkBox2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="CheckBox"
+        android:text="@string/Sports"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/checkBox1"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +29,7 @@
         android:id="@+id/checkBox3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="CheckBox"
+        android:text="@string/Technology"
         app:layout_constraintEnd_toStartOf="@id/checkBox4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox1" />
@@ -46,7 +38,7 @@
         android:id="@+id/checkBox4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="CheckBox"
+        android:text="@string/Food"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/checkBox3"
         app:layout_constraintTop_toBottomOf="@+id/checkBox2" />

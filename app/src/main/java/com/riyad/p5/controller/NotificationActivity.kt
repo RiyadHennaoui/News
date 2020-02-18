@@ -49,10 +49,10 @@ class NotificationActivity : AppCompatActivity() {
         notificationSwitch = findViewById(R.id.switch1)
 
         inputUserNotification = findViewById(R.id.search_view)
-        checkBoxBusiness = findViewById(R.id.checkbox1)
-        checkBoxSports = findViewById(R.id.checkbox2)
-        checkBoxThechnology = findViewById(R.id.checkbox3)
-        checkBoxFood = findViewById(R.id.checkbox4)
+        checkBoxBusiness = findViewById(R.id.checkBox1)
+        checkBoxSports = findViewById(R.id.checkBox2)
+        checkBoxThechnology = findViewById(R.id.checkBox3)
+        checkBoxFood = findViewById(R.id.checkBox4)
 
         notificationDao = App.database.notificationDao()
         rvNotification = findViewById(R.id.rv_notification_article)

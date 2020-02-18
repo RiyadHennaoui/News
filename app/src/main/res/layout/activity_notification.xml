@@ -34,51 +34,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar_notification" />
 
+<include
+    android:id="@+id/checkBox_notification"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    layout="@layout/item_query_checkbox"
+    app:layout_constraintTop_toBottomOf="@id/search_view"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/switch1"/>
 
 
-    <CheckBox
-        android:id="@+id/checkbox1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Business"
-        app:layout_constraintEnd_toStartOf="@id/checkbox2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_view" />
-
-    <CheckBox
-        android:id="@+id/checkbox2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Sport"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/checkbox1"
-        app:layout_constraintTop_toBottomOf="@id/search_view" />
-
-
-    <CheckBox
-        android:id="@+id/checkbox3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Technologie"
-        app:layout_constraintEnd_toStartOf="@+id/checkbox4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkbox1" />
-
-    <CheckBox
-        android:id="@+id/checkbox4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Food"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/checkbox3"
-        app:layout_constraintTop_toBottomOf="@id/checkbox2" />
 
     <Switch
         android:id="@+id/switch1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enable notifications (once per day)"
-        app:layout_constraintTop_toBottomOf="@id/checkbox3"
+        app:layout_constraintTop_toBottomOf="@id/checkBox_notification"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

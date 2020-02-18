@@ -23,7 +23,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:hint="@string/begin_date"
-        app:layout_constraintBottom_toTopOf="@id/checkbox_1"
+        app:layout_constraintBottom_toTopOf="@id/checkBox_search"
         app:layout_constraintEnd_toStartOf="@id/end_date"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,60 +33,22 @@
         android:id="@+id/end_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:hint="@string/end_date"
-        app:layout_constraintBottom_toTopOf="@id/checkbox_2"
+        app:layout_constraintBottom_toTopOf="@id/checkBox_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/begin_date"
-        app:layout_constraintStart_toStartOf="@id/checkbox_2"
         app:layout_constraintTop_toBottomOf="@id/et_search" />
 
-    <CheckBox
-        android:id="@+id/checkbox_1"
-        android:layout_width="0sp"
+    <include
+        android:id="@+id/checkBox_search"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/Business"
-        app:layout_constraintEnd_toStartOf="@id/checkbox_2"
+        layout="@layout/item_query_checkbox"
+        app:layout_constraintTop_toBottomOf="@id/begin_date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/begin_date" />
-
-    <CheckBox
-        android:id="@+id/checkbox_2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/Sports"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/checkbox_1"
-        app:layout_constraintTop_toBottomOf="@id/end_date" />
-
-    <CheckBox
-        android:id="@+id/checkbox_3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/Technology"
-        app:layout_constraintEnd_toStartOf="@id/checkbox_4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkbox_1" />
-
-    <CheckBox
-        android:id="@+id/checkbox_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/Food"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/checkbox_3"
-        app:layout_constraintTop_toBottomOf="@id/checkbox_2"
-
+        app:layout_constraintBottom_toTopOf="@id/btn_search"
         />
 
     <Button
@@ -102,8 +64,8 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/checkbox_3"
-        app:layout_constraintTop_toBottomOf="@id/checkbox_3" />
+        app:layout_constraintStart_toEndOf="@id/checkBox_search"
+        app:layout_constraintTop_toBottomOf="@id/checkBox_search" />
 
     <include
         android:id="@+id/rv_search_article"
