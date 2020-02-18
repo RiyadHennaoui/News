@@ -32,7 +32,7 @@ class NotificationActivity : AppCompatActivity() {
     private val notificationManager = NotificationManager()
     private lateinit var adapterNotification: MainAdapter
     private lateinit var mData: List<Article>
-    lateinit var rvNotification: RecyclerView
+    private lateinit var rvNotification: RecyclerView
     private lateinit var checkBoxBusiness: CheckBox
     private lateinit var checkBoxThechnology: CheckBox
     private lateinit var checkBoxSports: CheckBox
@@ -40,6 +40,10 @@ class NotificationActivity : AppCompatActivity() {
     private lateinit var inputUserNotification: SearchView
     private lateinit var notificationDao: NotificationDao
     private lateinit var notificationSwitch: Switch
+
+    //Toast messages
+    private val noUserInputString ="please fill in the field"
+    private val noSectionSelected = "please select Section "
 
     val gson = Gson()
 
@@ -65,6 +69,7 @@ class NotificationActivity : AppCompatActivity() {
 
         inputUserNotification.isIconified = false
 
+        //Recover Data
         CoroutineScope(Dispatchers.Main).launch {
 
             val recoverDataUserInput = async(IO) { recoverDataUserInput() }
@@ -79,6 +84,7 @@ class NotificationActivity : AppCompatActivity() {
             notificationSwitch.isChecked = true
         }
 
+        // update UI after notification intent
         val type = object : TypeToken<List<Article>>() {}.type
 
         if (intent.getStringExtra("articlesNotif") != null) {
@@ -108,6 +114,7 @@ class NotificationActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    //Save notification preferences
     private fun save() {
 
         if (notificationSwitch.isChecked) {
@@ -123,14 +130,14 @@ class NotificationActivity : AppCompatActivity() {
             )) {
                 NotificationManager.UserInputState.NO_USER_INPUT -> {
 
-                    Toast.makeText(this, "please fill in the field", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, noUserInputString, Toast.LENGTH_SHORT).show()
 
                 }
 
                 NotificationManager.UserInputState.NO_SECTION_SELECTED -> {
 
                     Toast.makeText(
-                        this, "please select Section ",
+                        this, noSectionSelected,
                         Toast.LENGTH_SHORT
                     ).show()
                 }

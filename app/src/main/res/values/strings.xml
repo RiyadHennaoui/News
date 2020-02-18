@@ -9,10 +9,11 @@
     <string name="mostpopular">Most Popular</string>
     //Checkboxes
     <string name="Business">Business</string>
-    <string name="Technology">Technologie</string>
+    <string name="Technology">Technology</string>
     <string name="Food">Food</string>
     <string name="Sports">Sports</string>
     <string name="begin_date">Begin Date</string>
     <string name="end_date">End Date</string>
     <string name="search_btn">Search</string>
+    <string name="switch_notifications_once_per_day">Enable notifications (once per day)</string>
 </resources>

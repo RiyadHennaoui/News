@@ -13,6 +13,8 @@ import com.google.gson.Gson
 import com.riyad.p5.R
 import com.riyad.p5.data.model.search.SearchResponse
 import com.riyad.p5.data.model.search.mapSearchResponseDataToSearchResult
+import com.riyad.p5.utils.RetrofitConstant.Companion.API_KEY
+import com.riyad.p5.utils.RetrofitConstant.Companion.BASE_URL
 import org.threeten.bp.LocalDate
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,21 +23,18 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 private const val NOTIFICATION_ID = 0
-private val API_KEY = "vWAeWal4GLoISnnu5K7KvoMQ26nBhVW5"
+
 
 class SyncNotificationWorker(context: Context, parameters: WorkerParameters) :
     Worker(context, parameters) {
     override fun doWork(): Result {
 
-        Log.i("Worker", "Work !!")
+
         val dateFormatter = org.threeten.bp.format.DateTimeFormatter.BASIC_ISO_DATE
         val date = LocalDate.now()
-
         val notificationDate = date.format(dateFormatter).toString()
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.nytimes.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        val retrofit = retrofitForWorker()
+        val noArticleFound = "Aucun Article Trouvé"
 
         val serviceNotificationSearch = retrofit.create(NewYorkTimesAPI::class.java)
 
@@ -71,21 +70,18 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) :
                 response: Response<SearchResponse>
             ) {
 
-                Log.e("OnResponse", "???")
+
                 response.body()?.let {
 
                     val gson = Gson()
-                    Log.i(
-                        "SyncWorkerResponse",
-                        "Yeahhh !! : ${gson.toJson(it)}  "
-                    )
+
                     val searchNotificationResult = mapSearchResponseDataToSearchResult(it)
 
 
                     if (it.response.docs.isEmpty()) {
                         Toast.makeText(
                             applicationContext,
-                            "Aucun Article Trouvé",
+                            noArticleFound,
                             Toast.LENGTH_LONG
                         ).show()
                     } else {
@@ -93,7 +89,6 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) :
                             Intent(applicationContext, NotificationActivity::class.java).apply {
                                 flags =
                                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                Log.i("NotificationActivity", gson.toJson(searchNotificationResult))
                                 putExtra("articlesNotif", gson.toJson(searchNotificationResult))
                             }
 
@@ -104,15 +99,19 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) :
                             "Articles trouvé : " + it.response.docs.size,
                             Toast.LENGTH_LONG
                         )
-
-                        Log.e("Reponse", it.response.docs.size.toString())
                     }
                 }
             }
         })
-
-
         return Result.success()
+    }
+
+    private fun retrofitForWorker(): Retrofit {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        return retrofit
     }
 
     private fun sendNotificationResult(
@@ -142,8 +141,6 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) :
 
             NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, builder.build())
         }
-        Log.e("NotificationActivity", "notification")
-
 
     }
 
