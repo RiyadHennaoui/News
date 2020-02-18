@@ -1,11 +1,9 @@
 package com.riyad.p5.controller
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.inputmethod.EditorInfo
 import android.widget.CheckBox
-
 import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -81,17 +79,17 @@ class NotificationActivity : AppCompatActivity() {
             notificationSwitch.isChecked = true
         }
 
-                val type = object : TypeToken<List<Article>>() {}.type
+        val type = object : TypeToken<List<Article>>() {}.type
 
-                if (intent.getStringExtra("articlesNotif") != null) {
-                    val stringSearchResponseResult = intent.getStringExtra("articlesNotif")!!
-                    val searchResponseResult: List<Article> =
-                        gson.fromJson(stringSearchResponseResult, type)
+        if (intent.getStringExtra("articlesNotif") != null) {
+            val stringSearchResponseResult = intent.getStringExtra("articlesNotif")!!
+            val searchResponseResult: List<Article> =
+                gson.fromJson(stringSearchResponseResult, type)
 
-                updateRvNotification(searchResponseResult)
-                initRecyclerViewNotification()
+            updateRvNotification(searchResponseResult)
+            initRecyclerViewNotification()
 
-            }
+        }
 
 
     }
@@ -159,7 +157,7 @@ class NotificationActivity : AppCompatActivity() {
             }
 
         } else {
-                    CoroutineScope(IO).launch {
+            CoroutineScope(IO).launch {
                 notificationDao.deleteNotificationInProgress(notificationDao.getNotificationUserInput()!!)
             }
         }

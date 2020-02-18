@@ -13,10 +13,6 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
-//        val toolbar: Toolbar = findViewById(R.id.toolbar_about)
-//        setSupportActionBar(toolbar)
-//        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
         val markdownView: MarkdownView = findViewById(R.id.markdown_view)
 
         markdownView.loadMarkdownFromAssets("README.md")

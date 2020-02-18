@@ -23,8 +23,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var myNavView: NavigationView? = null
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -55,35 +53,36 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         myNavView!!.setNavigationItemSelectedListener(this)
         myNavView!!.setCheckedItem(R.id.nav_topStories)
 
+        // Refresh articles after swip
         swipeRefresh.setOnRefreshListener {
 
-          when(myViewPager!!.currentItem)  {
+            when (myViewPager!!.currentItem) {
 
-              0-> {
+                0 -> {
 
-                  initViewPager()
+                    initViewPager()
 
-              }
+                }
 
-              1 -> {
+                1 -> {
 
-                  initViewPager()
-                  myViewPager!!.currentItem = 1
+                    initViewPager()
+                    myViewPager!!.currentItem = 1
 
-              }
+                }
 
-              2 -> {
+                2 -> {
 
-                  initViewPager()
+                    initViewPager()
 
-              }
+                }
 
-              3 -> {
+                3 -> {
 
-                  initViewPager()
-              }
+                    initViewPager()
+                }
 
-          }
+            }
 
             swipeRefresh.isRefreshing = false
 
@@ -96,6 +95,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         myViewPager!!.addOnPageChangeListener(this)
     }
 
+    //MenuDrawer options
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
@@ -134,6 +134,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    // Toolbar menu
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.articles_menu, menu)
         return true
@@ -158,14 +159,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
-        if (drawer!!.isDrawerOpen(GravityCompat.START)) {
-            drawer!!.closeDrawer(GravityCompat.START)
+        when {
+            drawer!!.isDrawerOpen(GravityCompat.START) -> {
+                drawer!!.closeDrawer(GravityCompat.START)
 
-        } else if (myViewPager?.currentItem != 0) {
-            myViewPager?.currentItem = 0
+            }
+            myViewPager?.currentItem != 0 -> {
+                myViewPager?.currentItem = 0
 
-        } else {
-            super.onBackPressed()
+            }
+            else -> {
+                super.onBackPressed()
+            }
         }
     }
 

@@ -7,4 +7,12 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="mostpopular">Most Popular</string>
+    //Checkboxes
+    <string name="Business">Business</string>
+    <string name="Technology">Technologie></string>
+    <string name="Food">Food</string>
+    <string name="Sports">Sports</string>
+    <string name="begin_date">Begin Date</string>
+    <string name="end_date">End Date</string>
+    <string name="search_btn">Search</string>
 </resources>
