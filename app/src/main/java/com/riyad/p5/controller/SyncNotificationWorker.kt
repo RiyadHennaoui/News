@@ -27,18 +27,17 @@ private const val NOTIFICATION_ID = 0
 
 class SyncNotificationWorker(context: Context, parameters: WorkerParameters) :
     Worker(context, parameters) {
+
+    private val noArticleFound = "No Article found today"
+    private val dateFormatter = org.threeten.bp.format.DateTimeFormatter.BASIC_ISO_DATE
+    private val date = LocalDate.now()
+    private val notificationDate = date.format(dateFormatter).toString()
+    private val retrofit = retrofitForWorker()
+    private val serviceNotificationSearch = retrofit.create(NewYorkTimesAPI::class.java)
+    private val notificationDao = App.database.notificationDao().getNotificationUserInput()
+    val serverError = "Server error please retry"
+
     override fun doWork(): Result {
-
-
-        val dateFormatter = org.threeten.bp.format.DateTimeFormatter.BASIC_ISO_DATE
-        val date = LocalDate.now()
-        val notificationDate = date.format(dateFormatter).toString()
-        val retrofit = retrofitForWorker()
-        val noArticleFound = "Aucun Article Trouvé"
-
-        val serviceNotificationSearch = retrofit.create(NewYorkTimesAPI::class.java)
-
-        val notificationDao = App.database.notificationDao().getNotificationUserInput()
 
         var paramFilter = "news_desk:("
 
@@ -61,7 +60,8 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) :
                 t: Throwable
             ) {
 
-                Log.w("SerchActivity onFailure", t.message, t)
+
+                Toast.makeText(applicationContext,serverError, Toast.LENGTH_LONG).show()
 
             }
 
@@ -96,9 +96,9 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) :
                         sendNotificationResult(it, applicationContext, intent)
                         Toast.makeText(
                             applicationContext,
-                            "Articles trouvé : " + it.response.docs.size,
+                            "Articles found : " + it.response.docs.size,
                             Toast.LENGTH_LONG
-                        )
+                        ).show()
                     }
                 }
             }
