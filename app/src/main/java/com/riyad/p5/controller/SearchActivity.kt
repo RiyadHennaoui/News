@@ -47,7 +47,7 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search_layout)
-        val TAG = "SerchActivity onFailure"
+
 
 
         val searchBtn = findViewById<Button>(R.id.btn_search)
@@ -182,7 +182,6 @@ class SearchActivity : AppCompatActivity() {
             ) {
 
 
-                //TODO Ajouter un swipeTorefresh
             }
 
             override fun onResponse(

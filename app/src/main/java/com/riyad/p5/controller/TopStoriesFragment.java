@@ -76,7 +76,7 @@ public class TopStoriesFragment extends AbsFragment {
         return getArguments().getString(KEY_SECTION);
     }
 
-    // Map response of articles
+    // Mapping response of articles
     private List<Article> mapResult(TopStoriesResult topStoriesResult) {
         int minPixelSize = getResources().getDimensionPixelSize(R.dimen.thumbnail_size);
         List<Article> articles = new ArrayList<>();

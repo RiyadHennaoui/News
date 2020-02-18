@@ -84,11 +84,9 @@ class NotificationActivity : AppCompatActivity() {
                 val type = object : TypeToken<List<Article>>() {}.type
 
                 if (intent.getStringExtra("articlesNotif") != null) {
-                    Log.i("Notification Adapteur","thread Main Adapter")
                     val stringSearchResponseResult = intent.getStringExtra("articlesNotif")!!
                     val searchResponseResult: List<Article> =
                         gson.fromJson(stringSearchResponseResult, type)
-                    Log.i("NotificationActivity", stringSearchResponseResult)
 
                 updateRvNotification(searchResponseResult)
                 initRecyclerViewNotification()
