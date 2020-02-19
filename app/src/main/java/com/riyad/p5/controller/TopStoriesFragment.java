@@ -1,11 +1,7 @@
 package com.riyad.p5.controller;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 
 import com.riyad.p5.R;
 import com.riyad.p5.data.model.TopStoriesArticle;
@@ -23,6 +19,7 @@ import retrofit2.Response;
 public class TopStoriesFragment extends AbsFragment {
     public static final String KEY_SECTION = "KEY_SECTION";
     private Call<TopStoriesResult> myCurrentCall;
+
     public static TopStoriesFragment newInstance(String section) {
 
         Bundle args = new Bundle();
@@ -35,7 +32,7 @@ public class TopStoriesFragment extends AbsFragment {
 
     @Override
     protected void reload() {
-        if(myCurrentCall != null){
+        if (myCurrentCall != null) {
 
             myCurrentCall.cancel();
 
@@ -51,6 +48,7 @@ public class TopStoriesFragment extends AbsFragment {
                 if (response.body() != null) {
 
                     setNewArticleList(mapResult(response.body()));
+                    swipeRefresh.setRefreshing(false);
                 }
 
             }
@@ -60,6 +58,7 @@ public class TopStoriesFragment extends AbsFragment {
 
                 Toast.makeText(getContext(), "please swipe to refresh", Toast.LENGTH_LONG).show();
 
+                swipeRefresh.setRefreshing(false);
 
             }
         });
@@ -81,7 +80,7 @@ public class TopStoriesFragment extends AbsFragment {
         int minPixelSize = getResources().getDimensionPixelSize(R.dimen.thumbnail_size);
         List<Article> articles = new ArrayList<>();
 
-       if (!CollectionUtils.isEmpty(topStoriesResult.getTopStoriesArticles())) {
+        if (!CollectionUtils.isEmpty(topStoriesResult.getTopStoriesArticles())) {
             for (TopStoriesArticle topStoriesArticle : topStoriesResult.getTopStoriesArticles()) {
                 if (topStoriesArticle.getMultimedia() != null && !topStoriesArticle.getMultimedia().isEmpty()) {
                     String imageUrl = null;
@@ -105,8 +104,6 @@ public class TopStoriesFragment extends AbsFragment {
         }
         return articles;
     }
-
-
 
 
 }

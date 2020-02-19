@@ -37,7 +37,9 @@ public class Article implements Parcelable {
         return imageUrl;
     }
 
-    public String getArticleUrl(){return articleUrl;}
+    public String getArticleUrl() {
+        return articleUrl;
+    }
 
     public String getShortDesc() {
         return shortDesc;
@@ -58,7 +60,7 @@ public class Article implements Parcelable {
         dest.writeString(this.articleUrl);
     }
 
-     Article(Parcel in) {
+    Article(Parcel in) {
         this.title = in.readString();
         this.date = in.readString();
         this.section = in.readString();

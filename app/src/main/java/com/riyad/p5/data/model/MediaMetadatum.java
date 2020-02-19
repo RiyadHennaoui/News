@@ -1,4 +1,3 @@
-
 package com.riyad.p5.data.model;
 
 import com.google.gson.annotations.Expose;

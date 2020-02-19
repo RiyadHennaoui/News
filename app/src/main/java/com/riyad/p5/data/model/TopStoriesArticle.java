@@ -1,12 +1,12 @@
-
 package com.riyad.p5.data.model;
 
 import android.os.Parcel;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TopStoriesArticle implements android.os.Parcelable {
 

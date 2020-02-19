@@ -7,7 +7,7 @@ fun mapSearchResponseDataToSearchResult(searchResponse: SearchResponse): List<Ar
     val result: ArrayList<Article> = ArrayList()
     searchResponse.response.docs.forEach { doc ->
 
-       Log.e("imageUrl", getImageUrl(doc))
+        Log.e("imageUrl", getImageUrl(doc))
 
         val article = Article(
             doc.headline.printHeadline,
@@ -22,13 +22,13 @@ fun mapSearchResponseDataToSearchResult(searchResponse: SearchResponse): List<Ar
     return result
 }
 
-fun getImageUrl(doc: Doc): String{
+fun getImageUrl(doc: Doc): String {
 
     val minPixelSize = 150
 
     doc.multimedia.forEach { multimedia ->
 
-        if (multimedia.height >= minPixelSize && multimedia.width >= minPixelSize){
+        if (multimedia.height >= minPixelSize && multimedia.width >= minPixelSize) {
 
             return "https://static01.nyt.com/" + multimedia.url
 

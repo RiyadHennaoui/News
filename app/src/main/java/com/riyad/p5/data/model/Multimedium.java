@@ -1,4 +1,3 @@
-
 package com.riyad.p5.data.model;
 
 import android.os.Parcel;
@@ -17,7 +16,7 @@ public class Multimedium implements android.os.Parcelable {
     @SerializedName("width")
     @Expose
     private Integer width;
-    
+
     public String getUrl() {
         return url;
     }

@@ -42,7 +42,7 @@ class NotificationActivity : AppCompatActivity() {
     private lateinit var notificationSwitch: Switch
 
     //Toast messages
-    private val noUserInputString ="please fill in the field"
+    private val noUserInputString = "please fill in the field"
     private val noSectionSelected = "please select Section "
 
     val gson = Gson()
@@ -59,7 +59,7 @@ class NotificationActivity : AppCompatActivity() {
         checkBoxFood = findViewById(R.id.checkBox4)
 
         notificationDao = App.database.notificationDao()
-        rvNotification = findViewById(R.id.rv_notification_article)
+        rvNotification = findViewById(R.id.rv_article)
 
 
         setSupportActionBar(findViewById(R.id.toolbar_notification))

@@ -33,12 +33,14 @@ public class MostPopularFragment extends AbsFragment {
 
                 if (response.body() != null) {
                     setNewArticleList(mapResult(response.body()));
+                    swipeRefresh.setRefreshing(false);
                 }
             }
 
             @Override
             public void onFailure(Call<MostPopularResult> call, Throwable t) {
                 Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                swipeRefresh.setRefreshing(false);
             }
         });
     }

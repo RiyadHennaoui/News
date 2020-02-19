@@ -3,7 +3,6 @@ package com.riyad.p5.controller
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -61,7 +60,7 @@ class SyncNotificationWorker(context: Context, parameters: WorkerParameters) :
             ) {
 
 
-                Toast.makeText(applicationContext,serverError, Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, serverError, Toast.LENGTH_LONG).show()
 
             }
 

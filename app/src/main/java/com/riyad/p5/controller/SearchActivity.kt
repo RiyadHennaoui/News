@@ -3,7 +3,6 @@ package com.riyad.p5.controller
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.CheckBox
@@ -39,7 +38,7 @@ class SearchActivity : AppCompatActivity() {
 
     // Toast Messages
 
-    private val noUserInputString ="Merci de remplir le champs"
+    private val noUserInputString = "Merci de remplir le champs"
     private val noSectionSelected = "please select Section "
     private val incoherentDate = "begin date shouldn't be after end date "
 
@@ -47,7 +46,6 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search_layout)
-
 
 
         val searchBtn = findViewById<Button>(R.id.btn_search)
@@ -58,7 +56,7 @@ class SearchActivity : AppCompatActivity() {
         val checkBoxFood = findViewById<CheckBox>(R.id.checkBox4)
         val beginDateTextView = findViewById<TextView>(R.id.begin_date)
         val endDateTextView = findViewById<TextView>(R.id.end_date)
-        rvSearch = findViewById(R.id.rv_search_article)
+        rvSearch = findViewById(R.id.rv_article)
 
 
         // ACTION

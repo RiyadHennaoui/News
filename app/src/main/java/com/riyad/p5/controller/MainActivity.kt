@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
@@ -28,7 +27,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
 
 
-        val swipeRefresh = findViewById<SwipeRefreshLayout>(R.id.main_swipe_refresh)
         myViewPager = findViewById(R.id.main_vp_articles)
         val myTabLayout = findViewById<TabLayout>(R.id.main_tl)
         val myToolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -53,40 +51,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         myNavView!!.setNavigationItemSelectedListener(this)
         myNavView!!.setCheckedItem(R.id.nav_topStories)
 
-        // Refresh articles after swip
-        swipeRefresh.setOnRefreshListener {
-
-            when (myViewPager!!.currentItem) {
-
-                0 -> {
-
-                    initViewPager()
-
-                }
-
-                1 -> {
-
-                    initViewPager()
-                    myViewPager!!.currentItem = 1
-
-                }
-
-                2 -> {
-
-                    initViewPager()
-
-                }
-
-                3 -> {
-
-                    initViewPager()
-                }
-
-            }
-
-            swipeRefresh.isRefreshing = false
-
-        }
 
     }
 

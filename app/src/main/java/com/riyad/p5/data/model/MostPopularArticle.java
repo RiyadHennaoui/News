@@ -1,11 +1,11 @@
-
 package com.riyad.p5.data.model;
 
 import android.os.Parcel;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class MostPopularArticle implements android.os.Parcelable {
 
@@ -67,7 +67,7 @@ public class MostPopularArticle implements android.os.Parcelable {
     public void setSection(String section) {
         this.section = section;
     }
-    
+
     public String getTitle() {
         return title;
     }

@@ -1,11 +1,11 @@
-
 package com.riyad.p5.data.model;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class  MostPopularResult {
+import java.util.List;
+
+public class MostPopularResult {
 
     @SerializedName("results")
     @Expose
