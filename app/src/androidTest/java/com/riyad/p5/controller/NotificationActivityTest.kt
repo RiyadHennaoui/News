@@ -34,16 +34,16 @@ class NotificationActivityTest  {
 
 
         onView(withId(R.id.notification_activity)).check(matches(isDisplayed()))
-        onView(withId(R.id.checkbox1))
+        onView(withId(R.id.checkBox1))
             .perform(ViewActions.click())
             .check(matches(isChecked()))
-        onView(withId(R.id.checkbox2))
+        onView(withId(R.id.checkBox2))
             .perform(ViewActions.click())
             .check(matches(isChecked()))
-        onView(withId(R.id.checkbox3))
+        onView(withId(R.id.checkBox3))
             .perform(ViewActions.click())
             .check(matches(isChecked()))
-        onView(withId(R.id.checkbox4))
+        onView(withId(R.id.checkBox4))
             .perform(ViewActions.click())
             .check(matches(isChecked()))
 

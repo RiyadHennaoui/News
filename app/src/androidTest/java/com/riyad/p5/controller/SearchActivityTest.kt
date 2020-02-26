@@ -30,16 +30,16 @@ fun searchActivity_isDisplayed(){
 
 
         onView(withId(R.id.search_activity)).check(matches(isDisplayed()))
-        onView(withId(R.id.checkbox_1))
+        onView(withId(R.id.checkBox1))
             .perform(click())
             .check(matches(isChecked()))
-        onView(withId(R.id.checkbox_2))
+        onView(withId(R.id.checkBox2))
             .perform(click())
             .check(matches(isChecked()))
-        onView(withId(R.id.checkbox_3))
+        onView(withId(R.id.checkBox3))
             .perform(click())
             .check(matches(isChecked()))
-        onView(withId(R.id.checkbox_4))
+        onView(withId(R.id.checkBox4))
             .perform(click())
             .check(matches(isChecked()))
 

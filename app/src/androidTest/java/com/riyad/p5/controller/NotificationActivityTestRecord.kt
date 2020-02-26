@@ -90,7 +90,7 @@ class NotificationActivityTestRecord {
 
         val appCompatCheckBox = onView(
             allOf(
-                withId(R.id.checkbox1), withText("Business"),
+                withId(R.id.checkBox1), withText("Business"),
                 childAtPosition(
                     allOf(
                         withId(R.id.notification_activity),
