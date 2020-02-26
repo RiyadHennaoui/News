@@ -17,6 +17,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4ClassRunner::class)
 class NotificationActivityTest  {
 
+
+    //TODO Vider Room avant de lancer les tests
     @Test
     fun notificationActivity_isDisplayed(){
 

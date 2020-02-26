@@ -88,8 +88,8 @@ class NotificationActivityTestRecord {
         )
         searchAutoComplete.perform(replaceText("Trump"), closeSoftKeyboard())
 
-        val appCompatCheckBox = onView(
-            allOf(
+        val appCompatCheckBox = onView(withId(R.id.checkBox1))
+           /* allOf(
                 withId(R.id.checkBox1), withText("Business"),
                 childAtPosition(
                     allOf(
@@ -103,7 +103,7 @@ class NotificationActivityTestRecord {
                 ),
                 isDisplayed()
             )
-        )
+        ) */
         appCompatCheckBox.perform(click())
 
         val appCompatImageButton = onView(
