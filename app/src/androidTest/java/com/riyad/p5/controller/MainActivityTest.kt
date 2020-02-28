@@ -154,4 +154,20 @@ class MainActivityTest {
 
     }
 
+    @Test
+    fun onBackPressedWhenNavDrawerOpen(){
+
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+
+        onView(withId(R.id.drawer_layout))
+            .check(matches(isClosed(Gravity.LEFT)))
+            .perform(DrawerActions.open())
+
+        pressBack()
+
+        onView(withId(R.id.drawer_layout))
+            .check(matches(isClosed(Gravity.LEFT)))
+
+    }
+
 }
