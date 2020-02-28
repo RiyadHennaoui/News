@@ -159,6 +159,7 @@ class MainActivityTest {
 
         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
+        Thread.sleep(500)
         onView(withId(R.id.drawer_layout))
             .check(matches(isClosed(Gravity.LEFT)))
             .perform(DrawerActions.open())
