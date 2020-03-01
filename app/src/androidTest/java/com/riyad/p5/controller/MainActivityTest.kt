@@ -1,7 +1,6 @@
 package com.riyad.p5.controller
 
 import android.view.Gravity
-import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.click
@@ -45,7 +44,7 @@ class MainActivityTest {
 
     @Test
     fun test_backPress_toMainActivity() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+
 
         onView(withId(R.id.search_btn)).perform(click())
 
@@ -60,7 +59,6 @@ class MainActivityTest {
     @Test
     fun test_articleClicked_toWebView() {
 
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
         Thread.sleep(3000)
         onView(
             allOf(
@@ -78,7 +76,6 @@ class MainActivityTest {
 
     @Test
     fun test_isNavDrawerVisible() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
         // Open Drawer to click on navigation
         onView(withId(R.id.drawer_layout))
@@ -117,7 +114,6 @@ class MainActivityTest {
 
     @Test
     fun navToSearchActivity() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open())
         onView(withId(R.id.navigation_view))
@@ -130,8 +126,6 @@ class MainActivityTest {
     @Test
     fun test_changeFragmentAfterSwipe() {
 
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-
         Thread.sleep(500)
         onView(withId(R.id.main_vp_articles)).perform(swipeLeft())
         onView(withId(R.id.main_tl)).check(matches(hasDescendant(withText("Most Popular"))))
@@ -140,8 +134,6 @@ class MainActivityTest {
 
     @Test
     fun test_SportListisNotEmpty() {
-
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
         Thread.sleep(500)
         onView(withId(R.id.main_vp_articles)).perform(swipeLeft())
@@ -155,9 +147,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun onBackPressedWhenNavDrawerOpen(){
-
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+    fun onBackPressedWhenNavDrawerOpen() {
 
         Thread.sleep(500)
         onView(withId(R.id.drawer_layout))
@@ -168,9 +158,6 @@ class MainActivityTest {
 
         onView(withId(R.id.drawer_layout))
             .check(matches(isClosed(Gravity.LEFT)))
-
-        onView(withId(R.id.main_tl))
-            .check(matches(hasDescendant(withText("Most Popular"))))
 
     }
 

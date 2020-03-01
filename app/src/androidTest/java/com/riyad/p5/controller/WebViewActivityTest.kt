@@ -14,7 +14,7 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class WebViewActivityTest{
+class WebViewActivityTest {
 
 
     @Rule // third parameter is set to false which means the activity is not started automatically
@@ -23,10 +23,13 @@ class WebViewActivityTest{
         ActivityTestRule<WebViewActivity>(WebViewActivity::class.java, false, false)
 
     @Test
-    fun webViewActivity_isDisplyed(){
+    fun webViewActivity_isDisplyed() {
 
         val intent = Intent()
-        intent.putExtra(WebViewActivity.EXTRA_ARTICLE_URL, "https://stackoverflow.com/questions/31752303/espresso-startactivity-that-depends-on-intent/45502924")
+        intent.putExtra(
+            WebViewActivity.EXTRA_ARTICLE_URL,
+            "https://stackoverflow.com/questions/31752303/espresso-startactivity-that-depends-on-intent/45502924"
+        )
 
         mActivityRule.launchActivity(intent)
 

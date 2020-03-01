@@ -89,21 +89,21 @@ class NotificationActivityTestRecord {
         searchAutoComplete.perform(replaceText("Trump"), closeSoftKeyboard())
 
         val appCompatCheckBox = onView(withId(R.id.checkBox1))
-           /* allOf(
-                withId(R.id.checkBox1), withText("Business"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.notification_activity),
-                        childAtPosition(
-                            withId(android.R.id.content),
-                            0
-                        )
-                    ),
-                    2
-                ),
-                isDisplayed()
-            )
-        ) */
+        /* allOf(
+             withId(R.id.checkBox1), withText("Business"),
+             childAtPosition(
+                 allOf(
+                     withId(R.id.notification_activity),
+                     childAtPosition(
+                         withId(android.R.id.content),
+                         0
+                     )
+                 ),
+                 2
+             ),
+             isDisplayed()
+         )
+     ) */
         appCompatCheckBox.perform(click())
 
         val appCompatImageButton = onView(
