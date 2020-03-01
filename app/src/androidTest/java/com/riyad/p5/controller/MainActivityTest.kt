@@ -169,6 +169,9 @@ class MainActivityTest {
         onView(withId(R.id.drawer_layout))
             .check(matches(isClosed(Gravity.LEFT)))
 
+        onView(withId(R.id.main_tl))
+            .check(matches(hasDescendant(withText("Most Popular"))))
+
     }
 
 }
