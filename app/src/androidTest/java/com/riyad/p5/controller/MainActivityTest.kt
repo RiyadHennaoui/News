@@ -31,15 +31,15 @@ class MainActivityTest {
     val mActivityRule = IntentsTestRule<MainActivity>(MainActivity::class.java)
 
 
-    @Test
-    fun test_isSearchActivityInView() {
-
-
-        onView(withId(R.id.search_btn)).perform(click())
-        onView(withId(R.id.search_activity))
-            .check(matches(isDisplayed()))
-
-    }
+//    @Test
+//    fun test_isSearchActivityInView() {
+//
+//
+//        onView(withId(R.id.search_btn)).perform(click())
+//        onView(withId(R.id.search_activity))
+//            .check(matches(isDisplayed()))
+//
+//    }
 
 
     @Test
